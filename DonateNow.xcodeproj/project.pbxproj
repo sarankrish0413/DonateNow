@@ -7,14 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		405D8478B2922B944646FBC5 /* Pods_DonateNow.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6129FA61BA5E5B209F3D83C0 /* Pods_DonateNow.framework */; };
 		AE1BE30B1E3AF67100F08C31 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1BE30A1E3AF67100F08C31 /* AppDelegate.swift */; };
 		AE1BE30D1E3AF67100F08C31 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE1BE30C1E3AF67100F08C31 /* ViewController.swift */; };
 		AE1BE3101E3AF67100F08C31 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE1BE30E1E3AF67100F08C31 /* Main.storyboard */; };
 		AE1BE3121E3AF67100F08C31 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AE1BE3111E3AF67100F08C31 /* Assets.xcassets */; };
 		AE1BE3151E3AF67100F08C31 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE1BE3131E3AF67100F08C31 /* LaunchScreen.storyboard */; };
+		AE5DB73C1E403A5200B62A35 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AE5DB73B1E403A5200B62A35 /* GoogleService-Info.plist */; };
+		AEE399661E402899003B7B23 /* DonorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE399651E402899003B7B23 /* DonorViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6129FA61BA5E5B209F3D83C0 /* Pods_DonateNow.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DonateNow.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		934A3AEAB6CBFB2EDC3BD2C2 /* Pods-DonateNow.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DonateNow.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DonateNow/Pods-DonateNow.debug.xcconfig"; sourceTree = "<group>"; };
+		ADF3243E28DB5837788361C5 /* Pods-DonateNow.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DonateNow.release.xcconfig"; path = "Pods/Target Support Files/Pods-DonateNow/Pods-DonateNow.release.xcconfig"; sourceTree = "<group>"; };
 		AE1BE3071E3AF67100F08C31 /* DonateNow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DonateNow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AE1BE30A1E3AF67100F08C31 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AE1BE30C1E3AF67100F08C31 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -22,6 +28,9 @@
 		AE1BE3111E3AF67100F08C31 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AE1BE3141E3AF67100F08C31 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AE1BE3161E3AF67100F08C31 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AE55DFB01E3AFFBF00231A04 /* DonateNow.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DonateNow.entitlements; sourceTree = "<group>"; };
+		AE5DB73B1E403A5200B62A35 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		AEE399651E402899003B7B23 /* DonorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DonorViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,17 +38,38 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				405D8478B2922B944646FBC5 /* Pods_DonateNow.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9830CF284C4C3B4D55AE683A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				934A3AEAB6CBFB2EDC3BD2C2 /* Pods-DonateNow.debug.xcconfig */,
+				ADF3243E28DB5837788361C5 /* Pods-DonateNow.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		A7DF5AEB7A7E830EB0585116 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6129FA61BA5E5B209F3D83C0 /* Pods_DonateNow.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		AE1BE2FE1E3AF67100F08C31 = {
 			isa = PBXGroup;
 			children = (
+				AE5DB73B1E403A5200B62A35 /* GoogleService-Info.plist */,
 				AE1BE3091E3AF67100F08C31 /* DonateNow */,
 				AE1BE3081E3AF67100F08C31 /* Products */,
+				A7DF5AEB7A7E830EB0585116 /* Frameworks */,
+				9830CF284C4C3B4D55AE683A /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -54,12 +84,14 @@
 		AE1BE3091E3AF67100F08C31 /* DonateNow */ = {
 			isa = PBXGroup;
 			children = (
+				AE55DFB01E3AFFBF00231A04 /* DonateNow.entitlements */,
 				AE1BE30A1E3AF67100F08C31 /* AppDelegate.swift */,
 				AE1BE30C1E3AF67100F08C31 /* ViewController.swift */,
 				AE1BE30E1E3AF67100F08C31 /* Main.storyboard */,
 				AE1BE3111E3AF67100F08C31 /* Assets.xcassets */,
 				AE1BE3131E3AF67100F08C31 /* LaunchScreen.storyboard */,
 				AE1BE3161E3AF67100F08C31 /* Info.plist */,
+				AEE399651E402899003B7B23 /* DonorViewController.swift */,
 			);
 			path = DonateNow;
 			sourceTree = "<group>";
@@ -71,9 +103,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = AE1BE3191E3AF67100F08C31 /* Build configuration list for PBXNativeTarget "DonateNow" */;
 			buildPhases = (
+				540A6230BE24696261BE9838 /* [CP] Check Pods Manifest.lock */,
 				AE1BE3031E3AF67100F08C31 /* Sources */,
 				AE1BE3041E3AF67100F08C31 /* Frameworks */,
 				AE1BE3051E3AF67100F08C31 /* Resources */,
+				02BED278AE3226B3010BFBA3 /* [CP] Embed Pods Frameworks */,
+				1E0159CDB73B96486AED8640 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -96,8 +131,12 @@
 				TargetAttributes = {
 					AE1BE3061E3AF67100F08C31 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = K5YJD92687;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -125,12 +164,61 @@
 			buildActionMask = 2147483647;
 			files = (
 				AE1BE3151E3AF67100F08C31 /* LaunchScreen.storyboard in Resources */,
+				AE5DB73C1E403A5200B62A35 /* GoogleService-Info.plist in Resources */,
 				AE1BE3121E3AF67100F08C31 /* Assets.xcassets in Resources */,
 				AE1BE3101E3AF67100F08C31 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		02BED278AE3226B3010BFBA3 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DonateNow/Pods-DonateNow-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		1E0159CDB73B96486AED8640 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DonateNow/Pods-DonateNow-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		540A6230BE24696261BE9838 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		AE1BE3031E3AF67100F08C31 /* Sources */ = {
@@ -139,6 +227,7 @@
 			files = (
 				AE1BE30D1E3AF67100F08C31 /* ViewController.swift in Sources */,
 				AE1BE30B1E3AF67100F08C31 /* AppDelegate.swift in Sources */,
+				AEE399661E402899003B7B23 /* DonorViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -257,12 +346,29 @@
 		};
 		AE1BE31A1E3AF67100F08C31 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 934A3AEAB6CBFB2EDC3BD2C2 /* Pods-DonateNow.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = K5YJD92687;
+				CODE_SIGN_ENTITLEMENTS = DonateNow/DonateNow.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Firebase/AdMob",
+					"$(PROJECT_DIR)/Firebase/Analytics",
+					"$(PROJECT_DIR)/Firebase/AppIndexing",
+					"$(PROJECT_DIR)/Firebase/Auth",
+					"$(PROJECT_DIR)/Firebase/Crash",
+					"$(PROJECT_DIR)/Firebase/Database",
+					"$(PROJECT_DIR)/Firebase/DynamicLinks",
+					"$(PROJECT_DIR)/Firebase/Invites",
+					"$(PROJECT_DIR)/Firebase/Messaging",
+					"$(PROJECT_DIR)/Firebase/RemoteConfig",
+					"$(PROJECT_DIR)/Firebase/Storage",
+				);
 				INFOPLIST_FILE = DonateNow/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.TestApp.DonateNow;
+				PRODUCT_BUNDLE_IDENTIFIER = com.donatenow.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -270,12 +376,29 @@
 		};
 		AE1BE31B1E3AF67100F08C31 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = ADF3243E28DB5837788361C5 /* Pods-DonateNow.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = K5YJD92687;
+				CODE_SIGN_ENTITLEMENTS = DonateNow/DonateNow.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Firebase/AdMob",
+					"$(PROJECT_DIR)/Firebase/Analytics",
+					"$(PROJECT_DIR)/Firebase/AppIndexing",
+					"$(PROJECT_DIR)/Firebase/Auth",
+					"$(PROJECT_DIR)/Firebase/Crash",
+					"$(PROJECT_DIR)/Firebase/Database",
+					"$(PROJECT_DIR)/Firebase/DynamicLinks",
+					"$(PROJECT_DIR)/Firebase/Invites",
+					"$(PROJECT_DIR)/Firebase/Messaging",
+					"$(PROJECT_DIR)/Firebase/RemoteConfig",
+					"$(PROJECT_DIR)/Firebase/Storage",
+				);
 				INFOPLIST_FILE = DonateNow/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.TestApp.DonateNow;
+				PRODUCT_BUNDLE_IDENTIFIER = com.donatenow.ios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -300,6 +423,7 @@
 				AE1BE31B1E3AF67100F08C31 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
