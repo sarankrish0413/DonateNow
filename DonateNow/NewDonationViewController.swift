@@ -69,6 +69,8 @@ class NewDonationViewController: UIViewController{
         donations.state = stateTextField.text
         donations.zipcode = zipcodeTextField.text
         donations.splInstructions = splInstTextView.text
+        
+        
         Utility.DonationsArray.append(donations)
         
         //Donor
@@ -169,7 +171,5 @@ class NewDonationViewController: UIViewController{
         let dateFromString = dateFormatter.string(from: sender.date )
         return dateFromString
     }
-    
-    
     
 }
