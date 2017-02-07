@@ -3,7 +3,7 @@
 //  DonateNow
 //
 //  Created by Saranya Krishnan on 1/26/17.
-//  Copyright © 2017 Saranya Krishnan. All rights reserved.
+// Copyright © 2017 Saranya Krishnan. All rights reserved.
 //
 
 import UIKit
@@ -34,6 +34,21 @@ class ViewController: UIViewController {
         
     }
     
+    // Sign up action
+    
+    @IBAction func signUpAction(_ sender: UIButton) {
+       
+        if(userTypeSegmentedControl.selectedSegmentIndex == 0){
+            //Donor
+            let donorSignUpViewControllerObj = self.storyboard?.instantiateViewController(withIdentifier: "SignupDonorViewController") as? SignupDonorViewController
+            self.navigationController?.pushViewController(donorSignUpViewControllerObj!, animated: true)
+        }
+        else if(userTypeSegmentedControl.selectedSegmentIndex == 1){
+            //Requestor
+            let requestorSignUpViewControllerObj = self.storyboard?.instantiateViewController(withIdentifier: "SignupRequestorViewController") as? SignupRequestorViewController
+            self.navigationController?.pushViewController(requestorSignUpViewControllerObj!, animated: true)
+        }
+    }
     //Login Button action
     @IBAction func loginAction(_ sender: UIButton) {
         
