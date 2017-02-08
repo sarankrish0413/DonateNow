@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		405D8478B2922B944646FBC5 /* Pods_DonateNow.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6129FA61BA5E5B209F3D83C0 /* Pods_DonateNow.framework */; };
+		5D227BF11E499C4200E2F5A4 /* SignupDonorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D227BF01E499C4200E2F5A4 /* SignupDonorViewController.swift */; };
+		5D227BF31E499C5900E2F5A4 /* SignupRequestorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D227BF21E499C5900E2F5A4 /* SignupRequestorViewController.swift */; };
 		AE081FCA1E47A92C000A4F9B /* RequestorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE081FC91E47A92C000A4F9B /* RequestorViewController.swift */; };
 		AE081FCE1E47AB6F000A4F9B /* RequestorAcceptedDonationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE081FCD1E47AB6F000A4F9B /* RequestorAcceptedDonationViewController.swift */; };
 		AE081FD01E47AE20000A4F9B /* RequestorAcceptedDonationsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE081FCF1E47AE20000A4F9B /* RequestorAcceptedDonationsTableViewCell.swift */; };
@@ -34,6 +36,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5D227BF01E499C4200E2F5A4 /* SignupDonorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupDonorViewController.swift; sourceTree = "<group>"; };
+		5D227BF21E499C5900E2F5A4 /* SignupRequestorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupRequestorViewController.swift; sourceTree = "<group>"; };
 		6129FA61BA5E5B209F3D83C0 /* Pods_DonateNow.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DonateNow.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		934A3AEAB6CBFB2EDC3BD2C2 /* Pods-DonateNow.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DonateNow.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DonateNow/Pods-DonateNow.debug.xcconfig"; sourceTree = "<group>"; };
 		ADF3243E28DB5837788361C5 /* Pods-DonateNow.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DonateNow.release.xcconfig"; path = "Pods/Target Support Files/Pods-DonateNow/Pods-DonateNow.release.xcconfig"; sourceTree = "<group>"; };
@@ -77,6 +81,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5D227BEF1E499C2300E2F5A4 /* SignUp */ = {
+			isa = PBXGroup;
+			children = (
+				5D227BF01E499C4200E2F5A4 /* SignupDonorViewController.swift */,
+				5D227BF21E499C5900E2F5A4 /* SignupRequestorViewController.swift */,
+			);
+			name = SignUp;
+			sourceTree = "<group>";
+		};
 		9830CF284C4C3B4D55AE683A /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -216,6 +229,7 @@
 		AE1BE3091E3AF67100F08C31 /* DonateNow */ = {
 			isa = PBXGroup;
 			children = (
+				5D227BEF1E499C2300E2F5A4 /* SignUp */,
 				AE081FD41E47F5C6000A4F9B /* viewDonationDetails */,
 				AE081FD11E47EE86000A4F9B /* Utility */,
 				AE081FCB1E47AB15000A4F9B /* RequestorAcceptedDonations */,
@@ -387,6 +401,7 @@
 				AE081FD31E47EFFF000A4F9B /* Utility.swift in Sources */,
 				AE081FD01E47AE20000A4F9B /* RequestorAcceptedDonationsTableViewCell.swift in Sources */,
 				AE1BE30D1E3AF67100F08C31 /* ViewController.swift in Sources */,
+				5D227BF31E499C5900E2F5A4 /* SignupRequestorViewController.swift in Sources */,
 				AECD22A01E46D2E4002FB1E0 /* NewDonationViewController.swift in Sources */,
 				AECD22981E46BC0D002FB1E0 /* MyDonationTableViewCell.swift in Sources */,
 				AE1BE30B1E3AF67100F08C31 /* AppDelegate.swift in Sources */,
@@ -394,6 +409,7 @@
 				AE081FD61E47F5ED000A4F9B /* ViewDonationDetailsViewController.swift in Sources */,
 				AE081FCA1E47A92C000A4F9B /* RequestorViewController.swift in Sources */,
 				AECD229E1E46CD7D002FB1E0 /* MyDonationsViewController.swift in Sources */,
+				5D227BF11E499C4200E2F5A4 /* SignupDonorViewController.swift in Sources */,
 				AE081FCE1E47AB6F000A4F9B /* RequestorAcceptedDonationViewController.swift in Sources */,
 				AEE399661E402899003B7B23 /* DonorViewController.swift in Sources */,
 			);
