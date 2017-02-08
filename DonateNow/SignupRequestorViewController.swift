@@ -50,9 +50,8 @@ class SignupRequestorViewController: UIViewController{
                 
                 if error == nil {
                     print("You have successfully signed up")
-                    //Goes to the Setup page which lets the user take a photo for their profile picture and also chose a username
                     
-                    //Donor
+                    //Redirect to login page
                     let loginViewControllerObj = self.storyboard?.instantiateViewController(withIdentifier: "ViewController") as? ViewController
                     self.navigationController?.pushViewController(loginViewControllerObj!, animated: true)
                     
@@ -70,7 +69,7 @@ class SignupRequestorViewController: UIViewController{
         
         
         
-
+        
     }
     
     

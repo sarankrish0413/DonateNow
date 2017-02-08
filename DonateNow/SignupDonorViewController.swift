@@ -26,7 +26,7 @@ class SignupDonorViewController: UIViewController{
     @IBOutlet weak var pincodeTextField: UITextField!
     @IBOutlet weak var contactTextField: UITextField!
     @IBOutlet weak var websiteTextField: UITextField!
-   
+    
     //MARK: Outlets Action
     //Add Button, capture all the details from form and add it to User array
     @IBAction func donorRegisterAction(_ sender: UIButton) {
@@ -45,14 +45,13 @@ class SignupDonorViewController: UIViewController{
             
             addDonorDetailsToFireBaseDatabase(username: usernameTextField.text!, email: emailTextField.text!, userType: userTypeTextField.text!, restaurantName: restaurantNameTextField.text!, orgName: "", address1: address1TextField.text!, address2: address2TextField.text!, city: cityTextField.text!, state: stateTextField.text!, zipcode: pincodeTextField.text!, contact: contactTextField.text!, websiteUrl: websiteTextField.text!, orgId: "", userID: uuid)
             
-                FIRAuth.auth()?.createUser(withEmail: emailTextField.text!, password: passwordTextField.text!) { (user, error) in
+            FIRAuth.auth()?.createUser(withEmail: emailTextField.text!, password: passwordTextField.text!) { (user, error) in
                 
-                    
+                
                 if error == nil {
                     print("You have successfully signed up")
-                    //Goes to the Setup page which lets the user take a photo for their profile picture and also chose a username
                     
-                    //Donor
+                    //Redirect to login page
                     let loginViewControllerObj = self.storyboard?.instantiateViewController(withIdentifier: "ViewController") as? ViewController
                     self.navigationController?.pushViewController(loginViewControllerObj!, animated: true)
                     
@@ -69,7 +68,7 @@ class SignupDonorViewController: UIViewController{
         
         
         
-   
+        
     }
     
     //MARK: View Controller Life cycle Methods
@@ -80,7 +79,7 @@ class SignupDonorViewController: UIViewController{
         self.navigationController?.isNavigationBarHidden = false
         self.navigationItem.setHidesBackButton(true, animated:true);
         let logoutButton : UIBarButtonItem = UIBarButtonItem(title: "Logout", style:
-        UIBarButtonItemStyle.plain, target: self, action: Selector(("Logout")))
+            UIBarButtonItemStyle.plain, target: self, action: Selector(("Logout")))
         self.navigationItem.rightBarButtonItem = logoutButton;
         // Status bar black font
         self.navigationController?.navigationBar.tintColor = UIColor.black
