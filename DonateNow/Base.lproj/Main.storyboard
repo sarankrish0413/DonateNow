@@ -12,7 +12,7 @@
         <!--LoginViewcontroller-->
         <scene sceneID="x1n-yN-Psi">
             <objects>
-                <viewController title="LoginViewcontroller" id="ubx-2x-inx" customClass="ViewController" customModule="DonateNow" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ViewController" title="LoginViewcontroller" id="ubx-2x-inx" customClass="ViewController" customModule="DonateNow" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Tgc-Ww-Fyj"/>
                         <viewControllerLayoutGuide type="bottom" id="f8h-ju-Fk0"/>
@@ -140,14 +140,14 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="El7-mR-2L6">
                                 <rect key="frame" x="193" y="193" width="163" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4by-Vd-d3U">
                                 <rect key="frame" x="193" y="269" width="163" height="30"/>
@@ -279,10 +279,35 @@
                                 <rect key="frame" x="156" y="558" width="57" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Register"/>
+                                <connections>
+                                    <action selector="donorRegisterAction:" destination="jTu-RI-206" eventType="touchUpInside" id="YEb-cu-TM9"/>
+                                </connections>
                             </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UYw-41-w3f">
+                                <rect key="frame" x="193" y="231" width="163" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="address1TextField" destination="8m9-dq-tWL" id="0lL-Ym-OWj"/>
+                        <outlet property="address2TextField" destination="GlF-6c-gdJ" id="R9r-az-cui"/>
+                        <outlet property="cityTextField" destination="u2h-Ks-QoG" id="Ftx-C7-zSH"/>
+                        <outlet property="confirmPwdTextField" destination="El7-mR-2L6" id="Yez-97-vlo"/>
+                        <outlet property="contactTextField" destination="avA-eo-j9H" id="HAg-GN-qBm"/>
+                        <outlet property="emailTextField" destination="vjQ-1T-o2C" id="MJ0-Dy-S8j"/>
+                        <outlet property="passwordTextField" destination="j0r-Fl-WvH" id="jSd-ZX-LYq"/>
+                        <outlet property="pincodeTextField" destination="faL-VN-xTr" id="wmH-Iw-2PX"/>
+                        <outlet property="restaurantNameTextField" destination="4by-Vd-d3U" id="shC-3y-AOY"/>
+                        <outlet property="stateTextField" destination="r6i-QM-PI9" id="nTf-KV-oMq"/>
+                        <outlet property="userTypeTextField" destination="UYw-41-w3f" id="oXr-cM-dJ0"/>
+                        <outlet property="usernameTextField" destination="xsy-lc-FF6" id="QVJ-nH-5MW"/>
+                        <outlet property="websiteTextField" destination="lKp-mN-5Qf" id="9YO-8x-QxX"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xnj-ir-Bxc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -312,14 +337,14 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CQd-wZ-0KJ">
                                 <rect key="frame" x="196" y="178" width="163" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OY1-iM-Kpf">
                                 <rect key="frame" x="196" y="254" width="163" height="30"/>
@@ -372,13 +397,6 @@
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6eM-Gs-PDc">
                                 <rect key="frame" x="196" y="375" width="168" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UiV-Ib-Hm2">
-                                <rect key="frame" x="196" y="457" width="168" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -444,6 +462,9 @@
                                 <rect key="frame" x="159" y="543" width="57" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Register"/>
+                                <connections>
+                                    <action selector="requestorRegisterAction:" destination="HOy-z0-qPV" eventType="touchUpInside" id="J9y-OA-XTr"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Contact:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vvc-wz-rr3">
                                 <rect key="frame" x="16" y="419" width="146" height="21"/>
@@ -452,9 +473,38 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LaI-5l-8DC">
+                                <rect key="frame" x="196" y="217" width="163" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UiV-Ib-Hm2">
+                                <rect key="frame" x="196" y="458" width="168" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="address1TextField" destination="Op0-6y-4C6" id="ff3-B0-xss"/>
+                        <outlet property="address2TextField" destination="Us1-BS-dLH" id="Xg1-IU-MEe"/>
+                        <outlet property="cityTextField" destination="ifY-pe-4GK" id="bzh-3W-qQv"/>
+                        <outlet property="confirmPwdTextField" destination="CQd-wZ-0KJ" id="3Fx-Ap-pM4"/>
+                        <outlet property="contactTextField" destination="kv3-DS-n6x" id="0i9-k8-Ru0"/>
+                        <outlet property="emailTextField" destination="epL-kY-gEF" id="sm1-9G-xm1"/>
+                        <outlet property="orgIdTextField" destination="UiV-Ib-Hm2" id="n88-8U-bst"/>
+                        <outlet property="orgNameTextField" destination="OY1-iM-Kpf" id="TF7-Op-CqJ"/>
+                        <outlet property="passwordTextField" destination="PTb-rp-RsA" id="Nk3-qX-V8Z"/>
+                        <outlet property="pincodeTextField" destination="6eM-Gs-PDc" id="0zq-bk-v8C"/>
+                        <outlet property="stateTextField" destination="Q5m-qE-fMU" id="LfP-Pc-aEm"/>
+                        <outlet property="userTypeTextField" destination="LaI-5l-8DC" id="wbm-a9-Y7g"/>
+                        <outlet property="usernameTextField" destination="aXl-uc-6lc" id="auv-is-rdD"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uNs-TH-yQy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1048,7 +1098,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="JQD-of-sbQ" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="WcT-5K-VRC">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="WcT-5K-VRC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
