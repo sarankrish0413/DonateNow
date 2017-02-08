@@ -8,6 +8,7 @@
 
 import UIKit
 import Foundation
+import FirebaseAuth
 
 
 class ViewController: UIViewController {
@@ -51,11 +52,21 @@ class ViewController: UIViewController {
     }
     //Login Button action
     @IBAction func loginAction(_ sender: UIButton) {
-        
         if(userTypeSegmentedControl.selectedSegmentIndex == 0){
-            //Donor
-            let donorViewControllerObj = self.storyboard?.instantiateViewController(withIdentifier: "DonorViewController") as? DonorViewController
-            self.navigationController?.pushViewController(donorViewControllerObj!, animated: true)
+            FIRAuth.auth()?.signIn(withEmail: self.userNameTextField.text!, password: self.passwordTextField.text!) { (user, error) in
+                if error == nil {
+                    //Show Donor
+                                let donorViewControllerObj = self.storyboard?.instantiateViewController(withIdentifier: "DonorViewController") as? DonorViewController
+                                self.navigationController?.pushViewController(donorViewControllerObj!, animated: true)
+                }
+                else{
+                    let alertController = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .alert)
+                    let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+                    alertController.addAction(defaultAction)
+                    self.present(alertController, animated: true, completion: nil)
+                }
+            }
+            
         }
         else if(userTypeSegmentedControl.selectedSegmentIndex == 1){
             //Requestor

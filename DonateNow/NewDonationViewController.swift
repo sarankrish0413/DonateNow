@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import FirebaseDatabase
 
 class NewDonationViewController: UIViewController{
     
@@ -57,19 +58,12 @@ class NewDonationViewController: UIViewController{
     //MARK: Outlets Action
     //Add Button, capture all the details from form and add it to Donations array
     @IBAction func addButtonAction(_ sender: UIButton) {
-        let donations = Donation()
-        donations.foodDesc = foodDescTextView.text
-        donations.quantity = qtyTextField.text
-        donations.pickUpFromDate = fromDateTextField.text
-        donations.pickUpToDate = toDateTextField.text
-        donations.contact = contactTextField.text
-        donations.address1 = address1TextField.text
-        donations.address2 = address2TextField.text
-        donations.city = cityTextField.text
-        donations.state = stateTextField.text
-        donations.zipcode = zipcodeTextField.text
-        donations.splInstructions = splInstTextView.text
-        Utility.DonationsArray.append(donations)
+        
+        
+        let uuid = UUID().uuidString
+        print(uuid)
+       
+        addDonationDetailsToFireBaseDatabase(foodDesc: foodDescTextView.text, quantity: qtyTextField.text!, contact: contactTextField.text!, address1: address1TextField.text!, address2: address2TextField.text!, city: cityTextField.text!, state: stateTextField.text!, zipcode: zipcodeTextField.text!, splInstructions: splInstTextView.text!, createdUserName: "testuser", createdDate: getCurrentDateAndTime(), pickUpFromDate: fromDateTextField.text!, pickUpToDate: toDateTextField.text!, donationID: uuid , donationStatus: "New")
         
         //Donor
         let donorViewControllerObj = self.storyboard?.instantiateViewController(withIdentifier: "DonorViewController") as? DonorViewController
@@ -168,6 +162,26 @@ class NewDonationViewController: UIViewController{
         //dateFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX") as Locale!
         let dateFromString = dateFormatter.string(from: sender.date )
         return dateFromString
+    }
+    
+    
+    func getCurrentDateAndTime() -> String{
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd hh:mm"
+        dateFormatter.timeZone = NSTimeZone(forSecondsFromGMT: NSTimeZone.local.secondsFromGMT()) as TimeZone!
+        let dateFromString = dateFormatter.string(from:NSDate() as Date)
+        return dateFromString
+    }
+    
+    //Add Data to Firebase Database
+    func addDonationDetailsToFireBaseDatabase(foodDesc:String, quantity:String, contact:String, address1:String, address2: String, city:String, state: String, zipcode:String, splInstructions:String, createdUserName:String, createdDate:String, pickUpFromDate:String, pickUpToDate:String, donationID:String, donationStatus:String){
+        
+        let ref = FIRDatabase.database().reference(withPath: "Donations")
+        let donation = Donation(foodDesc: foodDesc,quantity: quantity,contact: contact,address1: address1,address2: address2,city: city,state: state,zipcode: zipcode,splInstructions: splInstructions,createdUserName: createdUserName,createdDate: createdDate,pickUpFromDate: pickUpFromDate ,pickUpToDate: pickUpToDate,donationID: donationID,donationStatus: donationStatus)
+        let donationItemRef = ref.child(donationID.lowercased())
+        donationItemRef.setValue(donation.toAnyObject())
+        
+        
     }
     
     
