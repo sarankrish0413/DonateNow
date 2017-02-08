@@ -22,18 +22,18 @@ class RequestorAcceptedDonationsViewController: UIViewController,UITableViewDele
     
     //Return number of rows in each section
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return Utility.DonationsArray.count;
+        return 5;
     }
     
     //Set Data for each row
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = self.acceptedDonationsTableView.dequeueReusableCell(withIdentifier:"AcceptedDonationsTableViewCellIdentifier", for: indexPath) as!RequestorAcceptedDonationsTableViewCell
-        let row = indexPath.row
+       // let row = indexPath.row
         cell.restaurantNameLabel.text = "Restaurant"
-        let date = Utility.DonationsArray[row].pickUpFromDate?.components(separatedBy: " ").first
+        let date = "23/01/17"
         cell.dateLabel.text = date
-        cell.foodDescLabel.text = Utility.DonationsArray[row].foodDesc
+        cell.foodDescLabel.text = "hi"
         return cell
         
     }

@@ -90,18 +90,18 @@ class ViewDonationDetailsViewController: UIViewController{
             self.title = "Welcome Thai Ginger!!"
         }
         
-        //Set value for Donation Details page
-        foodDescTextView.text = Utility.DonationsArray[donationIndex].foodDesc
-        splInstTextView.text = Utility.DonationsArray[donationIndex].splInstructions
-        zipcodeTextField.text = Utility.DonationsArray[donationIndex].zipcode
-        stateTextField.text = Utility.DonationsArray[donationIndex].state
-        cityTextField.text = Utility.DonationsArray[donationIndex].city
-        address2TextField.text = Utility.DonationsArray[donationIndex].address2
-        address1TextField.text = Utility.DonationsArray[donationIndex].address1
-        contactTextField.text = Utility.DonationsArray[donationIndex].contact
-        qtyTextField.text = Utility.DonationsArray[donationIndex].quantity
-        toDateTextField.text = Utility.DonationsArray[donationIndex].pickUpToDate
-        fromDateTextField.text = Utility.DonationsArray[donationIndex].pickUpFromDate
+//        //Set value for Donation Details page
+//        foodDescTextView.text = Utility.DonationsArray[donationIndex].foodDesc
+//        splInstTextView.text = Utility.DonationsArray[donationIndex].splInstructions
+//        zipcodeTextField.text = Utility.DonationsArray[donationIndex].zipcode
+//        stateTextField.text = Utility.DonationsArray[donationIndex].state
+//        cityTextField.text = Utility.DonationsArray[donationIndex].city
+//        address2TextField.text = Utility.DonationsArray[donationIndex].address2
+//        address1TextField.text = Utility.DonationsArray[donationIndex].address1
+//        contactTextField.text = Utility.DonationsArray[donationIndex].contact
+//        qtyTextField.text = Utility.DonationsArray[donationIndex].quantity
+//        toDateTextField.text = Utility.DonationsArray[donationIndex].pickUpToDate
+//        fromDateTextField.text = Utility.DonationsArray[donationIndex].pickUpFromDate
     }
     
     override func didReceiveMemoryWarning() {
@@ -155,9 +155,6 @@ class ViewDonationDetailsViewController: UIViewController{
         toDatePickerValueChanged(sender: datePickerView)
         
     }
-    
-    
-    
     
     //MARK: Custom Methods
     //set the value for fromDate textfield when the user clicks on done

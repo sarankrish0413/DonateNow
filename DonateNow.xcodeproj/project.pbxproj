@@ -122,8 +122,8 @@
 		AE081FC41E47A66D000A4F9B /* DonorViewController */ = {
 			isa = PBXGroup;
 			children = (
+				AE081FD91E494F31000A4F9B /* Model */,
 				AEE399651E402899003B7B23 /* DonorViewController.swift */,
-				AE081FD71E47FC5B000A4F9B /* DonationDetails.swift */,
 			);
 			name = DonorViewController;
 			sourceTree = "<group>";
@@ -185,6 +185,14 @@
 				AE081FD51E47F5ED000A4F9B /* ViewDonationDetailsViewController.swift */,
 			);
 			name = viewDonationDetails;
+			sourceTree = "<group>";
+		};
+		AE081FD91E494F31000A4F9B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				AE081FD71E47FC5B000A4F9B /* DonationDetails.swift */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 		AE1BE2FE1E3AF67100F08C31 = {
