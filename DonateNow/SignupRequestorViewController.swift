@@ -66,10 +66,6 @@ class SignupRequestorViewController: UIViewController{
             }
         }
         
-        
-        
-        
-        
     }
     
     

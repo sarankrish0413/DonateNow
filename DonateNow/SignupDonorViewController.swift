@@ -66,9 +66,6 @@ class SignupDonorViewController: UIViewController{
             }
         }
         
-        
-        
-        
     }
     
     //MARK: View Controller Life cycle Methods
