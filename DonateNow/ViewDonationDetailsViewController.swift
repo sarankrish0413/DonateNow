@@ -11,6 +11,8 @@ import UIKit
 
 class ViewDonationDetailsViewController: UIViewController{
     
+
+    
     var donationIndex:Int!
     
     //MARK: Outlets
