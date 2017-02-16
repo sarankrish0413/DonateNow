@@ -1,23 +1,23 @@
 //
-//  RequestorAcceptedDonationViewController.swift
+//  RequestorAvailableDonationsViewController.swift
 //  DonateNow
 //
-//  Created by Saranya Krishnan on 2/5/17.
+//  Created by Saranya Krishnan on 2/15/17.
 //  Copyright © 2017 Saranya Krishnan. All rights reserved.
 //
 
 import Foundation
 import UIKit
-import FirebaseDatabase
 
-class RequestorAcceptedDonationsViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,viewAcceptedDonationsProtocol,viewDonationDetailsProtocol{
-    
-    @IBOutlet weak var acceptedDonationsTableView: UITableView!
+
+class RequestorAvailableDonationsViewController : UIViewController,UITableViewDelegate,UITableViewDataSource,viewAvailableDonationsProtocol,viewDonationDetailsProtocol {
     var activityIndicator:UIActivityIndicatorView!
     var items: [Donation] = []
     var donationID:String!
     let webSerV: Webservice = Webservice()
+
     
+    @IBOutlet weak var availbleDonationsTableView: UITableView!
     
     //MARK: View Controller Life cycle Methods
     override func viewDidLoad() {
@@ -32,17 +32,18 @@ class RequestorAcceptedDonationsViewController: UIViewController,UITableViewDele
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        webSerV.viewAcceptedDonationsDelegate = self
-        webSerV.ViewAcceptedDonations()
-        self.acceptedDonationsTableView.reloadData()
+        webSerV.viewAvailableDonationsDelegate = self
+        webSerV.ViewAvailableDonations()
+        self.availbleDonationsTableView.reloadData()
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
     
+    //MARK: Outlets
+    @IBOutlet weak var acceptedDonationsTableView: UITableView!
     
     //MARK:Table view DataSource and Delegate Methods
     //Returns number of sections in Tableview
@@ -58,7 +59,7 @@ class RequestorAcceptedDonationsViewController: UIViewController,UITableViewDele
     //Set Data for each row
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = self.acceptedDonationsTableView.dequeueReusableCell(withIdentifier:"AcceptedDonationsTableViewCellIdentifier", for: indexPath) as!RequestorAcceptedDonationsTableViewCell
+        let cell = self.availbleDonationsTableView.dequeueReusableCell(withIdentifier:"AcceptedDonationsTableViewCellIdentifier", for: indexPath) as!RequestorAcceptedDonationsTableViewCell
         let row = indexPath.row
         cell.restaurantNameLabel.text = items[row].restaurantName
         let date = items[row].createdDate
@@ -74,19 +75,19 @@ class RequestorAcceptedDonationsViewController: UIViewController,UITableViewDele
         let webSerV: Webservice = Webservice()
         webSerV.viewDonationDetailsDelegate = self
         webSerV.ViewDonationDetails(donationID: donationID)
-    
+        
     }
     
     //MARK: view available donations protocol methods
-    func viewAcceptedDonationSuccessful(items: [Donation]) {
+    func viewAvailableDonationSuccessful(items:[Donation]){
         
         activityIndicator.stopAnimating()
         self.items = items
-        self.acceptedDonationsTableView.reloadData()
+        self.availbleDonationsTableView.reloadData()
         
     }
-    func viewAcceptedDonationUnSuccessful() {
-
+    func viewAvailableDonationUnSuccessful(){
+        
         activityIndicator.stopAnimating()
         let alertController = UIAlertController(title: "Message", message:"No Donations available", preferredStyle: .alert)
         let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
@@ -100,7 +101,7 @@ class RequestorAcceptedDonationsViewController: UIViewController,UITableViewDele
         let viewDonationViewControllerObj = self.storyboard?.instantiateViewController(withIdentifier: "ViewDonationDetailsViewController") as? ViewDonationDetailsViewController
         viewDonationViewControllerObj?.donationDetails = itemsDict
         viewDonationViewControllerObj?.donationID = donationID
-        Utility.className = Utility.acceptedDonations
+        Utility.className = Utility.availableDonations
         //self.navigationController?.pushViewController(viewDonationViewControllerObj!, animated: true)
         let navController = UINavigationController(rootViewController: viewDonationViewControllerObj!) // Creating a navigation controller with VC1 at the root of the navigation stack.
         self.present(navController, animated: true, completion: nil)
@@ -117,8 +118,7 @@ class RequestorAcceptedDonationsViewController: UIViewController,UITableViewDele
         self.present(alertController, animated: true, completion: nil)
         
     }
-
     
-        
     
 }
+
