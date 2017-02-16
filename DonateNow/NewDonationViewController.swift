@@ -10,7 +10,10 @@ import Foundation
 import UIKit
 import FirebaseDatabase
 
-class NewDonationViewController: UIViewController{
+
+
+class NewDonationViewController: UIViewController,newDonationProtocol{
+    
     
     //MARK: Outlets
     @IBOutlet weak var addButton: UIButton!
@@ -24,8 +27,12 @@ class NewDonationViewController: UIViewController{
     @IBOutlet weak var contactTextField: UITextField!
     @IBOutlet weak var qtyTextField: UITextField!
     
+    @IBOutlet weak var donationTitleTextField: UITextField!
     @IBOutlet weak var toDateTextField: UITextField!
     @IBOutlet weak var fromDateTextField: UITextField!
+    
+    var activityIndicator:UIActivityIndicatorView!
+
     
     
     //MARK: View Controller Life cycle Methods
@@ -46,6 +53,13 @@ class NewDonationViewController: UIViewController{
         addButton.layer.cornerRadius = 5
         addButton.layer.borderWidth = 1
         addButton.layer.borderColor = UIColor.lightGray.cgColor
+        
+        //show activity inidcator view
+        activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.gray)
+        activityIndicator.hidesWhenStopped = true;
+        activityIndicator.activityIndicatorViewStyle  = UIActivityIndicatorViewStyle.gray;
+        activityIndicator.center = view.center;
+        self.view.addSubview(activityIndicator)
     }
     
     override func didReceiveMemoryWarning() {
@@ -58,18 +72,10 @@ class NewDonationViewController: UIViewController{
     //MARK: Outlets Action
     //Add Button, capture all the details from form and add it to Donations array
     @IBAction func addButtonAction(_ sender: UIButton) {
-        
-        
         let uuid = UUID().uuidString
-        print(uuid)
-       
-        addDonationDetailsToFireBaseDatabase(foodDesc: foodDescTextView.text, quantity: qtyTextField.text!, contact: contactTextField.text!, address1: address1TextField.text!, address2: address2TextField.text!, city: cityTextField.text!, state: stateTextField.text!, zipcode: zipcodeTextField.text!, splInstructions: splInstTextView.text!, createdUserName: "testuser", createdDate: getCurrentDateAndTime(), pickUpFromDate: fromDateTextField.text!, pickUpToDate: toDateTextField.text!, donationID: uuid , donationStatus: "New")
-        
-        //Donor
-        let donorViewControllerObj = self.storyboard?.instantiateViewController(withIdentifier: "DonorViewController") as? DonorViewController
-        self.navigationController?.pushViewController(donorViewControllerObj!, animated: true)
-        
-        
+        let webSerV: Webservice = Webservice()
+        webSerV.newDonationDelegate = self;
+        webSerV.addDonationDetailsToFireBaseDatabase(foodDesc: foodDescTextView.text, quantity: qtyTextField.text!, contact: contactTextField.text!, address1: address1TextField.text!, address2: address2TextField.text!, city: cityTextField.text!, state: stateTextField.text!, zipcode: zipcodeTextField.text!, splInstructions: splInstTextView.text!, createdUserName: Utility.userID!, createdDate: getCurrentDateAndTime(), pickUpFromDate: fromDateTextField.text!, pickUpToDate: toDateTextField.text!, donationID: uuid , donationStatus: "New",donationTitle:donationTitleTextField.text!,restaurantName: Utility.restaurantName!)
         
     }
     
@@ -173,17 +179,18 @@ class NewDonationViewController: UIViewController{
         return dateFromString
     }
     
-    //Add Data to Firebase Database
-    func addDonationDetailsToFireBaseDatabase(foodDesc:String, quantity:String, contact:String, address1:String, address2: String, city:String, state: String, zipcode:String, splInstructions:String, createdUserName:String, createdDate:String, pickUpFromDate:String, pickUpToDate:String, donationID:String, donationStatus:String){
-        
-        let ref = FIRDatabase.database().reference(withPath: "Donations")
-        let donation = Donation(foodDesc: foodDesc,quantity: quantity,contact: contact,address1: address1,address2: address2,city: city,state: state,zipcode: zipcode,splInstructions: splInstructions,createdUserName: createdUserName,createdDate: createdDate,pickUpFromDate: pickUpFromDate ,pickUpToDate: pickUpToDate,donationID: donationID,donationStatus: donationStatus)
-        let donationItemRef = ref.child(donationID.lowercased())
-        donationItemRef.setValue(donation.toAnyObject())
-        
+    //MARK WebserviceProtocol Methods
+    func newDonationSuccessful(){
+        activityIndicator.stopAnimating()        
+        self.tabBarController?.selectedIndex = 0;
+
+    }
+    func newDonationUnSuccessful(error:Error){
+        activityIndicator.stopAnimating()
+        let alertController = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
+        let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+        alertController.addAction(defaultAction)
+        self.present(alertController, animated: true, completion: nil)
         
     }
-    
-    
-    
 }
