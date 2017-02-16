@@ -9,11 +9,14 @@
 import Foundation
 import UIKit
 
-class ViewDonationDetailsViewController: UIViewController{
+class ViewDonationDetailsViewController: UIViewController,updateDonationDetailsProtocol,reserveAvailableDonationsProtocol{
     
 
     
-    var donationIndex:Int!
+    var donationDetails:Dictionary<String, Any>!
+    var donationID:String!
+    var donationDict:Dictionary<String, Any>!
+
     
     //MARK: Outlets
     @IBOutlet weak var actionButton: UIButton!
@@ -27,9 +30,13 @@ class ViewDonationDetailsViewController: UIViewController{
     @IBOutlet weak var contactTextField: UITextField!
     @IBOutlet weak var qtyTextField: UITextField!
     
+    @IBOutlet weak var donationTitleTextField: UITextField!
     @IBOutlet weak var toDateTextField: UITextField!
     @IBOutlet weak var fromDateTextField: UITextField!
     
+ 
+    @IBOutlet weak var cancelButton: UIButton!
+   
     //MARK: View Controller Life cycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,34 +56,30 @@ class ViewDonationDetailsViewController: UIViewController{
         actionButton.layer.borderWidth = 1
         actionButton.layer.borderColor = UIColor.lightGray.cgColor
         
+        cancelButton.backgroundColor = UIColor.lightGray
+        cancelButton.layer.cornerRadius = 5
+        cancelButton.layer.borderWidth = 1
+        cancelButton.layer.borderColor = UIColor.lightGray.cgColor
+        
+        donationDict = donationDetails?[donationID] as! Dictionary<String,Any>!
+
+        
         
         //Disable user interaction if it is from accepted donation page
         if(Utility.className == Utility.acceptedDonations){
             actionButton.isHidden = true
-            foodDescTextView.isUserInteractionEnabled = false
-            splInstTextView.isUserInteractionEnabled = false
-            zipcodeTextField.isUserInteractionEnabled = false
-            stateTextField.isUserInteractionEnabled = false
-            cityTextField.isUserInteractionEnabled = false
-            address2TextField.isUserInteractionEnabled = false
-            address1TextField.isUserInteractionEnabled = false
-            contactTextField.isUserInteractionEnabled = false
-            qtyTextField.isUserInteractionEnabled = false
-            toDateTextField.isUserInteractionEnabled = false
-            fromDateTextField.isUserInteractionEnabled = false
+            
+            setUserInteractionForButtons(value: false)
             
             //show navigation controller for view Donation details page
             self.navigationController?.isNavigationBarHidden = false
             self.navigationItem.setHidesBackButton(false, animated:true)
-            
-            let logoutButton : UIBarButtonItem = UIBarButtonItem(title: "Logout", style: UIBarButtonItemStyle.plain, target: self, action: Selector(("Logout")))
-            self.navigationItem.rightBarButtonItem = logoutButton
-            
+       
             // Status bar black font
             self.navigationController?.navigationBar.tintColor = UIColor.black
             self.title = "Welcome Charity!!"
         }
-        else if(Utility.className == Utility.myDonations){
+        else if(Utility.className == Utility.myDonations && (donationDict?["donationStatus"]as?String == Utility.NEW) ){
             actionButton.isHidden = false
             actionButton.setTitle("Update", for: UIControlState.normal)
             
@@ -84,26 +87,60 @@ class ViewDonationDetailsViewController: UIViewController{
             self.navigationController?.isNavigationBarHidden = false
             self.navigationItem.setHidesBackButton(false, animated:true)
             
-            let logoutButton : UIBarButtonItem = UIBarButtonItem(title: "Logout", style: UIBarButtonItemStyle.plain, target: self, action: Selector(("Logout")))
-            self.navigationItem.rightBarButtonItem = logoutButton
+            // Status bar black font
+            self.navigationController?.navigationBar.tintColor = UIColor.black
+            self.title = "Welcome Thai Ginger!!"
+            
+            setUserInteractionForButtons(value: true)
+        }
+            
+        else if(Utility.className == Utility.myDonations && (donationDict?["donationStatus"]as?String == Utility.REQUESTED)){
+            actionButton.isHidden = false
+            actionButton.setTitle("Approve", for: UIControlState.normal)
+            cancelButton.setTitle("Reject", for: UIControlState.normal)
+            
+            //show navigation controller for view Donation details page
+            self.navigationController?.isNavigationBarHidden = false
+            self.navigationItem.setHidesBackButton(false, animated:true)
             
             // Status bar black font
             self.navigationController?.navigationBar.tintColor = UIColor.black
             self.title = "Welcome Thai Ginger!!"
+            
+            setUserInteractionForButtons(value: true)
         }
         
-//        //Set value for Donation Details page
-//        foodDescTextView.text = Utility.DonationsArray[donationIndex].foodDesc
-//        splInstTextView.text = Utility.DonationsArray[donationIndex].splInstructions
-//        zipcodeTextField.text = Utility.DonationsArray[donationIndex].zipcode
-//        stateTextField.text = Utility.DonationsArray[donationIndex].state
-//        cityTextField.text = Utility.DonationsArray[donationIndex].city
-//        address2TextField.text = Utility.DonationsArray[donationIndex].address2
-//        address1TextField.text = Utility.DonationsArray[donationIndex].address1
-//        contactTextField.text = Utility.DonationsArray[donationIndex].contact
-//        qtyTextField.text = Utility.DonationsArray[donationIndex].quantity
-//        toDateTextField.text = Utility.DonationsArray[donationIndex].pickUpToDate
-//        fromDateTextField.text = Utility.DonationsArray[donationIndex].pickUpFromDate
+        else if(Utility.className == Utility.availableDonations){
+            
+            actionButton.isHidden = false
+            actionButton.setTitle("Reserve", for: UIControlState.normal)
+            
+            //show navigation controller for view Donation details page
+            self.navigationController?.isNavigationBarHidden = false
+            self.navigationItem.setHidesBackButton(false, animated:true)
+            
+            // Status bar black font
+            self.navigationController?.navigationBar.tintColor = UIColor.black
+            self.title = "Welcome Thai Ginger!!"
+            
+            setUserInteractionForButtons(value: false)
+            
+        }
+        
+        //Set value for Donation Details page
+        foodDescTextView.text = donationDict?["foodDesc"] as? String
+        splInstTextView.text = donationDict?["splInstructions"] as? String
+        zipcodeTextField.text = donationDict?["zipcode"] as? String
+        stateTextField.text = donationDict?["state"] as? String
+        cityTextField.text =  donationDict?["city"] as? String
+        address2TextField.text = donationDict?["address2"] as? String
+        address1TextField.text = donationDict?["address1"] as? String
+        contactTextField.text = donationDict?["contact"] as? String
+        qtyTextField.text = donationDict?["quantity"] as? String
+        toDateTextField.text = donationDict?["pickUpToDate"] as? String
+        fromDateTextField.text = donationDict?["pickUpFromDate"] as? String
+        donationTitleTextField.text = donationDict?["donationTitle"] as? String
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -158,6 +195,67 @@ class ViewDonationDetailsViewController: UIViewController{
         
     }
     
+    @IBAction func actionButtonAction(_ sender: Any) {
+        
+        if(Utility.className == Utility.myDonations && (donationDict?["donationStatus"]as?String == Utility.NEW)){
+            let webSerV: Webservice = Webservice()
+            webSerV.updateDonationsDelegate = self
+            webSerV.updateDonationDetailsToFireBaseDatabase(foodDesc: foodDescTextView.text, quantity: qtyTextField.text!, contact: contactTextField.text!, address1: address1TextField.text!, address2: address2TextField.text!, city: cityTextField.text!, state: stateTextField.text!, zipcode: zipcodeTextField.text!, splInstructions: splInstTextView.text!, pickUpFromDate: fromDateTextField.text!, pickUpToDate: toDateTextField.text!, donationID: donationID ,donationTitle:donationTitleTextField.text!)
+            
+        }
+        else if(Utility.className == Utility.availableDonations){
+            let webSerV: Webservice = Webservice()
+            webSerV.reserveAvailableDonationsDelegate = self
+            webSerV.reserveAvailableDonations(donationID: donationID,status:Utility.REQUESTED)
+        }
+        
+        else if(Utility.className == Utility.myDonations && (donationDict?["donationStatus"]as?String == Utility.REQUESTED)){
+            let webSerV: Webservice = Webservice()
+            webSerV.reserveAvailableDonationsDelegate = self
+            webSerV.reserveAvailableDonations(donationID: donationID,status:Utility.ACCEPTED)
+            
+        }
+    }
+    
+    @IBAction func cancelButtonAction(_ sender: Any) {
+        
+        if(Utility.className == Utility.myDonations && (donationDict?["donationStatus"]as?String == Utility.REQUESTED)){
+            let webSerV: Webservice = Webservice()
+            webSerV.reserveAvailableDonationsDelegate = self
+            webSerV.reserveAvailableDonations(donationID: donationID,status:Utility.NEW)
+        }
+        else{
+        self.dismiss(animated: true, completion: nil)
+        }
+
+    }
+
+    
+    //MARK: updateDonationDetailsProtocol Methods
+    func updateDonationSuccessful(){
+        self.dismiss(animated: true, completion: nil)
+    }
+    func updateDonationUnSuccessful(error:Error){
+        let alertController = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
+        let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+        alertController.addAction(defaultAction)
+        self.present(alertController, animated: true, completion: nil)
+        
+    }
+    
+    //MARK: reserveAvailableDonationsProtocol Methods
+    func reserveAvailableDonationSuccessful(){
+        self.dismiss(animated: true, completion: nil)
+
+    }
+    func reserveAvailableUnSuccessful(error:Error){
+        let alertController = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
+        let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+        alertController.addAction(defaultAction)
+        self.present(alertController, animated: true, completion: nil)
+    }
+
+    
     //MARK: Custom Methods
     //set the value for fromDate textfield when the user clicks on done
     func fromDatePickerValueChanged(sender:UIDatePicker) {
@@ -196,6 +294,20 @@ class ViewDonationDetailsViewController: UIViewController{
         return dateFromString
     }
     
+    func setUserInteractionForButtons(value:Bool){
+        foodDescTextView.isUserInteractionEnabled = value
+        splInstTextView.isUserInteractionEnabled = value
+        zipcodeTextField.isUserInteractionEnabled = value
+        stateTextField.isUserInteractionEnabled = value
+        cityTextField.isUserInteractionEnabled = value
+        address2TextField.isUserInteractionEnabled = value
+        address1TextField.isUserInteractionEnabled = value
+        contactTextField.isUserInteractionEnabled = value
+        qtyTextField.isUserInteractionEnabled = value
+        toDateTextField.isUserInteractionEnabled = value
+        fromDateTextField.isUserInteractionEnabled = value
+        donationTitleTextField.isUserInteractionEnabled = value
+    }
     
 
     

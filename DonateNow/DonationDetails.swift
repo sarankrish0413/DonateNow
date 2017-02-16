@@ -27,9 +27,12 @@ struct Donation {
     var createdDate:String
     var donationID:String
     var donationStatus:String
+    var donationTitle:String
+    var restaurantName:String
+
     let ref:FIRDatabaseReference?
     
-    init(foodDesc: String, quantity: String, contact: String, address1: String, address2: String, city: String, state: String, zipcode: String, splInstructions: String, createdUserName: String, createdDate: String, pickUpFromDate: String, pickUpToDate:String, donationID:String, donationStatus: String, key:String = " ") {
+    init(foodDesc: String, quantity: String, contact: String, address1: String, address2: String, city: String, state: String, zipcode: String, splInstructions: String, createdUserName: String, createdDate: String, pickUpFromDate: String, pickUpToDate:String, donationID:String, donationStatus: String, donationTitle: String, restaurantName: String,key:String = " ") {
         
         self.foodDesc = foodDesc
         self.quantity = quantity
@@ -46,6 +49,8 @@ struct Donation {
         self.createdUserName = createdUserName
         self.donationID = donationID
         self.donationStatus = donationStatus
+        self.donationTitle = donationTitle
+        self.restaurantName = restaurantName
         self.key = key
         self.ref = nil
     }
@@ -68,6 +73,9 @@ struct Donation {
         createdUserName = snapshotValue["createdUserName"] as! String
         donationID = snapshotValue["donationID"] as! String
         donationStatus = snapshotValue["donationStatus"] as! String
+        donationTitle = snapshotValue["donationTitle"] as! String
+        restaurantName = snapshotValue["restaurantName"] as! String
+
         ref = snapshot.ref
     }
     
@@ -87,7 +95,9 @@ struct Donation {
             "createdDate" : createdDate,
             "createdUserName" : createdUserName,
             "donationID" : donationID,
-            "donationStatus" : donationStatus
+            "donationStatus" : donationStatus,
+            "donationTitle":donationTitle,
+            "restaurantName":restaurantName
         ]
     }
 

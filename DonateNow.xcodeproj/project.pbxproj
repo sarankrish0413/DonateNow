@@ -30,6 +30,8 @@
 		AE799C1A1E46B34500F67432 /* facebook.png in Resources */ = {isa = PBXBuildFile; fileRef = AE799C171E46B34500F67432 /* facebook.png */; };
 		AE799C1B1E46B34500F67432 /* google_app.png in Resources */ = {isa = PBXBuildFile; fileRef = AE799C181E46B34500F67432 /* google_app.png */; };
 		AE799C1C1E46B34500F67432 /* signup.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AE799C191E46B34500F67432 /* signup.jpg */; };
+		AEC8BC241E52226400ADC130 /* Webservices.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC8BC231E52226400ADC130 /* Webservices.swift */; };
+		AEC8BC261E5587E300ADC130 /* RequestorAvailableDonationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC8BC251E5587E300ADC130 /* RequestorAvailableDonationsViewController.swift */; };
 		AECD22981E46BC0D002FB1E0 /* MyDonationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AECD22971E46BC0D002FB1E0 /* MyDonationTableViewCell.swift */; };
 		AECD229E1E46CD7D002FB1E0 /* MyDonationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AECD229D1E46CD7D002FB1E0 /* MyDonationsViewController.swift */; };
 		AECD22A01E46D2E4002FB1E0 /* NewDonationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AECD229F1E46D2E4002FB1E0 /* NewDonationViewController.swift */; };
@@ -65,6 +67,8 @@
 		AE799C171E46B34500F67432 /* facebook.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = facebook.png; sourceTree = "<group>"; };
 		AE799C181E46B34500F67432 /* google_app.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = google_app.png; sourceTree = "<group>"; };
 		AE799C191E46B34500F67432 /* signup.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = signup.jpg; sourceTree = "<group>"; };
+		AEC8BC231E52226400ADC130 /* Webservices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Webservices.swift; sourceTree = "<group>"; };
+		AEC8BC251E5587E300ADC130 /* RequestorAvailableDonationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestorAvailableDonationsViewController.swift; sourceTree = "<group>"; };
 		AECD22971E46BC0D002FB1E0 /* MyDonationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDonationTableViewCell.swift; sourceTree = "<group>"; };
 		AECD229D1E46CD7D002FB1E0 /* MyDonationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDonationsViewController.swift; sourceTree = "<group>"; };
 		AECD229F1E46D2E4002FB1E0 /* NewDonationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewDonationViewController.swift; sourceTree = "<group>"; };
@@ -183,6 +187,7 @@
 			children = (
 				AE081FCD1E47AB6F000A4F9B /* RequestorAcceptedDonationViewController.swift */,
 				AE081FCF1E47AE20000A4F9B /* RequestorAcceptedDonationsTableViewCell.swift */,
+				AEC8BC251E5587E300ADC130 /* RequestorAvailableDonationsViewController.swift */,
 			);
 			name = RequestorAcceptedDonations;
 			sourceTree = "<group>";
@@ -232,6 +237,7 @@
 		AE1BE3091E3AF67100F08C31 /* DonateNow */ = {
 			isa = PBXGroup;
 			children = (
+				AEC8BC221E52206B00ADC130 /* Webservices */,
 				5D227BEF1E499C2300E2F5A4 /* SignUp */,
 				AE081FD41E47F5C6000A4F9B /* viewDonationDetails */,
 				AE081FD11E47EE86000A4F9B /* Utility */,
@@ -263,6 +269,14 @@
 				AE799C0F1E46B01D00F67432 /* logo.jpg */,
 			);
 			name = Images;
+			sourceTree = "<group>";
+		};
+		AEC8BC221E52206B00ADC130 /* Webservices */ = {
+			isa = PBXGroup;
+			children = (
+				AEC8BC231E52226400ADC130 /* Webservices.swift */,
+			);
+			name = Webservices;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -402,6 +416,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AE081FD31E47EFFF000A4F9B /* Utility.swift in Sources */,
+				AEC8BC261E5587E300ADC130 /* RequestorAvailableDonationsViewController.swift in Sources */,
 				AE081FD01E47AE20000A4F9B /* RequestorAcceptedDonationsTableViewCell.swift in Sources */,
 				AE1BE30D1E3AF67100F08C31 /* ViewController.swift in Sources */,
 				5D227BF31E499C5900E2F5A4 /* SignupRequestorViewController.swift in Sources */,
@@ -415,6 +430,7 @@
 				5D227BF11E499C4200E2F5A4 /* SignupDonorViewController.swift in Sources */,
 				AE081FCE1E47AB6F000A4F9B /* RequestorAcceptedDonationViewController.swift in Sources */,
 				AEE399661E402899003B7B23 /* DonorViewController.swift in Sources */,
+				AEC8BC241E52226400ADC130 /* Webservices.swift in Sources */,
 				AE6880751E4C14310088A6F9 /* UserDetails.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

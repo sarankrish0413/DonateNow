@@ -11,7 +11,7 @@ import UIKit
 import FirebaseDatabase
 import FirebaseAuth
 
-class SignupRequestorViewController: UIViewController{
+class SignupRequestorViewController: UIViewController,signupWebserviceProtocol{
     
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
@@ -29,11 +29,7 @@ class SignupRequestorViewController: UIViewController{
     
     
     @IBAction func requestorRegisterAction(_ sender: UIButton) {
-        print("when register button is pressed")
-        let uuid = UUID().uuidString
-        print(uuid)
-        
-        if emailTextField.text == "" {
+        if emailTextField.text == ""  || passwordTextField.text == ""{
             let alertController = UIAlertController(title: "Error", message: "Please enter your email and password", preferredStyle: .alert)
             
             let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
@@ -43,27 +39,11 @@ class SignupRequestorViewController: UIViewController{
             
         } else {
             
-            addRequestorDetailsToFireBaseDatabase(username: usernameTextField.text!, email: emailTextField.text!, userType: userTypeTextField.text!, restaurantName: "", orgName: orgNameTextField.text!, address1: address1TextField.text!, address2: address2TextField.text!, city: cityTextField.text!, state: stateTextField.text!, zipcode: pincodeTextField.text!, contact: contactTextField.text!, websiteUrl: "", orgId: orgIdTextField.text!, userID: uuid)
-            
-            FIRAuth.auth()?.createUser(withEmail: emailTextField.text!, password: passwordTextField.text!) { (user, error) in
-                
-                
-                if error == nil {
-                    print("You have successfully signed up")
-                    
-                    //Redirect to login page
-                    let loginViewControllerObj = self.storyboard?.instantiateViewController(withIdentifier: "ViewController") as? ViewController
-                    self.navigationController?.pushViewController(loginViewControllerObj!, animated: true)
-                    
-                } else {
-                    let alertController = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .alert)
-                    
-                    let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-                    alertController.addAction(defaultAction)
-                    
-                    self.present(alertController, animated: true, completion: nil)
-                }
-            }
+            let webSerV: Webservice = Webservice()
+            webSerV.signupDelegate = self
+            webSerV.createNewUser(username: emailTextField.text!, password: passwordTextField.text!)
+          
+
         }
         
     }
@@ -75,13 +55,17 @@ class SignupRequestorViewController: UIViewController{
         // Do any additional setup after loading the view, typically from a nib.
         // show navigation controller for Donor page
         self.navigationController?.isNavigationBarHidden = false
-        self.navigationItem.setHidesBackButton(true, animated:true);
+        self.navigationItem.setHidesBackButton(false, animated:true);
         let logoutButton : UIBarButtonItem = UIBarButtonItem(title: "Logout", style:
             UIBarButtonItemStyle.plain, target: self, action: Selector(("Logout")))
         self.navigationItem.rightBarButtonItem = logoutButton;
         // Status bar black font
         self.navigationController?.navigationBar.tintColor = UIColor.black
         self.title = "Welcome testuser!!"
+        
+        self.userTypeTextField.text = Utility.REQUESTOR
+
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -89,13 +73,24 @@ class SignupRequestorViewController: UIViewController{
         // Dispose of any resources that can be recreated.
     }
     
-    func addRequestorDetailsToFireBaseDatabase(username:String, email:String, userType:String, restaurantName: String, orgName: String, address1: String, address2: String, city: String, state: String, zipcode: String, contact:String, websiteUrl: String, orgId: String, userID: String){
+    //MARK SignupWebserviceProtocol Methods
+    
+    //Signup success push the view controller to Donor Login page
+    func signupSuccessful() {
+        let webSerV: Webservice = Webservice()
+         webSerV.signupDelegate = self
+          webSerV.signupServiceForDonor(username: usernameTextField.text!, email: emailTextField.text!, userType: userTypeTextField.text!, restaurantName: "", orgName: orgNameTextField.text!, address1: address1TextField.text!, address2: address2TextField.text!, city: cityTextField.text!, state: stateTextField.text!, zipcode: pincodeTextField.text!, contact: contactTextField.text!, websiteUrl: "", orgId: orgIdTextField.text!, userID: Utility.userID!)
+        //Redirect to login page
+        let loginViewControllerObj = self.storyboard?.instantiateViewController(withIdentifier: "ViewController") as? ViewController
+        self.navigationController?.pushViewController(loginViewControllerObj!, animated: true)
+    }
+    
+    //Signup unsuccess Show alert to the user
+    func signupUnSuccessful(error: Error) {
         
-        let ref = FIRDatabase.database().reference(withPath: "Users")
-        let user = User(username: username, email: email, userType: userType, restaurantName: restaurantName, orgName: orgName, address1: address1, address2: address2, city: city, state: state, zipcode: zipcode,contact: contact, weburl: websiteUrl, orgId: orgId, userID: userID)
-        let userRef = ref.child(userID.lowercased())
-        userRef.setValue(user.toAnyObject())
-        
-        
+        let alertController = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
+        let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+        alertController.addAction(defaultAction)
+        self.present(alertController, animated: true, completion: nil)
     }
 }

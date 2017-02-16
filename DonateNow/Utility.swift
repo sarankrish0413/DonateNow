@@ -11,8 +11,23 @@ import Foundation
 class Utility {
     static let sharedInstance = Utility()
     static var className:String?
+    static var DonationsArray = [Donation]()
+    static var userType:String?
+    static var userID:String?
+    static var selectedUserType:String?
+    static var userName:String?
+    static var restaurantName:String?
+
+    
+
+    //MARK Constants
     static let acceptedDonations = "ACCEPTED DONATIONS"
     static let myDonations = "MY DONATIONS"
- 
-    static var DonationsArray = [Donation]()
+    static let availableDonations = "AVAILABLE DONATIONS"
+    static let DONOR = "DONOR"
+    static let REQUESTOR = "REQUESTOR"
+    static let NEW = "New"
+    static let REQUESTED = "Requested"
+    static let ACCEPTED = "Accepted"
+    static let REJECTED = "Rejected"
 }
