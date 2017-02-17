@@ -23,6 +23,13 @@ protocol signupWebserviceProtocol {
     func signupUnSuccessful(error:Error)
 }
 
+//Logout service protocol
+protocol logoutServiceProtocol {
+    func logoutSuccessful()
+    func logoutUnSuccessful(error:Error)
+    
+}
+
 //New Donations service Protocol
 protocol newDonationProtocol{
     func newDonationSuccessful()
@@ -69,6 +76,7 @@ class Webservice {
     
     var loginDelegate:loginWebserviceProtocol?
     var signupDelegate:signupWebserviceProtocol?
+    var logoutDelegate:logoutServiceProtocol?
     var newDonationDelegate:newDonationProtocol?
     var viewNewDonationDelegate:viewNewDonationProtocol?
     var viewDonationDetailsDelegate:viewDonationDetailsProtocol?
@@ -112,6 +120,23 @@ class Webservice {
         userRef.setValue(user.toAnyObject())
     }
     
+    //Invoke firebase service for logout
+    func logoutService() {
+        let firebaseAuth = FIRAuth.auth()
+        do {
+            try firebaseAuth?.signOut()
+            self.logoutDelegate?.logoutSuccessful()
+            Utility.userID = ""
+            Utility.userName = ""
+            Utility.userType = ""
+            Utility.restaurantName = ""
+        } catch  let signOutError as NSError {
+            print ("Error signing out: %@", signOutError)
+            self.logoutDelegate?.logoutUnSuccessful(error: signOutError)
+        }
+       
+    }
+    
     //Invoke firebase create user service
     func createNewUser(username:String,password:String){
         FIRAuth.auth()?.createUser(withEmail: username, password: password) { (user, error) in
@@ -151,7 +176,7 @@ class Webservice {
         let ref = FIRDatabase.database().reference(withPath: "Donations")
         //Retrieve Donation Details
         var newItems: [Donation] = []
-          ref.queryOrdered(byChild: "createdUserName").queryEqual(toValue: Utility.userID).observe(.value, with: { (snapshot) in
+        ref.queryOrdered(byChild: "createdUserName").queryEqual(toValue: Utility.userID).observe(.value, with: { (snapshot) in
             if !snapshot.exists() {
                 self.viewNewDonationDelegate?.viewNewDonationUnSuccessful()
             }
@@ -188,18 +213,18 @@ class Webservice {
         let donationItemRef = ref.child(donationID)
         donationItemRef.updateChildValues(
             ["foodDesc" : foodDesc,
-            "quantity" : quantity,
-            "pickUpFromDate" : pickUpFromDate,
-            "pickUpToDate" : pickUpToDate,
-            "contact" : contact,
-            "address1" : address1,
-            "address2" : address2,
-            "city" : city,
-            "state" : state,
-            "zipcode" : zipcode,
-            "splInstructions" : splInstructions,
-            "donationID" : donationID,
-            "donationTitle":donationTitle]
+             "quantity" : quantity,
+             "pickUpFromDate" : pickUpFromDate,
+             "pickUpToDate" : pickUpToDate,
+             "contact" : contact,
+             "address1" : address1,
+             "address2" : address2,
+             "city" : city,
+             "state" : state,
+             "zipcode" : zipcode,
+             "splInstructions" : splInstructions,
+             "donationID" : donationID,
+             "donationTitle":donationTitle]
         ){ (error, ref) -> Void in
             if error == nil{
                 self.updateDonationsDelegate?.updateDonationSuccessful()
@@ -236,7 +261,7 @@ class Webservice {
         let ref = FIRDatabase.database().reference(withPath: "Donations")
         //Retrieve Donation Details
         var newItems: [Donation] = []
-        ref.queryOrdered(byChild: "donationStatus").queryEqual(toValue: Utility.ACCEPTED).observe(.value, with: { (snapshot) in
+        ref.queryOrdered(byChild: "donationStatus").queryEqual(toValue:Utility.ACCEPTED).observe(.value, with: { (snapshot) in
             if !snapshot.exists() {
                 self.viewAcceptedDonationsDelegate?.viewAcceptedDonationUnSuccessful()
             }
@@ -268,7 +293,7 @@ class Webservice {
         }
     }
     
-
+    
     
     //MARK:Helper methods
     //Inovoke firebase User service to get Usertype
