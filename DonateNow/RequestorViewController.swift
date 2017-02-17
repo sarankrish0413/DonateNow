@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class RequestorViewController: UITabBarController{
+class RequestorViewController: UITabBarController,logoutServiceProtocol{
     
   
     
@@ -22,7 +22,7 @@ class RequestorViewController: UITabBarController{
         self.navigationController?.isNavigationBarHidden = false
         self.navigationItem.setHidesBackButton(true, animated:true);
 
-        let logoutButton : UIBarButtonItem = UIBarButtonItem(title: "Logout", style: UIBarButtonItemStyle.plain, target: self, action: Selector(("Logout")))
+       let logoutButton:UIBarButtonItem = UIBarButtonItem(title: "Logout",style: UIBarButtonItemStyle.plain, target: self,action: #selector(LogoutAction))
         self.navigationItem.rightBarButtonItem = logoutButton;
         
         // Status bar black font
@@ -35,6 +35,24 @@ class RequestorViewController: UITabBarController{
         // Dispose of any resources that can be recreated.
     }
     
+    func LogoutAction() {
+        
+        let webSerV: Webservice = Webservice()
+        webSerV.logoutDelegate = self
+        webSerV.logoutService()
+    }
     
+    //Mark Logout Protocol methods
+    func logoutSuccessful(){
+        self.navigationController?.popToRootViewController(animated: true)
+        
+    }
+    func logoutUnSuccessful(error:Error){
+        let alertController = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
+        let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+        alertController.addAction(defaultAction)
+        self.present(alertController, animated: true, completion: nil)
+    }
+
     
 }

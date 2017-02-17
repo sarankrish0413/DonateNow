@@ -11,7 +11,7 @@ import UIKit
 
 
 
-class DonorViewController: UITabBarController{
+class DonorViewController: UITabBarController,logoutServiceProtocol{
     
     //MARK: View Controller Life cycle Methods
     override func viewDidLoad() {
@@ -22,7 +22,9 @@ class DonorViewController: UITabBarController{
         self.navigationController?.isNavigationBarHidden = false
         self.navigationItem.setHidesBackButton(true, animated:true);
         
-        let logoutButton : UIBarButtonItem = UIBarButtonItem(title: "Logout", style: UIBarButtonItemStyle.plain, target: self, action: Selector(("Logout")))
+        let logoutButton:UIBarButtonItem = UIBarButtonItem(title: "Logout",style: UIBarButtonItemStyle.plain, target: self,action: #selector(LogoutAction))
+        
+
         self.navigationItem.rightBarButtonItem = logoutButton;
         
         // Status bar black font
@@ -31,12 +33,29 @@ class DonorViewController: UITabBarController{
         
     }
     
+    func LogoutAction() {
+        
+        let webSerV: Webservice = Webservice()
+        webSerV.logoutDelegate = self
+        webSerV.logoutService()        
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-   
-    
+
+    //Mark Logout Protocol methods
+    func logoutSuccessful(){
+        self.navigationController?.popToRootViewController(animated: true)
+        
+    }
+    func logoutUnSuccessful(error:Error){
+        let alertController = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
+        let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+        alertController.addAction(defaultAction)
+        self.present(alertController, animated: true, completion: nil)
+    }
     
     
 }

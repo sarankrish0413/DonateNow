@@ -94,7 +94,7 @@ class ViewDonationDetailsViewController: UIViewController,updateDonationDetailsP
             setUserInteractionForButtons(value: true)
         }
             
-        else if(Utility.className == Utility.myDonations && (donationDict?["donationStatus"]as?String == Utility.REQUESTED)){
+        else if(Utility.className == Utility.myDonations && (donationDict?["donationStatus"]as?String == Utility.PENDINGAPPROVAL)){
             actionButton.isHidden = false
             actionButton.setTitle("Approve", for: UIControlState.normal)
             cancelButton.setTitle("Reject", for: UIControlState.normal)
@@ -206,10 +206,10 @@ class ViewDonationDetailsViewController: UIViewController,updateDonationDetailsP
         else if(Utility.className == Utility.availableDonations){
             let webSerV: Webservice = Webservice()
             webSerV.reserveAvailableDonationsDelegate = self
-            webSerV.reserveAvailableDonations(donationID: donationID,status:Utility.REQUESTED)
+            webSerV.reserveAvailableDonations(donationID: donationID,status:Utility.PENDINGAPPROVAL)
         }
         
-        else if(Utility.className == Utility.myDonations && (donationDict?["donationStatus"]as?String == Utility.REQUESTED)){
+        else if(Utility.className == Utility.myDonations && (donationDict?["donationStatus"]as?String == Utility.PENDINGAPPROVAL)){
             let webSerV: Webservice = Webservice()
             webSerV.reserveAvailableDonationsDelegate = self
             webSerV.reserveAvailableDonations(donationID: donationID,status:Utility.ACCEPTED)
@@ -219,7 +219,7 @@ class ViewDonationDetailsViewController: UIViewController,updateDonationDetailsP
     
     @IBAction func cancelButtonAction(_ sender: Any) {
         
-        if(Utility.className == Utility.myDonations && (donationDict?["donationStatus"]as?String == Utility.REQUESTED)){
+        if(Utility.className == Utility.myDonations && (donationDict?["donationStatus"]as?String == Utility.PENDINGAPPROVAL)){
             let webSerV: Webservice = Webservice()
             webSerV.reserveAvailableDonationsDelegate = self
             webSerV.reserveAvailableDonations(donationID: donationID,status:Utility.NEW)

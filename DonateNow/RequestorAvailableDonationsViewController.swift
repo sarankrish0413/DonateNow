@@ -65,6 +65,7 @@ class RequestorAvailableDonationsViewController : UIViewController,UITableViewDe
         let date = items[row].createdDate
         cell.dateLabel.text = date.components(separatedBy: " ").first
         cell.foodDescLabel.text = items[row].donationTitle
+        cell.statusLabel.text = items[row].donationStatus
         return cell
         
     }

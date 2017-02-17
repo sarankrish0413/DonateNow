@@ -27,7 +27,6 @@ class Utility {
     static let DONOR = "DONOR"
     static let REQUESTOR = "REQUESTOR"
     static let NEW = "New"
-    static let REQUESTED = "Requested"
     static let ACCEPTED = "Accepted"
-    static let REJECTED = "Rejected"
+    static let PENDINGAPPROVAL = "Pending Approval"
 }

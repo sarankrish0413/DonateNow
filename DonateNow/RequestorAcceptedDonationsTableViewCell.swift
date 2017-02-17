@@ -11,6 +11,7 @@ import UIKit
 
 class RequestorAcceptedDonationsTableViewCell:UITableViewCell {
     
+    @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var foodDescLabel: UILabel!
     @IBOutlet weak var restaurantNameLabel: UILabel!
