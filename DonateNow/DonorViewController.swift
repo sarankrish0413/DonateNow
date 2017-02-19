@@ -47,7 +47,7 @@ class DonorViewController: UITabBarController,logoutServiceProtocol{
 
     //Mark Logout Protocol methods
     func logoutSuccessful(){
-        self.navigationController?.popToRootViewController(animated: true)
+        _ = self.navigationController?.popToRootViewController(animated: true)
         
     }
     func logoutUnSuccessful(error:Error){

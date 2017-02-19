@@ -9,7 +9,7 @@
 import UIKit
 import Foundation
 import FirebaseAuth
-
+import OneSignal
 
 class ViewController: UIViewController,loginWebserviceProtocol {
     
@@ -34,14 +34,14 @@ class ViewController: UIViewController,loginWebserviceProtocol {
             Utility.selectedUserType = Utility.DONOR
             //for testing purpose
             //Donor
-            userNameTextField.text = "sarank@uw.edu"
-            passwordTextField.text = "sarank"
+//            userNameTextField.text = "sarank@uw.edu"
+//            passwordTextField.text = "sarank"
         } else {
             userTypeSegmentedControl.selectedSegmentIndex = 1
             Utility.selectedUserType = Utility.REQUESTOR
             //Requestor
-            userNameTextField.text = "gayathrp@uw.edu"
-            passwordTextField.text = "gayathrp"
+//            userNameTextField.text = "gayathrp@uw.edu"
+//            passwordTextField.text = "gayathrp"
         }
         
     }
@@ -89,8 +89,8 @@ class ViewController: UIViewController,loginWebserviceProtocol {
         
         //for testing purpose
         //Donor
-        userNameTextField.text = "sarank@uw.edu"
-        passwordTextField.text = "sarank"
+//        userNameTextField.text = "sarank@uw.edu"
+//        passwordTextField.text = "sarank"
         
         
         
@@ -107,6 +107,14 @@ class ViewController: UIViewController,loginWebserviceProtocol {
     //Login success push the view controller to Donor home page or Requstor home page based on user type
     func loginSuccessful() {
         activityIndicator.stopAnimating()
+        OneSignal.idsAvailable({ (userId, token) in
+            guard let token = token, let userId = userId else {
+                return
+            }
+            oneSignalUserData.userId = userId
+            oneSignalUserData.deviceToken = token
+        })
+
         if(userTypeSegmentedControl.selectedSegmentIndex == 0 && Utility.userType == Utility.selectedUserType){
             //Show Donor
             let donorViewControllerObj = self.storyboard?.instantiateViewController(withIdentifier: "DonorViewController") as? DonorViewController

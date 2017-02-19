@@ -9,6 +9,15 @@
 import UIKit
 import FirebaseAuth
 import Firebase
+import OneSignal
+
+struct OneSignalUserData {
+    var userId: String? = nil
+    var deviceToken: String? = nil
+}
+
+let oneSignalAppID = "6a5c72cc-2f17-49ec-a1e0-067be225b902"
+var oneSignalUserData = OneSignalUserData()
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -19,7 +28,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         //configure Firebase
-          FIRApp.configure()
+        FIRApp.configure()
+        
+        OneSignal.initWithLaunchOptions(launchOptions, appId: oneSignalAppID, handleNotificationReceived: { (notification) in
+            print("Received Notification - \(notification?.payload.notificationID)")
+        }, handleNotificationAction: { (result) in
+            let payload: OSNotificationPayload? = result?.notification.payload
+            
+            var fullMessage: String? = payload?.body
+            if payload?.additionalData != nil {
+                var additionalData: [AnyHashable: Any]? = payload?.additionalData
+                if additionalData!["actionSelected"] != nil {
+                    fullMessage = fullMessage! + "\nPressed ButtonId:\(additionalData!["actionSelected"])"
+                }
+            }
+            
+            print(fullMessage)
+            
+        }, settings: [kOSSettingsKeyAutoPrompt : true])
+        
         return true
     }
 

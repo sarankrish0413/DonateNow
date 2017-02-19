@@ -28,8 +28,7 @@ class MyDonationsViewController: UIViewController,UITableViewDelegate,UITableVie
         activityIndicator.center = view.center;
         self.view.addSubview(activityIndicator)
         activityIndicator.startAnimating()
-      
-    
+
         
     }
     

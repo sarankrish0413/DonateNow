@@ -9,7 +9,7 @@
 import Foundation
 import FirebaseDatabase
 import FirebaseAuth
-
+import OneSignal
 
 //Login service Protocol
 protocol loginWebserviceProtocol {
@@ -71,9 +71,15 @@ protocol viewAcceptedDonationsProtocol{
     func viewAcceptedDonationUnSuccessful()
 }
 
+//View Pending Approval donations requestor
+protocol viewPendingApprovalDonationsProtocol{
+    func viewPendingApprovalDonationSuccessful(items:[Donation])
+    func viewPendingApprovalDonationUnSuccessful(items:[Donation])
+}
+
 
 class Webservice {
-    
+    //TODO: Change delegates to closures
     var loginDelegate:loginWebserviceProtocol?
     var signupDelegate:signupWebserviceProtocol?
     var logoutDelegate:logoutServiceProtocol?
@@ -84,30 +90,37 @@ class Webservice {
     var viewAvailableDonationsDelegate:viewAvailableDonationsProtocol?
     var reserveAvailableDonationsDelegate:reserveAvailableDonationsProtocol?
     var viewAcceptedDonationsDelegate:viewAcceptedDonationsProtocol?
+    var PendingApprovalDonationsDelegate:viewPendingApprovalDonationsProtocol?
     
     //MARK:Login related Service
     //Invoke firebase login service
     func loginService(username:String,password:String) {
         
         FIRAuth.auth()?.signIn(withEmail: username, password: password) { (user, error) in
-            if error == nil {
-                print("uudi:",user!.uid)
-                Utility.userID = user!.uid
-                Utility.userName = user!.email
-                self .getUserType()
-            }
-            else {
-                self.loginDelegate?.loginUnSuccessful(error: error!)
+            
+            guard let user = user else {
+                if let error = error  {
+                    self.loginDelegate?.loginUnSuccessful(error: error)
+                }
+                return
             }
             
+            Utility.userID = user.uid
+            Utility.userName = user.email
+            self.getUserType()
+            debugPrint("uudi:",user.uid)
         }
     }
     
     //MARK:Signup related Service
     //Invoke firebase signup service For Donor
+    
     func signupServiceForDonor(username:String, email:String, userType:String, restaurantName: String, orgName: String, address1: String, address2: String, city: String, state: String, zipcode: String, contact:String, websiteUrl: String, orgId: String, userID: String){
         let ref = FIRDatabase.database().reference(withPath: "Users")
-        let user = User(username: username, email: email, userType: userType, restaurantName: restaurantName, orgName: orgName, address1: address1, address2: address2, city: city, state: state, zipcode: zipcode,contact: contact, weburl: websiteUrl, orgId: orgId, userID: userID)
+        var user = User(username: username, email: email, userType: userType, restaurantName: restaurantName, orgName: orgName, address1: address1, address2: address2, city: city, state: state, zipcode: zipcode,contact: contact, weburl: websiteUrl, orgId: orgId, userID: userID)
+        if let signalId = oneSignalUserData.userId {
+            user.oneSignalIds.append(signalId)
+        }
         let userRef = ref.child(userID)
         userRef.setValue(user.toAnyObject())
     }
@@ -115,7 +128,10 @@ class Webservice {
     //Invoke firebase signup service For Requestor
     func signupServiceForRequestor(username:String, email:String, userType:String, restaurantName: String, orgName: String, address1: String, address2: String, city: String, state: String, zipcode: String, contact:String, websiteUrl: String, orgId: String, userID: String){
         let ref = FIRDatabase.database().reference(withPath: "Users")
-        let user = User(username: username, email: email, userType: userType, restaurantName: restaurantName, orgName: orgName, address1: address1, address2: address2, city: city, state: state, zipcode: zipcode,contact: contact, weburl: websiteUrl, orgId: orgId, userID: userID)
+        var user = User(username: username, email: email, userType: userType, restaurantName: restaurantName, orgName: orgName, address1: address1, address2: address2, city: city, state: state, zipcode: zipcode,contact: contact, weburl: websiteUrl, orgId: orgId, userID: userID)
+        if let signalId = oneSignalUserData.userId {
+            user.oneSignalIds.append(signalId)
+        }
         let userRef = ref.child(userID)
         userRef.setValue(user.toAnyObject())
     }
@@ -138,8 +154,9 @@ class Webservice {
     }
     
     //Invoke firebase create user service
-    func createNewUser(username:String,password:String){
+    func createNewUser(username:String, password:String){
         FIRAuth.auth()?.createUser(withEmail: username, password: password) { (user, error) in
+            //TODO: use guard here for user, else error out
             if error == nil {
                 Utility.userID = user!.uid
                 Utility.userName = user!.email
@@ -157,7 +174,10 @@ class Webservice {
     func addDonationDetailsToFireBaseDatabase(foodDesc:String, quantity:String, contact:String, address1:String, address2: String, city:String, state: String, zipcode:String, splInstructions:String, createdUserName:String, createdDate:String, pickUpFromDate:String, pickUpToDate:String, donationID:String, donationStatus:String,donationTitle:String,restaurantName:String){
         
         let ref = FIRDatabase.database().reference(withPath: "Donations")
-        let donation = Donation(foodDesc: foodDesc,quantity: quantity,contact: contact,address1: address1,address2: address2,city: city,state: state,zipcode: zipcode,splInstructions: splInstructions,createdUserName: createdUserName,createdDate: createdDate,pickUpFromDate: pickUpFromDate ,pickUpToDate: pickUpToDate,donationID: donationID,donationStatus: donationStatus,donationTitle: donationTitle,restaurantName:restaurantName)
+        var donation = Donation(foodDesc: foodDesc,quantity: quantity,contact: contact,address1: address1,address2: address2,city: city,state: state,zipcode: zipcode,splInstructions: splInstructions,createdUserName: createdUserName,createdDate: createdDate,pickUpFromDate: pickUpFromDate ,pickUpToDate: pickUpToDate,donationID: donationID,donationStatus: donationStatus,donationTitle: donationTitle,restaurantName:restaurantName)
+        if let signalId = oneSignalUserData.userId {
+            donation.signalIds.append(signalId)
+        }
         let donationItemRef = ref.child(donationID)
         donationItemRef.setValue(donation.toAnyObject()){ (error, ref) -> Void in
             if error == nil{
@@ -271,6 +291,25 @@ class Webservice {
                     newItems.append(donationItem)
                 }
                 self.viewAcceptedDonationsDelegate?.viewAcceptedDonationSuccessful(items: newItems)
+            }
+        })
+    }
+    
+    //MARK:View Pending Approval Donation for Requestor
+    func ViewPendingApprovalDonations(){
+        let ref = FIRDatabase.database().reference(withPath: "Donations")
+        //Retrieve Donation Details
+        var newItems: [Donation] = []
+        ref.queryOrdered(byChild: "donationStatus").queryEqual(toValue:Utility.PENDINGAPPROVAL).observe(.value, with: { (snapshot) in
+            if !snapshot.exists() {
+                self.PendingApprovalDonationsDelegate?.viewPendingApprovalDonationUnSuccessful(items: newItems)
+            }
+            else {
+                for item in snapshot.children {
+                    let donationItem = Donation(snapshot: item as! FIRDataSnapshot)
+                    newItems.append(donationItem)
+                }
+                self.PendingApprovalDonationsDelegate?.viewPendingApprovalDonationSuccessful(items: newItems)
             }
         })
     }

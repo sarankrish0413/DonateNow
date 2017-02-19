@@ -9,7 +9,6 @@
 import Foundation
 
 class Utility {
-    static let sharedInstance = Utility()
     static var className:String?
     static var DonationsArray = [Donation]()
     static var userType:String?

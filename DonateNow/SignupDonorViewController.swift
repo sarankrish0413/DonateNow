@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import FirebaseDatabase
 import FirebaseAuth
+import OneSignal
 
 class SignupDonorViewController: UIViewController,signupWebserviceProtocol,logoutServiceProtocol{
     
@@ -29,7 +30,7 @@ class SignupDonorViewController: UIViewController,signupWebserviceProtocol,logou
     
     //MARK: Outlets Action
     //Add Button, capture all the details from form and add it to User array
-    @IBAction func donorRegisterAction(_ sender: UIButton) {
+    @IBAction private dynamic func donorRegisterAction(_ sender: UIButton) {
         if emailTextField.text == "" || passwordTextField.text == "" {
             let alertController = UIAlertController(title: "Error", message: "Please enter your email and password", preferredStyle: .alert)
             
@@ -39,10 +40,21 @@ class SignupDonorViewController: UIViewController,signupWebserviceProtocol,logou
             present(alertController, animated: true, completion: nil)
             
         } else {
-            
-            let webSerV: Webservice = Webservice()
-            webSerV.signupDelegate = self
-            webSerV.createNewUser(username: emailTextField.text!, password: passwordTextField.text!)
+            OneSignal.idsAvailable({ (userId, token) in
+                
+                defer {
+                    let webSerV: Webservice = Webservice()
+                    webSerV.signupDelegate = self
+                    webSerV.createNewUser(username: self.emailTextField.text!, password: self.passwordTextField.text!)
+                }
+                
+                guard let token = token, let userId = userId else {
+                    return
+                }
+                oneSignalUserData.userId = userId
+                oneSignalUserData.deviceToken = token
+            })
+
         }
         
     }
@@ -63,11 +75,6 @@ class SignupDonorViewController: UIViewController,signupWebserviceProtocol,logou
         self.userTypeTextField.text = Utility.DONOR
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     func LogoutAction() {
         
         let webSerV: Webservice = Webservice()
@@ -78,7 +85,7 @@ class SignupDonorViewController: UIViewController,signupWebserviceProtocol,logou
     
     //Mark Logout Protocol methods
     func logoutSuccessful(){
-        self.navigationController?.popToRootViewController(animated: true)
+        _ = self.navigationController?.popToRootViewController(animated: true)
         
     }
     func logoutUnSuccessful(error:Error){
@@ -96,7 +103,7 @@ class SignupDonorViewController: UIViewController,signupWebserviceProtocol,logou
         //Redirect to login page
         let webSerV: Webservice = Webservice()
         webSerV.signupDelegate = self
-         webSerV.signupServiceForDonor(username: usernameTextField.text!, email: emailTextField.text!, userType: userTypeTextField.text!, restaurantName: restaurantNameTextField.text!, orgName: "", address1: address1TextField.text!, address2: address2TextField.text!, city: cityTextField.text!, state: stateTextField.text!, zipcode: pincodeTextField.text!, contact: contactTextField.text!, websiteUrl: websiteTextField.text!, orgId: "", userID: Utility.userID!)
+        webSerV.signupServiceForDonor(username: usernameTextField.text!, email: emailTextField.text!, userType: userTypeTextField.text!, restaurantName: restaurantNameTextField.text!, orgName: "", address1: address1TextField.text!, address2: address2TextField.text!, city: cityTextField.text!, state: stateTextField.text!, zipcode: pincodeTextField.text!, contact: contactTextField.text!, websiteUrl: websiteTextField.text!, orgId: "", userID: Utility.userID!)
         let loginViewControllerObj = self.storyboard?.instantiateViewController(withIdentifier: "ViewController") as? ViewController
         self.navigationController?.pushViewController(loginViewControllerObj!, animated: true)
     }

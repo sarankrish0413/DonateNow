@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import OneSignal
 
 class ViewDonationDetailsViewController: UIViewController,updateDonationDetailsProtocol,reserveAvailableDonationsProtocol{
     
@@ -109,6 +110,20 @@ class ViewDonationDetailsViewController: UIViewController,updateDonationDetailsP
             
             setUserInteractionForButtons(value: true)
         }
+            
+        else if(Utility.className == Utility.myDonations && (donationDict?["donationStatus"]as?String == Utility.ACCEPTED)){
+            actionButton.isHidden = true
+            cancelButton.setTitle("cancel", for: UIControlState.normal)
+            
+            //show navigation controller for view Donation details page
+            self.navigationController?.isNavigationBarHidden = false
+            self.navigationItem.setHidesBackButton(false, animated:true)
+            
+            // Status bar black font
+            self.navigationController?.navigationBar.tintColor = UIColor.black
+            self.title = "Welcome Thai Ginger!!"
+            setUserInteractionForButtons(value: false)
+        }
         
         else if(Utility.className == Utility.availableDonations){
             
@@ -143,22 +158,17 @@ class ViewDonationDetailsViewController: UIViewController,updateDonationDetailsP
         
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     //MARK: IBAction Methods
     //Show Date and time picker for fromDate text field
     @IBAction func fromDateTextFieldAction(_ sender: UITextField) {
         //Create the view
         let inputView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 240))
-        let datePickerView  : UIDatePicker = UIDatePicker(frame: CGRect(x:0, y:40, width:0, height:0))
+        let datePickerView  : UIDatePicker = UIDatePicker()
         datePickerView.datePickerMode = UIDatePickerMode.dateAndTime
         inputView.addSubview(datePickerView) // add date picker to UIView
         datePickerView.addTarget(self, action: #selector(fromDatePickerValueChanged), for: UIControlEvents.valueChanged)
-        
-        
+        inputView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[datePickerView]|", options: .alignAllFirstBaseline, metrics: nil, views: ["datePickerView":datePickerView]))
+        inputView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-40-[datePickerView]-|", options: .alignAllFirstBaseline, metrics: nil, views: ["datePickerView":datePickerView]))
         let doneButton = UIButton(frame: CGRect(x:(self.view.frame.size.width/2) - (100/2), y:0, width:100, height:50))
         doneButton.setTitle("Done", for: UIControlState.normal)
         doneButton.setTitle("Done", for: UIControlState.highlighted)
@@ -225,9 +235,8 @@ class ViewDonationDetailsViewController: UIViewController,updateDonationDetailsP
             webSerV.reserveAvailableDonations(donationID: donationID,status:Utility.NEW)
         }
         else{
-        self.dismiss(animated: true, completion: nil)
+            self.dismiss(animated: true, completion: nil)
         }
-
     }
 
     
@@ -235,6 +244,7 @@ class ViewDonationDetailsViewController: UIViewController,updateDonationDetailsP
     func updateDonationSuccessful(){
         self.dismiss(animated: true, completion: nil)
     }
+    
     func updateDonationUnSuccessful(error:Error){
         let alertController = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
         let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
@@ -246,7 +256,12 @@ class ViewDonationDetailsViewController: UIViewController,updateDonationDetailsP
     //MARK: reserveAvailableDonationsProtocol Methods
     func reserveAvailableDonationSuccessful(){
         self.dismiss(animated: true, completion: nil)
-
+        OneSignal.postNotification(["contents": ["en":"Test Message"],"include_player_ids": donationDict!["signalIds"] as! [String]], onSuccess: { (successDict) in
+            debugPrint(successDict)
+        }) { (error) in
+            debugPrint(error)
+        }
+        
     }
     func reserveAvailableUnSuccessful(error:Error){
         let alertController = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
@@ -269,8 +284,7 @@ class ViewDonationDetailsViewController: UIViewController,updateDonationDetailsP
     }
     
     //Dismiss date picker view
-    func fromDoneButtonAction(sender:UIButton)
-    {
+    func fromDoneButtonAction(sender:UIButton) {
         fromDateTextField.resignFirstResponder()
     }
     //Dismiss date picker view
@@ -280,7 +294,7 @@ class ViewDonationDetailsViewController: UIViewController,updateDonationDetailsP
     }
     
     //Set the Date format for Datepicker
-    func datePickerValuechanged(sender:UIDatePicker) -> String{
+    func datePickerValuechanged(sender:UIDatePicker) -> String {
         //date format for DB
         //        let dateFormatter = DateFormatter()
         //        dateFormatter.dateFormat = "yyyy-MM-dd hh:mm:ss Z"
@@ -308,8 +322,5 @@ class ViewDonationDetailsViewController: UIViewController,updateDonationDetailsP
         fromDateTextField.isUserInteractionEnabled = value
         donationTitleTextField.isUserInteractionEnabled = value
     }
-    
 
-    
-    
 }
