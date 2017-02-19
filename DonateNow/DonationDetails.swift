@@ -29,6 +29,7 @@ struct Donation {
     var donationStatus:String
     var donationTitle:String
     var restaurantName:String
+    var signalIds = [String]()
 
     let ref:FIRDatabaseReference?
     
@@ -53,6 +54,7 @@ struct Donation {
         self.restaurantName = restaurantName
         self.key = key
         self.ref = nil
+
     }
     
     init(snapshot: FIRDataSnapshot) {
@@ -75,7 +77,9 @@ struct Donation {
         donationStatus = snapshotValue["donationStatus"] as! String
         donationTitle = snapshotValue["donationTitle"] as! String
         restaurantName = snapshotValue["restaurantName"] as! String
-
+        if var signalIds = snapshotValue["signalIds"] as? [String] {
+            signalIds.append(contentsOf: signalIds)
+        }
         ref = snapshot.ref
     }
     
@@ -97,7 +101,8 @@ struct Donation {
             "donationID" : donationID,
             "donationStatus" : donationStatus,
             "donationTitle":donationTitle,
-            "restaurantName":restaurantName
+            "restaurantName":restaurantName,
+            "signalIds": signalIds
         ]
     }
 

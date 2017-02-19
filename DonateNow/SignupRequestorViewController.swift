@@ -31,33 +31,26 @@ class SignupRequestorViewController: UIViewController,signupWebserviceProtocol,l
     @IBAction func requestorRegisterAction(_ sender: UIButton) {
         if emailTextField.text == ""  || passwordTextField.text == ""{
             let alertController = UIAlertController(title: "Error", message: "Please enter your email and password", preferredStyle: .alert)
-            
             let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
             alertController.addAction(defaultAction)
-            
             present(alertController, animated: true, completion: nil)
-            
         } else {
-            
             let webSerV: Webservice = Webservice()
             webSerV.signupDelegate = self
             webSerV.createNewUser(username: emailTextField.text!, password: passwordTextField.text!)
-            
-            
         }
-        
     }
     
     
     //MARK: View Controller Life cycle Methods
     override func viewDidLoad() {
-        super.viewDidLoad();
+        super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         // show navigation controller for Donor page
         self.navigationController?.isNavigationBarHidden = false
-        self.navigationItem.setHidesBackButton(false, animated:true);
-        let logoutButton:UIBarButtonItem = UIBarButtonItem(title: "Logout",style: UIBarButtonItemStyle.plain, target: self,action: #selector(LogoutAction))
-        self.navigationItem.rightBarButtonItem = logoutButton;
+        self.navigationItem.setHidesBackButton(false, animated:true)
+        let logoutButton:UIBarButtonItem = UIBarButtonItem(title: "Logout",style: UIBarButtonItemStyle.plain, target: self,action: #selector(logoutAction))
+        self.navigationItem.rightBarButtonItem = logoutButton
         // Status bar black font
         self.navigationController?.navigationBar.tintColor = UIColor.black
         self.title = "Welcome testuser!!"
@@ -72,7 +65,7 @@ class SignupRequestorViewController: UIViewController,signupWebserviceProtocol,l
         // Dispose of any resources that can be recreated.
     }
     
-    func LogoutAction() {
+    func logoutAction() {
         
         let webSerV: Webservice = Webservice()
         webSerV.logoutDelegate = self
@@ -83,9 +76,9 @@ class SignupRequestorViewController: UIViewController,signupWebserviceProtocol,l
     
     //Mark Logout Protocol methods
     func logoutSuccessful(){
-        self.navigationController?.popToRootViewController(animated: true)
-        
+       _ = self.navigationController?.popToRootViewController(animated: true)
     }
+    
     func logoutUnSuccessful(error:Error){
         let alertController = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
         let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)

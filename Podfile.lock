@@ -127,6 +127,7 @@ PODS:
   - GTMSessionFetcher/Core (1.1.8)
   - GTMSessionFetcher/Full (1.1.8):
     - GTMSessionFetcher/Core (= 1.1.8)
+  - OneSignal (2.3.5)
 
 DEPENDENCIES:
   - Firebase/AdMob
@@ -139,6 +140,7 @@ DEPENDENCIES:
   - Firebase/Messaging
   - Firebase/RemoteConfig
   - Firebase/Storage
+  - OneSignal
 
 SPEC CHECKSUMS:
   Firebase: 53b2343db1ebfa3eb16bdb4318b8bb65360b2220
@@ -162,7 +164,8 @@ SPEC CHECKSUMS:
   GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
   GTMOAuth2: 7fc9c10f5c745f4d9850419ea88889fe3baa6b7d
   GTMSessionFetcher: 6f8d8b28b7e345549ac471071608170b31cb4977
+  OneSignal: 4cb42948ebc141bd5deb54d3fda25105db94f6d4
 
-PODFILE CHECKSUM: 07649770482897b743c8f036a5931aa152bb049e
+PODFILE CHECKSUM: d4eb4f2c3ce87330eb9553fd0b39c7771d168d83
 
 COCOAPODS: 1.2.0

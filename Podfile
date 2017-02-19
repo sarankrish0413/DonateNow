@@ -15,5 +15,6 @@ pod 'Firebase/Invites'
 pod 'Firebase/DynamicLinks'
 pod 'Firebase/Crash'	
 pod 'Firebase/RemoteConfig'	
-pod 'Firebase/Storage'	
+pod 'Firebase/Storage'
+pod 'OneSignal'
 end

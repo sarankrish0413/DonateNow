@@ -10,13 +10,13 @@ import Foundation
 import UIKit
 import FirebaseDatabase
 
-class RequestorAcceptedDonationsViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,viewAcceptedDonationsProtocol,viewDonationDetailsProtocol{
+class RequestorAcceptedDonationsViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,viewAcceptedDonationsProtocol,viewDonationDetailsProtocol,viewPendingApprovalDonationsProtocol{
     
     @IBOutlet weak var acceptedDonationsTableView: UITableView!
     var activityIndicator:UIActivityIndicatorView!
-    var items: [Donation] = []
+    var totalItems = [Donation]()
     var donationID:String!
-    let webSerV: Webservice = Webservice()
+    let webSerV = Webservice()
     
     
     //MARK: View Controller Life cycle Methods
@@ -33,16 +33,10 @@ class RequestorAcceptedDonationsViewController: UIViewController,UITableViewDele
     
     override func viewWillAppear(_ animated: Bool) {
         webSerV.viewAcceptedDonationsDelegate = self
-        webSerV.ViewAcceptedDonations()
+        webSerV.PendingApprovalDonationsDelegate = self
+        webSerV.ViewPendingApprovalDonations()
         self.acceptedDonationsTableView.reloadData()
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-    
     
     //MARK:Table view DataSource and Delegate Methods
     //Returns number of sections in Tableview
@@ -52,7 +46,7 @@ class RequestorAcceptedDonationsViewController: UIViewController,UITableViewDele
     
     //Return number of rows in each section
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return items.count
+        return totalItems.count
     }
     
     //Set Data for each row
@@ -60,18 +54,17 @@ class RequestorAcceptedDonationsViewController: UIViewController,UITableViewDele
         
         let cell = self.acceptedDonationsTableView.dequeueReusableCell(withIdentifier:"AcceptedDonationsTableViewCellIdentifier", for: indexPath) as!RequestorAcceptedDonationsTableViewCell
         let row = indexPath.row
-        cell.restaurantNameLabel.text = items[row].restaurantName
-        let date = items[row].createdDate
+        cell.restaurantNameLabel.text = totalItems[row].restaurantName
+        let date = totalItems[row].createdDate
         cell.dateLabel.text = date.components(separatedBy: " ").first
-        cell.foodDescLabel.text = items[row].donationTitle
-        cell.statusLabel.text = items[row].donationStatus
+        cell.foodDescLabel.text = totalItems[row].donationTitle
+        cell.statusLabel.text = totalItems[row].donationStatus
         return cell
         
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let row = indexPath.row
-        donationID = items[row].donationID
+        donationID = totalItems[indexPath.row].donationID
         let webSerV: Webservice = Webservice()
         webSerV.viewDonationDetailsDelegate = self
         webSerV.ViewDonationDetails(donationID: donationID)
@@ -80,9 +73,8 @@ class RequestorAcceptedDonationsViewController: UIViewController,UITableViewDele
     
     //MARK: view available donations protocol methods
     func viewAcceptedDonationSuccessful(items: [Donation]) {
-        
         activityIndicator.stopAnimating()
-        self.items = items
+        self.totalItems.append(contentsOf: items)
         self.acceptedDonationsTableView.reloadData()
         
     }
@@ -96,6 +88,19 @@ class RequestorAcceptedDonationsViewController: UIViewController,UITableViewDele
         
     }
     
+    
+    //MARK: view Pending approval donations protocol methods
+    func viewPendingApprovalDonationSuccessful(items: [Donation]) {
+        activityIndicator.stopAnimating()
+        self.totalItems = items
+        webSerV.ViewAcceptedDonations()
+    }
+    func viewPendingApprovalDonationUnSuccessful(items: [Donation]) {
+        activityIndicator.stopAnimating()
+        self.totalItems = items
+        webSerV.ViewAcceptedDonations()
+    }
+    
     //MARK viewDonationDetailsProtocol Methods
     func viewDonationDetailsSuccessful(itemsDict:Dictionary<String, Any>){
         let viewDonationViewControllerObj = self.storyboard?.instantiateViewController(withIdentifier: "ViewDonationDetailsViewController") as? ViewDonationDetailsViewController
@@ -105,10 +110,8 @@ class RequestorAcceptedDonationsViewController: UIViewController,UITableViewDele
         //self.navigationController?.pushViewController(viewDonationViewControllerObj!, animated: true)
         let navController = UINavigationController(rootViewController: viewDonationViewControllerObj!) // Creating a navigation controller with VC1 at the root of the navigation stack.
         self.present(navController, animated: true, completion: nil)
-        
-        
-        
     }
+    
     func viewDonationDetailsUnSuccessful(){
         
         activityIndicator.stopAnimating()

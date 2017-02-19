@@ -10,22 +10,23 @@ import Foundation
 import FirebaseDatabase
 
 struct User {
-    let key:String
-    var username:String
-    var email:String
-    var userType:String
-    var restaurantName:String
-    var orgName:String
-    var address1:String
-    var address2:String
-    var city:String
-    var state:String
-    var zipcode:String
-    var contact:String
-    var weburl:String
-    var orgId:String
-    var userID:String
-    let ref:FIRDatabaseReference?
+    let key: String
+    var username: String
+    var email: String
+    var userType: String
+    var restaurantName: String
+    var orgName: String
+    var address1: String
+    var address2: String
+    var city: String
+    var state: String
+    var zipcode: String
+    var contact: String
+    var weburl: String
+    var orgId: String
+    var userID: String
+    let ref: FIRDatabaseReference?
+    var oneSignalIds = [String]()
     
     init(username: String, email: String, userType: String, restaurantName: String, orgName: String, address1: String, address2: String, city: String, state: String, zipcode: String, contact: String, weburl: String, orgId: String, userID: String, key:String = " ") {
         
@@ -49,6 +50,9 @@ struct User {
     
     init(snapshot: FIRDataSnapshot) {
         key = snapshot.key
+        
+        //TODO: Use if let
+        
         let snapshotValue = snapshot.value as! [String: AnyObject]
         username = snapshotValue["username"] as! String
         email = snapshotValue["email"] as! String
@@ -65,6 +69,9 @@ struct User {
         orgId = snapshotValue["orgId"] as! String
         userID = snapshotValue["userID"] as! String
         ref = snapshot.ref
+        if let signalIds = snapshotValue["signalIds"] as? [String] {
+            oneSignalIds.append(contentsOf: signalIds)
+        }
     }
     
     func toAnyObject() -> Any {
@@ -82,7 +89,8 @@ struct User {
             "contact" : contact,
             "weburl" : weburl,
             "orgId" : orgId,
-            "userID" : userID
+            "userID" : userID,
+            "signalIds" : oneSignalIds
         ]
     }
 }
