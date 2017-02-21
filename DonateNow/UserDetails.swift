@@ -92,7 +92,6 @@ struct User {
             "orgId" : orgId,
             "userID" : userID,
             "signalIds" : oneSignalIds
-            "userID" : userID
 
         ]
     }
