@@ -37,11 +37,6 @@ class RequestorAvailableDonationsViewController : UIViewController,UITableViewDe
         self.availbleDonationsTableView.reloadData()
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     //MARK: Outlets
     @IBOutlet weak var acceptedDonationsTableView: UITableView!
     
@@ -58,7 +53,6 @@ class RequestorAvailableDonationsViewController : UIViewController,UITableViewDe
     
     //Set Data for each row
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         let cell = self.availbleDonationsTableView.dequeueReusableCell(withIdentifier:"AcceptedDonationsTableViewCellIdentifier", for: indexPath) as!RequestorAcceptedDonationsTableViewCell
         let row = indexPath.row
         cell.restaurantNameLabel.text = items[row].restaurantName
@@ -67,7 +61,6 @@ class RequestorAvailableDonationsViewController : UIViewController,UITableViewDe
         cell.foodDescLabel.text = items[row].donationTitle
         cell.statusLabel.text = items[row].donationStatus
         return cell
-        
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -81,15 +74,15 @@ class RequestorAvailableDonationsViewController : UIViewController,UITableViewDe
     
     //MARK: view available donations protocol methods
     func viewAvailableDonationSuccessful(items:[Donation]){
-        
         activityIndicator.stopAnimating()
         self.items = items
         self.availbleDonationsTableView.reloadData()
         
     }
-    func viewAvailableDonationUnSuccessful(){
-        
+    func viewAvailableDonationUnSuccessful(items:[Donation]){
         activityIndicator.stopAnimating()
+        self.items = items
+        self.availbleDonationsTableView.reloadData()
         let alertController = UIAlertController(title: "Message", message:"No Donations available", preferredStyle: .alert)
         let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
         alertController.addAction(defaultAction)
@@ -102,16 +95,11 @@ class RequestorAvailableDonationsViewController : UIViewController,UITableViewDe
         let viewDonationViewControllerObj = self.storyboard?.instantiateViewController(withIdentifier: "ViewDonationDetailsViewController") as? ViewDonationDetailsViewController
         viewDonationViewControllerObj?.donationDetails = itemsDict
         viewDonationViewControllerObj?.donationID = donationID
-        Utility.className = Utility.availableDonations
-        //self.navigationController?.pushViewController(viewDonationViewControllerObj!, animated: true)
         let navController = UINavigationController(rootViewController: viewDonationViewControllerObj!) // Creating a navigation controller with VC1 at the root of the navigation stack.
         self.present(navController, animated: true, completion: nil)
-        
-        
-        
     }
+    
     func viewDonationDetailsUnSuccessful(){
-        
         activityIndicator.stopAnimating()
         let alertController = UIAlertController(title: "Message", message:"Could not fetch the Details. Please try again sometime", preferredStyle: .alert)
         let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)

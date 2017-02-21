@@ -39,7 +39,7 @@ protocol newDonationProtocol{
 //View List of donations based on user logged in
 protocol viewNewDonationProtocol {
     func viewNewDonationsSuccessful(items:[Donation])
-    func viewNewDonationUnSuccessful()
+    func viewNewDonationUnSuccessful(items:[Donation])
 }
 
 //view Donation details
@@ -57,18 +57,18 @@ protocol updateDonationDetailsProtocol{
 //View available donations requestor
 protocol viewAvailableDonationsProtocol{
     func viewAvailableDonationSuccessful(items:[Donation])
-    func viewAvailableDonationUnSuccessful()
+    func viewAvailableDonationUnSuccessful(items:[Donation])
 }
 
 //Reserve for Available Donations
 protocol reserveAvailableDonationsProtocol {
-    func reserveAvailableDonationSuccessful()
+    func reserveAvailableDonationSuccessful(status:String)
     func reserveAvailableUnSuccessful(error:Error)
 }
 //View accepted donations requestor
 protocol viewAcceptedDonationsProtocol{
     func viewAcceptedDonationSuccessful(items:[Donation])
-    func viewAcceptedDonationUnSuccessful()
+    func viewAcceptedDonationUnSuccessful(items:[Donation])
 }
 
 //View Pending Approval donations requestor
@@ -76,6 +76,8 @@ protocol viewPendingApprovalDonationsProtocol{
     func viewPendingApprovalDonationSuccessful(items:[Donation])
     func viewPendingApprovalDonationUnSuccessful(items:[Donation])
 }
+
+
 
 
 class Webservice {
@@ -95,7 +97,6 @@ class Webservice {
     //MARK:Login related Service
     //Invoke firebase login service
     func loginService(username:String,password:String) {
-        
         FIRAuth.auth()?.signIn(withEmail: username, password: password) { (user, error) in
             
             guard let user = user else {
@@ -107,14 +108,13 @@ class Webservice {
             
             Utility.userID = user.uid
             Utility.userName = user.email
-            self.getUserType()
+            self.getUserDetails()
             debugPrint("uudi:",user.uid)
         }
     }
     
     //MARK:Signup related Service
     //Invoke firebase signup service For Donor
-    
     func signupServiceForDonor(username:String, email:String, userType:String, restaurantName: String, orgName: String, address1: String, address2: String, city: String, state: String, zipcode: String, contact:String, websiteUrl: String, orgId: String, userID: String){
         let ref = FIRDatabase.database().reference(withPath: "Users")
         var user = User(username: username, email: email, userType: userType, restaurantName: restaurantName, orgName: orgName, address1: address1, address2: address2, city: city, state: state, zipcode: zipcode,contact: contact, weburl: websiteUrl, orgId: orgId, userID: userID)
@@ -147,7 +147,7 @@ class Webservice {
             Utility.userType = ""
             Utility.restaurantName = ""
         } catch  let signOutError as NSError {
-            print ("Error signing out: %@", signOutError)
+            debugPrint ("Error signing out: %@", signOutError)
             self.logoutDelegate?.logoutUnSuccessful(error: signOutError)
         }
        
@@ -171,13 +171,14 @@ class Webservice {
     
     //MARK:New Donation
     //Add Data to Firebase Database
-    func addDonationDetailsToFireBaseDatabase(foodDesc:String, quantity:String, contact:String, address1:String, address2: String, city:String, state: String, zipcode:String, splInstructions:String, createdUserName:String, createdDate:String, pickUpFromDate:String, pickUpToDate:String, donationID:String, donationStatus:String,donationTitle:String,restaurantName:String){
+    func addDonationDetailsToFireBaseDatabase(foodDesc:String, quantity:String, contact:String, address1:String, address2: String, city:String, state: String, zipcode:String, splInstructions:String, createdUserID:String, createdDate:String, pickUpFromDate:String, pickUpToDate:String, donationID:String, donationStatus:String,donationTitle:String,restaurantName:String,requestorUserID: String){
         
         let ref = FIRDatabase.database().reference(withPath: "Donations")
-        var donation = Donation(foodDesc: foodDesc,quantity: quantity,contact: contact,address1: address1,address2: address2,city: city,state: state,zipcode: zipcode,splInstructions: splInstructions,createdUserName: createdUserName,createdDate: createdDate,pickUpFromDate: pickUpFromDate ,pickUpToDate: pickUpToDate,donationID: donationID,donationStatus: donationStatus,donationTitle: donationTitle,restaurantName:restaurantName)
+        var donation = Donation(foodDesc: foodDesc,quantity: quantity,contact: contact,address1: address1,address2: address2,city: city,state: state,zipcode: zipcode,splInstructions: splInstructions,createdUserID: createdUserID,createdDate: createdDate,pickUpFromDate: pickUpFromDate ,pickUpToDate: pickUpToDate,donationID: donationID,donationStatus: donationStatus,donationTitle: donationTitle,restaurantName:restaurantName,requestorUserID:requestorUserID)
         if let signalId = oneSignalUserData.userId {
             donation.signalIds.append(signalId)
         }
+        donation.requestorSignalIds = [String]()
         let donationItemRef = ref.child(donationID)
         donationItemRef.setValue(donation.toAnyObject()){ (error, ref) -> Void in
             if error == nil{
@@ -195,10 +196,10 @@ class Webservice {
     func ViewNewDonationDetails(){
         let ref = FIRDatabase.database().reference(withPath: "Donations")
         //Retrieve Donation Details
-        var newItems: [Donation] = []
-        ref.queryOrdered(byChild: "createdUserName").queryEqual(toValue: Utility.userID).observe(.value, with: { (snapshot) in
+        ref.queryOrdered(byChild: "createdUserID").queryEqual(toValue: Utility.userID).observe(.value, with: { (snapshot) in
+            var newItems = [Donation]()
             if !snapshot.exists() {
-                self.viewNewDonationDelegate?.viewNewDonationUnSuccessful()
+                self.viewNewDonationDelegate?.viewNewDonationUnSuccessful(items: newItems)
             }
             else {
                 for item in snapshot.children {
@@ -261,10 +262,10 @@ class Webservice {
     func ViewAvailableDonations(){
         let ref = FIRDatabase.database().reference(withPath: "Donations")
         //Retrieve Donation Details
-        var newItems: [Donation] = []
         ref.queryOrdered(byChild: "donationStatus").queryEqual(toValue: Utility.NEW).observe(.value, with: { (snapshot) in
+            var newItems = [Donation]()
             if !snapshot.exists() {
-                self.viewAvailableDonationsDelegate?.viewAvailableDonationUnSuccessful()
+                self.viewAvailableDonationsDelegate?.viewAvailableDonationUnSuccessful(items: newItems)
             }
             else {
                 for item in snapshot.children {
@@ -280,15 +281,17 @@ class Webservice {
     func ViewAcceptedDonations(){
         let ref = FIRDatabase.database().reference(withPath: "Donations")
         //Retrieve Donation Details
-        var newItems: [Donation] = []
         ref.queryOrdered(byChild: "donationStatus").queryEqual(toValue:Utility.ACCEPTED).observe(.value, with: { (snapshot) in
+            var newItems = [Donation]()
             if !snapshot.exists() {
-                self.viewAcceptedDonationsDelegate?.viewAcceptedDonationUnSuccessful()
+                self.viewAcceptedDonationsDelegate?.viewAcceptedDonationUnSuccessful(items: newItems)
             }
             else {
                 for item in snapshot.children {
                     let donationItem = Donation(snapshot: item as! FIRDataSnapshot)
-                    newItems.append(donationItem)
+                    if donationItem.requestorUserID == Utility.userID {
+                        newItems.append(donationItem)
+                    }
                 }
                 self.viewAcceptedDonationsDelegate?.viewAcceptedDonationSuccessful(items: newItems)
             }
@@ -299,15 +302,17 @@ class Webservice {
     func ViewPendingApprovalDonations(){
         let ref = FIRDatabase.database().reference(withPath: "Donations")
         //Retrieve Donation Details
-        var newItems: [Donation] = []
         ref.queryOrdered(byChild: "donationStatus").queryEqual(toValue:Utility.PENDINGAPPROVAL).observe(.value, with: { (snapshot) in
+            var newItems = [Donation]()
             if !snapshot.exists() {
                 self.PendingApprovalDonationsDelegate?.viewPendingApprovalDonationUnSuccessful(items: newItems)
             }
             else {
                 for item in snapshot.children {
                     let donationItem = Donation(snapshot: item as! FIRDataSnapshot)
-                    newItems.append(donationItem)
+                    if donationItem.requestorUserID == Utility.userID {
+                        newItems.append(donationItem)
+                    }
                 }
                 self.PendingApprovalDonationsDelegate?.viewPendingApprovalDonationSuccessful(items: newItems)
             }
@@ -316,14 +321,17 @@ class Webservice {
     
     
     //MARK:View Reserve Available Donation for Requestor
-    func reserveAvailableDonations(donationID:String,status:String){
+    func reserveAvailableDonations(donationID:String,status:String,requestorID:String,requestorSignalIds: [String]){
         let ref = FIRDatabase.database().reference(withPath: "Donations")
         let donationItemRef = ref.child(donationID)
-        donationItemRef.updateChildValues(
-            ["donationStatus" : status]
-        ){ (error, ref) -> Void in
+        let childUpdates =
+            ["donationStatus": status,
+            "requestorUserID": requestorID,
+            "requestorSignalIds": requestorSignalIds
+        ] as [String : Any]
+        donationItemRef.updateChildValues(childUpdates){ (error, ref) -> Void in
             if error == nil{
-                self.reserveAvailableDonationsDelegate?.reserveAvailableDonationSuccessful()
+                self.reserveAvailableDonationsDelegate?.reserveAvailableDonationSuccessful(status: status)
                 
             }else{
                 self.reserveAvailableDonationsDelegate?.reserveAvailableUnSuccessful(error: error!)
@@ -336,7 +344,7 @@ class Webservice {
     
     //MARK:Helper methods
     //Inovoke firebase User service to get Usertype
-    func getUserType(){
+    func getUserDetails(){
         let path = String(format: "Users/%@",Utility.userID!)
         let ref = FIRDatabase.database().reference(withPath:path)
         ref.observeSingleEvent(of: .value, with: { (snapshot) in
@@ -344,12 +352,16 @@ class Webservice {
             let snapDict = snapshot.value as? [String:AnyObject]
             Utility.userType = snapDict?["userType"] as? String
             Utility.restaurantName = snapDict?["restaurantName"]as? String
+            Utility.address1 = snapDict?["address1"]as? String
+            Utility.address2 = snapDict?["address2"]as? String
+            Utility.city = snapDict?["city"]as? String
+            Utility.state = snapDict?["state"]as? String
+            Utility.zipCode = snapDict?["zipcode"]as? String
+            Utility.contact = snapDict?["contact"]as? String
+            Utility.charityName = snapDict?["orgName"]as? String
             self.loginDelegate?.loginSuccessful()
         })
     }
-    
-    
-    
     
 }
 

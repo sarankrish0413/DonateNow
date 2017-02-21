@@ -16,11 +16,12 @@ class MyDonationsViewController: UIViewController,UITableViewDelegate,UITableVie
     var items: [Donation] = []
     var donationID:String!
 
+    //MARK: Outlets
+    @IBOutlet weak var myDonationsTableView: UITableView!
 
     //MARK: View Controller Life cycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         //show activity inidcator view
         activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.gray)
         activityIndicator.hidesWhenStopped = true;
@@ -28,29 +29,15 @@ class MyDonationsViewController: UIViewController,UITableViewDelegate,UITableVie
         activityIndicator.center = view.center;
         self.view.addSubview(activityIndicator)
         activityIndicator.startAnimating()
-
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         let webSerV: Webservice = Webservice()
         webSerV.viewNewDonationDelegate = self
         webSerV.ViewNewDonationDetails()
-        self.myDonationsTableView.reloadData()
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-    
-    //MARK: Outlets
-    @IBOutlet weak var myDonationsTableView: UITableView!
-    
     
     //MARK:Table view DataSource and Delegate Methods
-    
     //Returns number of sections in Tableview
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -63,7 +50,6 @@ class MyDonationsViewController: UIViewController,UITableViewDelegate,UITableVie
     
     //Set Data for each row
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         let cell = self.myDonationsTableView.dequeueReusableCell(withIdentifier:"DonationTableViewCellIdentifier", for: indexPath) as!MyDonationTableViewCell
         let row = indexPath.row
         cell.statusLabel.text = items[row].donationStatus
@@ -87,10 +73,11 @@ class MyDonationsViewController: UIViewController,UITableViewDelegate,UITableVie
         activityIndicator.stopAnimating()
         self.items = items
         self.myDonationsTableView.reloadData()
-        
     }
-    func viewNewDonationUnSuccessful(){
+    func viewNewDonationUnSuccessful(items: [Donation]){
         activityIndicator.stopAnimating()
+        self.items = items
+        self.myDonationsTableView.reloadData()
         let alertController = UIAlertController(title: "Message", message:"No Donations available", preferredStyle: .alert)
         let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
         alertController.addAction(defaultAction)
@@ -101,11 +88,8 @@ class MyDonationsViewController: UIViewController,UITableViewDelegate,UITableVie
     //MARK viewDonationDetailsProtocol Methods
     func viewDonationDetailsSuccessful(itemsDict:Dictionary<String, Any>){
         let viewDonationViewControllerObj = self.storyboard?.instantiateViewController(withIdentifier: "ViewDonationDetailsViewController") as? ViewDonationDetailsViewController
-        
         viewDonationViewControllerObj?.donationDetails = itemsDict
         viewDonationViewControllerObj?.donationID = donationID
-        Utility.className = Utility.myDonations
-        //self.navigationController?.pushViewController(viewDonationViewControllerObj!, animated: true)
         let navController = UINavigationController(rootViewController: viewDonationViewControllerObj!) // Creating a navigation controller with VC1 at the root of the navigation stack.
         self.present(navController, animated: true, completion: nil)
         
@@ -113,7 +97,6 @@ class MyDonationsViewController: UIViewController,UITableViewDelegate,UITableVie
         
     }
     func viewDonationDetailsUnSuccessful(){
-        
         activityIndicator.stopAnimating()
         let alertController = UIAlertController(title: "Message", message:"Could not fetch the Details. Please try again sometime", preferredStyle: .alert)
         let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
@@ -121,5 +104,7 @@ class MyDonationsViewController: UIViewController,UITableViewDelegate,UITableVie
         self.present(alertController, animated: true, completion: nil)
         
     }
+    
+    
     
 }
