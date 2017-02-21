@@ -10,7 +10,6 @@
 		405D8478B2922B944646FBC5 /* Pods_DonateNow.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6129FA61BA5E5B209F3D83C0 /* Pods_DonateNow.framework */; };
 		5D227BF11E499C4200E2F5A4 /* SignupDonorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D227BF01E499C4200E2F5A4 /* SignupDonorViewController.swift */; };
 		5D227BF31E499C5900E2F5A4 /* SignupRequestorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D227BF21E499C5900E2F5A4 /* SignupRequestorViewController.swift */; };
-		5D26570D1E4AA49900F30996 /* UserDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D26570C1E4AA49900F30996 /* UserDetails.swift */; };
 		AE081FCA1E47A92C000A4F9B /* RequestorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE081FC91E47A92C000A4F9B /* RequestorViewController.swift */; };
 		AE081FCE1E47AB6F000A4F9B /* RequestorAcceptedDonationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE081FCD1E47AB6F000A4F9B /* RequestorAcceptedDonationViewController.swift */; };
 		AE081FD01E47AE20000A4F9B /* RequestorAcceptedDonationsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE081FCF1E47AE20000A4F9B /* RequestorAcceptedDonationsTableViewCell.swift */; };
@@ -23,7 +22,6 @@
 		AE1BE3121E3AF67100F08C31 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AE1BE3111E3AF67100F08C31 /* Assets.xcassets */; };
 		AE1BE3151E3AF67100F08C31 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE1BE3131E3AF67100F08C31 /* LaunchScreen.storyboard */; };
 		AE5DB73C1E403A5200B62A35 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AE5DB73B1E403A5200B62A35 /* GoogleService-Info.plist */; };
-		AE6880751E4C14310088A6F9 /* UserDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE6880741E4C14310088A6F9 /* UserDetails.swift */; };
 		AE799C101E46B01D00F67432 /* logo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AE799C0F1E46B01D00F67432 /* logo.jpg */; };
 		AE799C121E46B0D000F67432 /* username.png in Resources */ = {isa = PBXBuildFile; fileRef = AE799C111E46B0D000F67432 /* username.png */; };
 		AE799C141E46B1E800F67432 /* password.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AE799C131E46B1E800F67432 /* password.jpg */; };
@@ -36,13 +34,13 @@
 		AECD22981E46BC0D002FB1E0 /* MyDonationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AECD22971E46BC0D002FB1E0 /* MyDonationTableViewCell.swift */; };
 		AECD229E1E46CD7D002FB1E0 /* MyDonationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AECD229D1E46CD7D002FB1E0 /* MyDonationsViewController.swift */; };
 		AECD22A01E46D2E4002FB1E0 /* NewDonationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AECD229F1E46D2E4002FB1E0 /* NewDonationViewController.swift */; };
+		AED777E71E5CF484002D65B6 /* UserDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = AED777E61E5CF484002D65B6 /* UserDetails.swift */; };
 		AEE399661E402899003B7B23 /* DonorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEE399651E402899003B7B23 /* DonorViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		5D227BF01E499C4200E2F5A4 /* SignupDonorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupDonorViewController.swift; sourceTree = "<group>"; };
 		5D227BF21E499C5900E2F5A4 /* SignupRequestorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupRequestorViewController.swift; sourceTree = "<group>"; };
-		5D26570C1E4AA49900F30996 /* UserDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDetails.swift; sourceTree = "<group>"; };
 		6129FA61BA5E5B209F3D83C0 /* Pods_DonateNow.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DonateNow.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		934A3AEAB6CBFB2EDC3BD2C2 /* Pods-DonateNow.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DonateNow.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DonateNow/Pods-DonateNow.debug.xcconfig"; sourceTree = "<group>"; };
 		ADF3243E28DB5837788361C5 /* Pods-DonateNow.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DonateNow.release.xcconfig"; path = "Pods/Target Support Files/Pods-DonateNow/Pods-DonateNow.release.xcconfig"; sourceTree = "<group>"; };
@@ -61,7 +59,6 @@
 		AE1BE3161E3AF67100F08C31 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AE55DFB01E3AFFBF00231A04 /* DonateNow.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DonateNow.entitlements; sourceTree = "<group>"; };
 		AE5DB73B1E403A5200B62A35 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../GoogleService-Info.plist"; sourceTree = "<group>"; };
-		AE6880741E4C14310088A6F9 /* UserDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDetails.swift; sourceTree = "<group>"; };
 		AE799C0F1E46B01D00F67432 /* logo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = logo.jpg; sourceTree = "<group>"; };
 		AE799C111E46B0D000F67432 /* username.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = username.png; sourceTree = "<group>"; };
 		AE799C131E46B1E800F67432 /* password.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = password.jpg; sourceTree = "<group>"; };
@@ -74,6 +71,7 @@
 		AECD22971E46BC0D002FB1E0 /* MyDonationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDonationTableViewCell.swift; sourceTree = "<group>"; };
 		AECD229D1E46CD7D002FB1E0 /* MyDonationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDonationsViewController.swift; sourceTree = "<group>"; };
 		AECD229F1E46D2E4002FB1E0 /* NewDonationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewDonationViewController.swift; sourceTree = "<group>"; };
+		AED777E61E5CF484002D65B6 /* UserDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDetails.swift; sourceTree = "<group>"; };
 		AEE399651E402899003B7B23 /* DonorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DonorViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -95,7 +93,6 @@
 				5D26570B1E4AA48900F30996 /* Model */,
 				5D227BF01E499C4200E2F5A4 /* SignupDonorViewController.swift */,
 				5D227BF21E499C5900E2F5A4 /* SignupRequestorViewController.swift */,
-				AE6880741E4C14310088A6F9 /* UserDetails.swift */,
 			);
 			name = SignUp;
 			sourceTree = "<group>";
@@ -103,7 +100,7 @@
 		5D26570B1E4AA48900F30996 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				5D26570C1E4AA49900F30996 /* UserDetails.swift */,
+				AED777E61E5CF484002D65B6 /* UserDetails.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -441,13 +438,12 @@
 				AE081FD81E47FC5B000A4F9B /* DonationDetails.swift in Sources */,
 				AE081FD61E47F5ED000A4F9B /* ViewDonationDetailsViewController.swift in Sources */,
 				AE081FCA1E47A92C000A4F9B /* RequestorViewController.swift in Sources */,
-				5D26570D1E4AA49900F30996 /* UserDetails.swift in Sources */,
 				AECD229E1E46CD7D002FB1E0 /* MyDonationsViewController.swift in Sources */,
 				5D227BF11E499C4200E2F5A4 /* SignupDonorViewController.swift in Sources */,
 				AE081FCE1E47AB6F000A4F9B /* RequestorAcceptedDonationViewController.swift in Sources */,
 				AEE399661E402899003B7B23 /* DonorViewController.swift in Sources */,
+				AED777E71E5CF484002D65B6 /* UserDetails.swift in Sources */,
 				AEC8BC241E52226400ADC130 /* Webservices.swift in Sources */,
-				AE6880751E4C14310088A6F9 /* UserDetails.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
