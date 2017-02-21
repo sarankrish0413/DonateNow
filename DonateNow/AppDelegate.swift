@@ -29,12 +29,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         //configure Firebase
         FIRApp.configure()
-        
         OneSignal.initWithLaunchOptions(launchOptions, appId: oneSignalAppID, handleNotificationReceived: { (notification) in
-            print("Received Notification - \(notification?.payload.notificationID)")
+             debugPrint("Received Notification - \(notification?.payload.notificationID)")
         }, handleNotificationAction: { (result) in
             let payload: OSNotificationPayload? = result?.notification.payload
-            
             var fullMessage: String? = payload?.body
             if payload?.additionalData != nil {
                 var additionalData: [AnyHashable: Any]? = payload?.additionalData
@@ -43,7 +41,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 }
             }
             
-            print(fullMessage)
+            debugPrint(fullMessage!)
             
         }, settings: [kOSSettingsKeyAutoPrompt : true])
         

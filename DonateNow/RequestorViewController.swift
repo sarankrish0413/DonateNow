@@ -27,12 +27,8 @@ class RequestorViewController: UITabBarController,logoutServiceProtocol{
         
         // Status bar black font
         self.navigationController?.navigationBar.tintColor = UIColor.black
-        self.title = "Welcome Charity!!"
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        let charityNameString = "Welcome " + Utility.charityName! + "!!"
+        self.title = charityNameString
     }
     
     func LogoutAction() {

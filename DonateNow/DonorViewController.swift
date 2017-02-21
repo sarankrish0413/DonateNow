@@ -29,8 +29,8 @@ class DonorViewController: UITabBarController,logoutServiceProtocol{
         
         // Status bar black font
         self.navigationController?.navigationBar.tintColor = UIColor.black
-        self.title = "Welcome Thai Ginger!!"
-        
+        let restaurantNameString = "Welcome " + Utility.restaurantName! + "!!"
+        self.title = restaurantNameString
     }
     
     func LogoutAction() {
@@ -40,11 +40,6 @@ class DonorViewController: UITabBarController,logoutServiceProtocol{
         webSerV.logoutService()        
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
     //Mark Logout Protocol methods
     func logoutSuccessful(){
         _ = self.navigationController?.popToRootViewController(animated: true)

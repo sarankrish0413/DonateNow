@@ -9,23 +9,27 @@
 import Foundation
 
 class Utility {
-    static var className:String?
     static var DonationsArray = [Donation]()
     static var userType:String?
     static var userID:String?
     static var selectedUserType:String?
     static var userName:String?
     static var restaurantName:String?
-
+    static var address1: String?
+    static var address2: String?
+    static var city: String?
+    static var state: String?
+    static var zipCode: String?
+    static var contact: String?
+    static var charityName: String?
     
-
     //MARK Constants
-    static let acceptedDonations = "ACCEPTED DONATIONS"
-    static let myDonations = "MY DONATIONS"
-    static let availableDonations = "AVAILABLE DONATIONS"
     static let DONOR = "DONOR"
     static let REQUESTOR = "REQUESTOR"
-    static let NEW = "New"
-    static let ACCEPTED = "Accepted"
-    static let PENDINGAPPROVAL = "Pending Approval"
+    static let NEW = "NEW"
+    static let ACCEPTED = "ACCEPTED"
+    static let PENDINGAPPROVAL = "PENDING APPROVAL"
+    
+   
+    
 }

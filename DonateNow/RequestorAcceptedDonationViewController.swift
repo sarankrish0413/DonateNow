@@ -78,16 +78,23 @@ class RequestorAcceptedDonationsViewController: UIViewController,UITableViewDele
         self.acceptedDonationsTableView.reloadData()
         
     }
-    func viewAcceptedDonationUnSuccessful() {
-
+    func viewAcceptedDonationUnSuccessful(items: [Donation]) {
         activityIndicator.stopAnimating()
-        let alertController = UIAlertController(title: "Message", message:"No Donations available", preferredStyle: .alert)
-        let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-        alertController.addAction(defaultAction)
-        self.present(alertController, animated: true, completion: nil)
-        
+        self.totalItems.append(contentsOf: items)
+        self.acceptedDonationsTableView.reloadData()
+        showAlert()
     }
     
+    //Show alert of there are no accpeted as well as no pending items
+    func showAlert(){
+        if totalItems.count == 0 {
+                let alertController = UIAlertController(title: "Message", message:"No Donations available", preferredStyle: .alert)
+                let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+                alertController.addAction(defaultAction)
+                self.present(alertController, animated: true, completion: nil)
+        }
+
+    }
     
     //MARK: view Pending approval donations protocol methods
     func viewPendingApprovalDonationSuccessful(items: [Donation]) {
@@ -106,8 +113,6 @@ class RequestorAcceptedDonationsViewController: UIViewController,UITableViewDele
         let viewDonationViewControllerObj = self.storyboard?.instantiateViewController(withIdentifier: "ViewDonationDetailsViewController") as? ViewDonationDetailsViewController
         viewDonationViewControllerObj?.donationDetails = itemsDict
         viewDonationViewControllerObj?.donationID = donationID
-        Utility.className = Utility.acceptedDonations
-        //self.navigationController?.pushViewController(viewDonationViewControllerObj!, animated: true)
         let navController = UINavigationController(rootViewController: viewDonationViewControllerObj!) // Creating a navigation controller with VC1 at the root of the navigation stack.
         self.present(navController, animated: true, completion: nil)
     }

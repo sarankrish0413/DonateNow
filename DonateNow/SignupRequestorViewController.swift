@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import FirebaseDatabase
 import FirebaseAuth
+import OneSignal
 
 class SignupRequestorViewController: UIViewController,signupWebserviceProtocol,logoutServiceProtocol{
     
@@ -29,15 +30,25 @@ class SignupRequestorViewController: UIViewController,signupWebserviceProtocol,l
     
     
     @IBAction func requestorRegisterAction(_ sender: UIButton) {
-        if emailTextField.text == ""  || passwordTextField.text == ""{
+        if emailTextField.text == "" || passwordTextField.text == "" {
             let alertController = UIAlertController(title: "Error", message: "Please enter your email and password", preferredStyle: .alert)
             let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
             alertController.addAction(defaultAction)
             present(alertController, animated: true, completion: nil)
+            
         } else {
-            let webSerV: Webservice = Webservice()
-            webSerV.signupDelegate = self
-            webSerV.createNewUser(username: emailTextField.text!, password: passwordTextField.text!)
+            OneSignal.idsAvailable({ (userId, token) in
+                defer {
+                    let webSerV: Webservice = Webservice()
+                    webSerV.signupDelegate = self
+                    webSerV.createNewUser(username: self.emailTextField.text!, password: self.passwordTextField.text!)
+                }
+                guard let token = token, let userId = userId else {
+                    return
+                }
+                oneSignalUserData.userId = userId
+                oneSignalUserData.deviceToken = token
+            })
         }
     }
     
@@ -53,16 +64,11 @@ class SignupRequestorViewController: UIViewController,signupWebserviceProtocol,l
         self.navigationItem.rightBarButtonItem = logoutButton
         // Status bar black font
         self.navigationController?.navigationBar.tintColor = UIColor.black
-        self.title = "Welcome testuser!!"
+        self.title = "Welcome New user!!"
         
         self.userTypeTextField.text = Utility.REQUESTOR
         
         
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     func logoutAction() {
@@ -88,7 +94,6 @@ class SignupRequestorViewController: UIViewController,signupWebserviceProtocol,l
     
     
     //MARK SignupWebserviceProtocol Methods
-    
     //Signup success push the view controller to Donor Login page
     func signupSuccessful() {
         let webSerV: Webservice = Webservice()

@@ -70,8 +70,7 @@ class SignupDonorViewController: UIViewController,signupWebserviceProtocol,logou
         self.navigationItem.rightBarButtonItem = logoutButton;
         // Status bar black font
         self.navigationController?.navigationBar.tintColor = UIColor.black
-        self.title = "Welcome testuser!!"
-        
+        self.title = "Welcome New user!!"
         self.userTypeTextField.text = Utility.DONOR
     }
     
