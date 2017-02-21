@@ -10,6 +10,7 @@
 		405D8478B2922B944646FBC5 /* Pods_DonateNow.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6129FA61BA5E5B209F3D83C0 /* Pods_DonateNow.framework */; };
 		5D227BF11E499C4200E2F5A4 /* SignupDonorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D227BF01E499C4200E2F5A4 /* SignupDonorViewController.swift */; };
 		5D227BF31E499C5900E2F5A4 /* SignupRequestorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D227BF21E499C5900E2F5A4 /* SignupRequestorViewController.swift */; };
+		5D26570D1E4AA49900F30996 /* UserDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D26570C1E4AA49900F30996 /* UserDetails.swift */; };
 		AE081FCA1E47A92C000A4F9B /* RequestorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE081FC91E47A92C000A4F9B /* RequestorViewController.swift */; };
 		AE081FCE1E47AB6F000A4F9B /* RequestorAcceptedDonationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE081FCD1E47AB6F000A4F9B /* RequestorAcceptedDonationViewController.swift */; };
 		AE081FD01E47AE20000A4F9B /* RequestorAcceptedDonationsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE081FCF1E47AE20000A4F9B /* RequestorAcceptedDonationsTableViewCell.swift */; };
@@ -41,6 +42,7 @@
 /* Begin PBXFileReference section */
 		5D227BF01E499C4200E2F5A4 /* SignupDonorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupDonorViewController.swift; sourceTree = "<group>"; };
 		5D227BF21E499C5900E2F5A4 /* SignupRequestorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupRequestorViewController.swift; sourceTree = "<group>"; };
+		5D26570C1E4AA49900F30996 /* UserDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDetails.swift; sourceTree = "<group>"; };
 		6129FA61BA5E5B209F3D83C0 /* Pods_DonateNow.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DonateNow.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		934A3AEAB6CBFB2EDC3BD2C2 /* Pods-DonateNow.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DonateNow.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DonateNow/Pods-DonateNow.debug.xcconfig"; sourceTree = "<group>"; };
 		ADF3243E28DB5837788361C5 /* Pods-DonateNow.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DonateNow.release.xcconfig"; path = "Pods/Target Support Files/Pods-DonateNow/Pods-DonateNow.release.xcconfig"; sourceTree = "<group>"; };
@@ -90,11 +92,20 @@
 		5D227BEF1E499C2300E2F5A4 /* SignUp */ = {
 			isa = PBXGroup;
 			children = (
+				5D26570B1E4AA48900F30996 /* Model */,
 				5D227BF01E499C4200E2F5A4 /* SignupDonorViewController.swift */,
 				5D227BF21E499C5900E2F5A4 /* SignupRequestorViewController.swift */,
 				AE6880741E4C14310088A6F9 /* UserDetails.swift */,
 			);
 			name = SignUp;
+			sourceTree = "<group>";
+		};
+		5D26570B1E4AA48900F30996 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				5D26570C1E4AA49900F30996 /* UserDetails.swift */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 		9830CF284C4C3B4D55AE683A /* Pods */ = {
@@ -430,6 +441,7 @@
 				AE081FD81E47FC5B000A4F9B /* DonationDetails.swift in Sources */,
 				AE081FD61E47F5ED000A4F9B /* ViewDonationDetailsViewController.swift in Sources */,
 				AE081FCA1E47A92C000A4F9B /* RequestorViewController.swift in Sources */,
+				5D26570D1E4AA49900F30996 /* UserDetails.swift in Sources */,
 				AECD229E1E46CD7D002FB1E0 /* MyDonationsViewController.swift in Sources */,
 				5D227BF11E499C4200E2F5A4 /* SignupDonorViewController.swift in Sources */,
 				AE081FCE1E47AB6F000A4F9B /* RequestorAcceptedDonationViewController.swift in Sources */,
