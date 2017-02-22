@@ -1,5 +1,20 @@
 PODS:
+<<<<<<< master
   - Cosmos (8.0.2)
+=======
+  - Bolts (1.8.4):
+    - Bolts/AppLinks (= 1.8.4)
+    - Bolts/Tasks (= 1.8.4)
+  - Bolts/AppLinks (1.8.4):
+    - Bolts/Tasks
+  - Bolts/Tasks (1.8.4)
+  - FBSDKCoreKit (4.19.0):
+    - Bolts (~> 1.7)
+  - FBSDKLoginKit (4.19.0):
+    - FBSDKCoreKit
+  - FBSDKShareKit (4.19.0):
+    - FBSDKCoreKit
+>>>>>>> Google+FB SignIn
   - Firebase/AdMob (3.11.1):
     - Firebase/Core
     - Google-Mobile-Ads-SDK (= 7.16.0)
@@ -85,6 +100,11 @@ PODS:
     - FirebaseAnalytics (~> 3.5)
     - GTMSessionFetcher/Core (~> 1.1)
   - Google-Mobile-Ads-SDK (7.16.0)
+  - Google/Core (3.0.3):
+    - FirebaseAnalytics (~> 3.2)
+  - Google/SignIn (3.0.3):
+    - Google/Core
+    - GoogleSignIn (~> 4.0)
   - GoogleAPIClientForREST (1.2.0):
     - GoogleAPIClientForREST/Core (= 1.2.0)
     - GTMSessionFetcher (>= 1.1.7)
@@ -132,7 +152,13 @@ PODS:
   - SkyFloatingLabelTextField (2.0.1)
 
 DEPENDENCIES:
+<<<<<<< master
   - Cosmos (~> 8.0)
+=======
+  - FBSDKCoreKit
+  - FBSDKLoginKit
+  - FBSDKShareKit
+>>>>>>> Google+FB SignIn
   - Firebase/AdMob
   - Firebase/Auth
   - Firebase/Core
@@ -143,11 +169,19 @@ DEPENDENCIES:
   - Firebase/Messaging
   - Firebase/RemoteConfig
   - Firebase/Storage
+  - Google/SignIn
   - OneSignal
   - SkyFloatingLabelTextField (~> 2.0.0)
 
 SPEC CHECKSUMS:
+<<<<<<< master
   Cosmos: 007c0b8e33a85e5363911bdd933571bbe221f7ef
+=======
+  Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
+  FBSDKCoreKit: 894b2b6eda6a4c8c4204e92e59cc355709ef045c
+  FBSDKLoginKit: 83ca4d8f12a2022570af9fd6aacf27f6b425b99f
+  FBSDKShareKit: 5953758366278430dc322d5cdc906db361ed7f81
+>>>>>>> Google+FB SignIn
   Firebase: 53b2343db1ebfa3eb16bdb4318b8bb65360b2220
   FirebaseAnalytics: 9c67af0ebeb8d2146c9b4ea2616439affa947b58
   FirebaseAuth: b436e4ecebe068bf8e8c6e4e29de5756ffe7ee24
@@ -160,6 +194,7 @@ SPEC CHECKSUMS:
   FirebaseMessaging: acf66347e43c5637c697060c3001d25c809a4131
   FirebaseRemoteConfig: a03e73abef495c0a0063e2ff461f0c4e8af4b57f
   FirebaseStorage: 5738284835edb57f0e81d4ae5832bb17c1e4b5fa
+  Google: 813c467362eabc11385f5a5cc9ad0cb651a58f4e
   Google-Mobile-Ads-SDK: 92dff0e9ce1cfdfe640d9d80ab86d5e4371e478f
   GoogleAPIClientForREST: 9e5fd600a06c38abf92b5db337c5df2cfb95ee12
   GoogleAppUtilities: a8a552aa74f6597f805e45b5a3962766c3134973
@@ -172,6 +207,10 @@ SPEC CHECKSUMS:
   OneSignal: 4cb42948ebc141bd5deb54d3fda25105db94f6d4
   SkyFloatingLabelTextField: 070e749632ffd608d6fd9db3fa488a822524997c
 
+<<<<<<< master
 PODFILE CHECKSUM: 49487f2b72f1b96b6dc7161f6f928da5e77e85a2
+=======
+PODFILE CHECKSUM: 1daed62c71e84380b95bf98aa1d07958f5ae58e1
+>>>>>>> Google+FB SignIn
 
 COCOAPODS: 1.2.0
