@@ -17,4 +17,8 @@ pod 'Firebase/Crash'
 pod 'Firebase/RemoteConfig'	
 pod 'Firebase/Storage'
 pod 'OneSignal'
+pod 'Google/SignIn'
+pod 'FBSDKCoreKit'
+pod 'FBSDKShareKit'
+pod 'FBSDKLoginKit'
 end
