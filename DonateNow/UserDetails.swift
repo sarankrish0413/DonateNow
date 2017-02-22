@@ -72,6 +72,7 @@ struct User {
         if let signalIds = snapshotValue["signalIds"] as? [String] {
             oneSignalIds.append(contentsOf: signalIds)
         }
+
     }
     
     func toAnyObject() -> Any {
@@ -91,6 +92,7 @@ struct User {
             "orgId" : orgId,
             "userID" : userID,
             "signalIds" : oneSignalIds
+
         ]
     }
 }

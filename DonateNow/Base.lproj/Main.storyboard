@@ -321,8 +321,16 @@
                                 <state key="normal" title="Register"/>
                                 <connections>
                                     <action selector="donorRegisterAction:" destination="jTu-RI-206" eventType="touchUpInside" id="cmz-AT-DC6"/>
+
                                 </connections>
                             </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UYw-41-w3f">
+                                <rect key="frame" x="193" y="231" width="163" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -417,6 +425,7 @@
                         <outlet property="userTypeTextField" destination="UtS-6g-3vb" id="C45-WN-hCw"/>
                         <outlet property="usernameTextField" destination="xsy-lc-FF6" id="ef6-R7-mxR"/>
                         <outlet property="websiteTextField" destination="lKp-mN-5Qf" id="168-Pc-KY7"/>
+
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xnj-ir-Bxc" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -446,12 +455,14 @@
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES"/>
+
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="confirm password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CQd-wZ-0KJ">
                                 <rect key="frame" x="199" y="102" width="163" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES"/>
+
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="organization" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OY1-iM-Kpf">
                                 <rect key="frame" x="201" y="140" width="163" height="30"/>
@@ -604,6 +615,7 @@
                         <outlet property="stateTextField" destination="Q5m-qE-fMU" id="kfc-kQ-x5y"/>
                         <outlet property="userTypeTextField" destination="3mo-v6-kPg" id="o1C-nq-oNp"/>
                         <outlet property="usernameTextField" destination="aXl-uc-6lc" id="TKE-Kf-X6I"/>
+
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uNs-TH-yQy" userLabel="First Responder" sceneMemberID="firstResponder"/>
