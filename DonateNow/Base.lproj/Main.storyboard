@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="JQD-of-sbQ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="JQD-of-sbQ">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -321,7 +321,6 @@
                                 <state key="normal" title="Register"/>
                                 <connections>
                                     <action selector="donorRegisterAction:" destination="jTu-RI-206" eventType="touchUpInside" id="cmz-AT-DC6"/>
-
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UYw-41-w3f">
@@ -425,7 +424,6 @@
                         <outlet property="userTypeTextField" destination="UtS-6g-3vb" id="C45-WN-hCw"/>
                         <outlet property="usernameTextField" destination="xsy-lc-FF6" id="ef6-R7-mxR"/>
                         <outlet property="websiteTextField" destination="lKp-mN-5Qf" id="168-Pc-KY7"/>
-
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xnj-ir-Bxc" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -455,14 +453,12 @@
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES"/>
-
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="confirm password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CQd-wZ-0KJ">
                                 <rect key="frame" x="199" y="102" width="163" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES"/>
-
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="organization" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OY1-iM-Kpf">
                                 <rect key="frame" x="201" y="140" width="163" height="30"/>
@@ -615,7 +611,6 @@
                         <outlet property="stateTextField" destination="Q5m-qE-fMU" id="kfc-kQ-x5y"/>
                         <outlet property="userTypeTextField" destination="3mo-v6-kPg" id="o1C-nq-oNp"/>
                         <outlet property="usernameTextField" destination="aXl-uc-6lc" id="TKE-Kf-X6I"/>
-
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uNs-TH-yQy" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -989,7 +984,7 @@
         <!--View Reviews-->
         <scene sceneID="fMQ-om-NhI">
             <objects>
-                <viewController id="Rh7-V4-RXP" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DonorViewReviewsController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Rh7-V4-RXP" customClass="DonorViewReviewsController" customModule="DonateNow" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="VE5-d3-ElL"/>
                         <viewControllerLayoutGuide type="bottom" id="JMK-7s-haZ"/>
@@ -997,13 +992,23 @@
                     <view key="view" contentMode="scaleToFill" id="fYN-1V-ecY">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="5K5-93-qqO">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="629"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="View Reviews" id="AZ1-b7-tTd"/>
+                    <connections>
+                        <outlet property="reviewsTableView" destination="5K5-93-qqO" id="su0-ab-hkI"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZI5-99-Sey" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5367" y="1319"/>
+            <point key="canvasLocation" x="5365.6000000000004" y="1318.2908545727137"/>
         </scene>
         <!--View Donation Details View Controller-->
         <scene sceneID="XIp-OE-JLE">
@@ -1284,7 +1289,7 @@
         <!--Reviews-->
         <scene sceneID="yNM-Ml-QoB">
             <objects>
-                <viewController id="zkC-sR-Kjh" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RequestorViewReviewsController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="zkC-sR-Kjh" customClass="RequestorViewReviewsController" customModule="DonateNow" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="cty-oo-vBi"/>
                         <viewControllerLayoutGuide type="bottom" id="WBe-Tn-JrY"/>
@@ -1292,13 +1297,82 @@
                     <view key="view" contentMode="scaleToFill" id="GBx-5a-AII">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WOV-en-9xU">
+                                <rect key="frame" x="160" y="86" width="199" height="116"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            </pickerView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Restaurants:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n0t-Ld-j14">
+                                <rect key="frame" x="41" y="134" width="96" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lUe-As-CmJ">
+                                <rect key="frame" x="136" y="219" width="104" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <state key="normal" title="Write Reviews">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <segue destination="NJL-gv-2Sc" kind="show" id="ujk-Ue-au9"/>
+                                </connections>
+                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="kYh-2g-bFd">
+                                <rect key="frame" x="-1" y="269" width="376" height="360"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Reviews" id="AGs-PJ-9bR"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZJy-Nf-7ab" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7462" y="466"/>
+            <point key="canvasLocation" x="7461.6000000000004" y="465.51724137931041"/>
+        </scene>
+        <!--Requestor Write Reviews Controller-->
+        <scene sceneID="dCA-ce-egB">
+            <objects>
+                <viewController storyboardIdentifier="RequestorWriteReviewsController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="NJL-gv-2Sc" customClass="RequestorWriteReviewsController" customModule="DonateNow" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="HWX-7y-R0U"/>
+                        <viewControllerLayoutGuide type="bottom" id="utB-XP-hXA"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="RKH-aL-qof">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Aui-fU-MSw">
+                                <rect key="frame" x="16" y="139" width="343" height="213"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KfM-6K-E1V">
+                                <rect key="frame" x="163" y="401" width="49" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Submit">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="submitButtonAction:" destination="NJL-gv-2Sc" eventType="touchUpInside" id="pKj-Zk-Am2"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="reviewTextView" destination="Aui-fU-MSw" id="Wrj-nS-nb5"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LZl-5e-1E9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="8269.6000000000004" y="648.12593703148434"/>
         </scene>
         <!--My Requests-->
         <scene sceneID="qU5-Ay-mAt">

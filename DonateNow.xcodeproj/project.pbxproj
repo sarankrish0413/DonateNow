@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		405D8478B2922B944646FBC5 /* Pods_DonateNow.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6129FA61BA5E5B209F3D83C0 /* Pods_DonateNow.framework */; };
+		5D092A6F1E5D249400203541 /* RequestorViewReviewsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D092A6E1E5D249400203541 /* RequestorViewReviewsController.swift */; };
+		5D092A711E5D24DA00203541 /* RequestorWriteReviewsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D092A701E5D24DA00203541 /* RequestorWriteReviewsController.swift */; };
+		5D092A731E5D25DE00203541 /* DonorViewReviewsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D092A721E5D25DE00203541 /* DonorViewReviewsController.swift */; };
 		5D227BF11E499C4200E2F5A4 /* SignupDonorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D227BF01E499C4200E2F5A4 /* SignupDonorViewController.swift */; };
 		5D227BF31E499C5900E2F5A4 /* SignupRequestorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D227BF21E499C5900E2F5A4 /* SignupRequestorViewController.swift */; };
 		AE081FCA1E47A92C000A4F9B /* RequestorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE081FC91E47A92C000A4F9B /* RequestorViewController.swift */; };
@@ -39,6 +42,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5D092A6E1E5D249400203541 /* RequestorViewReviewsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestorViewReviewsController.swift; sourceTree = "<group>"; };
+		5D092A701E5D24DA00203541 /* RequestorWriteReviewsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestorWriteReviewsController.swift; sourceTree = "<group>"; };
+		5D092A721E5D25DE00203541 /* DonorViewReviewsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DonorViewReviewsController.swift; sourceTree = "<group>"; };
 		5D227BF01E499C4200E2F5A4 /* SignupDonorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupDonorViewController.swift; sourceTree = "<group>"; };
 		5D227BF21E499C5900E2F5A4 /* SignupRequestorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupRequestorViewController.swift; sourceTree = "<group>"; };
 		6129FA61BA5E5B209F3D83C0 /* Pods_DonateNow.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DonateNow.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -87,6 +93,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5D092A6D1E5D22FC00203541 /* Reviews */ = {
+			isa = PBXGroup;
+			children = (
+				5D092A6E1E5D249400203541 /* RequestorViewReviewsController.swift */,
+				5D092A701E5D24DA00203541 /* RequestorWriteReviewsController.swift */,
+				5D092A721E5D25DE00203541 /* DonorViewReviewsController.swift */,
+			);
+			name = Reviews;
+			sourceTree = "<group>";
+		};
 		5D227BEF1E499C2300E2F5A4 /* SignUp */ = {
 			isa = PBXGroup;
 			children = (
@@ -245,6 +261,7 @@
 		AE1BE3091E3AF67100F08C31 /* DonateNow */ = {
 			isa = PBXGroup;
 			children = (
+				5D092A6D1E5D22FC00203541 /* Reviews */,
 				AEC8BC221E52206B00ADC130 /* Webservices */,
 				5D227BEF1E499C2300E2F5A4 /* SignUp */,
 				AE081FD41E47F5C6000A4F9B /* viewDonationDetails */,
@@ -432,8 +449,10 @@
 				AE081FD01E47AE20000A4F9B /* RequestorAcceptedDonationsTableViewCell.swift in Sources */,
 				AE1BE30D1E3AF67100F08C31 /* ViewController.swift in Sources */,
 				5D227BF31E499C5900E2F5A4 /* SignupRequestorViewController.swift in Sources */,
+				5D092A731E5D25DE00203541 /* DonorViewReviewsController.swift in Sources */,
 				AECD22A01E46D2E4002FB1E0 /* NewDonationViewController.swift in Sources */,
 				AECD22981E46BC0D002FB1E0 /* MyDonationTableViewCell.swift in Sources */,
+				5D092A6F1E5D249400203541 /* RequestorViewReviewsController.swift in Sources */,
 				AE1BE30B1E3AF67100F08C31 /* AppDelegate.swift in Sources */,
 				AE081FD81E47FC5B000A4F9B /* DonationDetails.swift in Sources */,
 				AE081FD61E47F5ED000A4F9B /* ViewDonationDetailsViewController.swift in Sources */,
@@ -443,6 +462,7 @@
 				AE081FCE1E47AB6F000A4F9B /* RequestorAcceptedDonationViewController.swift in Sources */,
 				AEE399661E402899003B7B23 /* DonorViewController.swift in Sources */,
 				AED777E71E5CF484002D65B6 /* UserDetails.swift in Sources */,
+				5D092A711E5D24DA00203541 /* RequestorWriteReviewsController.swift in Sources */,
 				AEC8BC241E52226400ADC130 /* Webservices.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
