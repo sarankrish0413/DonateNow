@@ -23,12 +23,6 @@
 		AE1BE3151E3AF67100F08C31 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE1BE3131E3AF67100F08C31 /* LaunchScreen.storyboard */; };
 		AE5DB73C1E403A5200B62A35 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AE5DB73B1E403A5200B62A35 /* GoogleService-Info.plist */; };
 		AE799C101E46B01D00F67432 /* logo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AE799C0F1E46B01D00F67432 /* logo.jpg */; };
-		AE799C121E46B0D000F67432 /* username.png in Resources */ = {isa = PBXBuildFile; fileRef = AE799C111E46B0D000F67432 /* username.png */; };
-		AE799C141E46B1E800F67432 /* password.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AE799C131E46B1E800F67432 /* password.jpg */; };
-		AE799C161E46B25900F67432 /* login.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AE799C151E46B25900F67432 /* login.jpg */; };
-		AE799C1A1E46B34500F67432 /* facebook.png in Resources */ = {isa = PBXBuildFile; fileRef = AE799C171E46B34500F67432 /* facebook.png */; };
-		AE799C1B1E46B34500F67432 /* google_app.png in Resources */ = {isa = PBXBuildFile; fileRef = AE799C181E46B34500F67432 /* google_app.png */; };
-		AE799C1C1E46B34500F67432 /* signup.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AE799C191E46B34500F67432 /* signup.jpg */; };
 		AEC8BC241E52226400ADC130 /* Webservices.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC8BC231E52226400ADC130 /* Webservices.swift */; };
 		AEC8BC261E5587E300ADC130 /* RequestorAvailableDonationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC8BC251E5587E300ADC130 /* RequestorAvailableDonationsViewController.swift */; };
 		AECD22981E46BC0D002FB1E0 /* MyDonationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AECD22971E46BC0D002FB1E0 /* MyDonationTableViewCell.swift */; };
@@ -60,12 +54,6 @@
 		AE55DFB01E3AFFBF00231A04 /* DonateNow.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DonateNow.entitlements; sourceTree = "<group>"; };
 		AE5DB73B1E403A5200B62A35 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		AE799C0F1E46B01D00F67432 /* logo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = logo.jpg; sourceTree = "<group>"; };
-		AE799C111E46B0D000F67432 /* username.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = username.png; sourceTree = "<group>"; };
-		AE799C131E46B1E800F67432 /* password.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = password.jpg; sourceTree = "<group>"; };
-		AE799C151E46B25900F67432 /* login.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = login.jpg; sourceTree = "<group>"; };
-		AE799C171E46B34500F67432 /* facebook.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = facebook.png; sourceTree = "<group>"; };
-		AE799C181E46B34500F67432 /* google_app.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = google_app.png; sourceTree = "<group>"; };
-		AE799C191E46B34500F67432 /* signup.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = signup.jpg; sourceTree = "<group>"; };
 		AEC8BC231E52226400ADC130 /* Webservices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Webservices.swift; sourceTree = "<group>"; };
 		AEC8BC251E5587E300ADC130 /* RequestorAvailableDonationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestorAvailableDonationsViewController.swift; sourceTree = "<group>"; };
 		AECD22971E46BC0D002FB1E0 /* MyDonationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDonationTableViewCell.swift; sourceTree = "<group>"; };
@@ -268,12 +256,6 @@
 		AE799C0C1E46AFAB00F67432 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				AE799C171E46B34500F67432 /* facebook.png */,
-				AE799C181E46B34500F67432 /* google_app.png */,
-				AE799C191E46B34500F67432 /* signup.jpg */,
-				AE799C151E46B25900F67432 /* login.jpg */,
-				AE799C131E46B1E800F67432 /* password.jpg */,
-				AE799C111E46B0D000F67432 /* username.png */,
 				AE799C0F1E46B01D00F67432 /* logo.jpg */,
 			);
 			name = Images;
@@ -358,17 +340,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AE799C141E46B1E800F67432 /* password.jpg in Resources */,
-				AE799C161E46B25900F67432 /* login.jpg in Resources */,
 				AE1BE3151E3AF67100F08C31 /* LaunchScreen.storyboard in Resources */,
-				AE799C121E46B0D000F67432 /* username.png in Resources */,
-				AE799C1A1E46B34500F67432 /* facebook.png in Resources */,
 				AE799C101E46B01D00F67432 /* logo.jpg in Resources */,
 				AE5DB73C1E403A5200B62A35 /* GoogleService-Info.plist in Resources */,
 				AE1BE3121E3AF67100F08C31 /* Assets.xcassets in Resources */,
-				AE799C1B1E46B34500F67432 /* google_app.png in Resources */,
 				AE1BE3101E3AF67100F08C31 /* Main.storyboard in Resources */,
-				AE799C1C1E46B34500F67432 /* signup.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

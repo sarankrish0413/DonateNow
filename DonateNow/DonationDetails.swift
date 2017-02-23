@@ -32,6 +32,8 @@ struct Donation {
     var requestorUserID: String = ""
     var signalIds = [String]()
     var requestorSignalIds = [String]()
+    var approvalStatus: String = ""
+    var rejectedUserIds = [String]()
     let ref:FIRDatabaseReference?
     
     init(foodDesc: String, quantity: String, contact: String, address1: String, address2: String, city: String, state: String, zipcode: String, splInstructions: String, createdUserID: String, createdDate: String, pickUpFromDate: String, pickUpToDate:String, donationID:String, donationStatus: String, donationTitle: String, restaurantName: String,requestorUserID: String,key:String = " ") {
@@ -115,11 +117,17 @@ struct Donation {
         if let item = snapshotValue["requestorUserID"] as? String {
             requestorUserID = item
         }
+        if let item = snapshotValue["approvalStatus"] as? String {
+            approvalStatus = item
+        }
         if var signalIds = snapshotValue["signalIds"] as? [String] {
             signalIds.append(contentsOf: signalIds)
         }
         if var requestorSignalIds = snapshotValue["requestorSignalIds"] as? [String] {
             requestorSignalIds.append(contentsOf: requestorSignalIds)
+        }
+        if let rejectedIds = snapshotValue["rejectedUserIds"] as? [String] {
+            rejectedUserIds.append(contentsOf: rejectedIds)
         }
         ref = snapshot.ref
     }
@@ -145,8 +153,9 @@ struct Donation {
             "restaurantName":restaurantName,
             "requestorUserID": requestorUserID,
             "signalIds": signalIds,
-            "requestorSignalIds": requestorSignalIds
-            
+            "requestorSignalIds": requestorSignalIds,
+            "approvalStatus": approvalStatus,
+            "rejectedUserIds": rejectedUserIds
         ]
     }
     

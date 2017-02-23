@@ -128,6 +128,7 @@ PODS:
   - GTMSessionFetcher/Full (1.1.8):
     - GTMSessionFetcher/Core (= 1.1.8)
   - OneSignal (2.3.5)
+  - SkyFloatingLabelTextField (2.0.1)
 
 DEPENDENCIES:
   - Firebase/AdMob
@@ -141,6 +142,7 @@ DEPENDENCIES:
   - Firebase/RemoteConfig
   - Firebase/Storage
   - OneSignal
+  - SkyFloatingLabelTextField (~> 2.0.0)
 
 SPEC CHECKSUMS:
   Firebase: 53b2343db1ebfa3eb16bdb4318b8bb65360b2220
@@ -165,7 +167,8 @@ SPEC CHECKSUMS:
   GTMOAuth2: 7fc9c10f5c745f4d9850419ea88889fe3baa6b7d
   GTMSessionFetcher: 6f8d8b28b7e345549ac471071608170b31cb4977
   OneSignal: 4cb42948ebc141bd5deb54d3fda25105db94f6d4
+  SkyFloatingLabelTextField: 070e749632ffd608d6fd9db3fa488a822524997c
 
-PODFILE CHECKSUM: d4eb4f2c3ce87330eb9553fd0b39c7771d168d83
+PODFILE CHECKSUM: 3be9e6e73f192eaa56cea7593e2896cd3128be99
 
 COCOAPODS: 1.2.0

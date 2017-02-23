@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import FirebaseDatabase
 
-class RequestorAcceptedDonationsViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,viewAcceptedDonationsProtocol,viewDonationDetailsProtocol,viewPendingApprovalDonationsProtocol{
+class RequestorAcceptedDonationsViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,viewAcceptedDonationsProtocol,viewDonationDetailsProtocol,viewPendingApprovalDonationsProtocol,viewRejectedDonationsProtocol{
     
     @IBOutlet weak var acceptedDonationsTableView: UITableView!
     var activityIndicator:UIActivityIndicatorView!
@@ -34,6 +34,7 @@ class RequestorAcceptedDonationsViewController: UIViewController,UITableViewDele
     override func viewWillAppear(_ animated: Bool) {
         webSerV.viewAcceptedDonationsDelegate = self
         webSerV.PendingApprovalDonationsDelegate = self
+        webSerV.viewRejectedDonationsDelegate = self
         webSerV.ViewPendingApprovalDonations()
         self.acceptedDonationsTableView.reloadData()
     }
@@ -54,11 +55,25 @@ class RequestorAcceptedDonationsViewController: UIViewController,UITableViewDele
         
         let cell = self.acceptedDonationsTableView.dequeueReusableCell(withIdentifier:"AcceptedDonationsTableViewCellIdentifier", for: indexPath) as!RequestorAcceptedDonationsTableViewCell
         let row = indexPath.row
+        let status = totalItems[row].donationStatus
+        if status == Utility.NEW{
+            cell.statusLabel.textColor = UIColor(colorLiteralRed: 45/255, green: 62/255, blue: 79/255, alpha: 1.0)
+        }
+        else if status == Utility.PENDINGAPPROVAL {
+            cell.statusLabel.textColor = UIColor(colorLiteralRed: 209/255, green: 73/255, blue: 59/255, alpha: 1.0)
+        }
+        else if status == Utility.REJECTED {
+            cell.statusLabel.textColor = UIColor.red
+        }
+        else {
+            cell.statusLabel.textColor = UIColor.green
+        }
+
         cell.restaurantNameLabel.text = totalItems[row].restaurantName
         let date = totalItems[row].createdDate
         cell.dateLabel.text = date.components(separatedBy: " ").first
         cell.foodDescLabel.text = totalItems[row].donationTitle
-        cell.statusLabel.text = totalItems[row].donationStatus
+        cell.statusLabel.text = totalItems[row].approvalStatus
         return cell
         
     }
@@ -72,26 +87,27 @@ class RequestorAcceptedDonationsViewController: UIViewController,UITableViewDele
     }
     
     //MARK: view available donations protocol methods
-    func viewAcceptedDonationSuccessful(items: [Donation]) {
-        activityIndicator.stopAnimating()
-        self.totalItems.append(contentsOf: items)
-        self.acceptedDonationsTableView.reloadData()
-        
-    }
-    func viewAcceptedDonationUnSuccessful(items: [Donation]) {
+    func viewRejectedDonationSuccessful(items: [Donation]) {
         activityIndicator.stopAnimating()
         self.totalItems.append(contentsOf: items)
         self.acceptedDonationsTableView.reloadData()
         showAlert()
     }
     
+    //MARK: view available donations protocol methods
+    func viewAcceptedDonationSuccessful(items: [Donation]) {
+        activityIndicator.stopAnimating()
+        self.totalItems.append(contentsOf: items)
+        webSerV.ViewRejectedDonations()
+    }
+    
     //Show alert of there are no accpeted as well as no pending items
     func showAlert(){
         if totalItems.count == 0 {
-                let alertController = UIAlertController(title: "Message", message:"No Donations available", preferredStyle: .alert)
-                let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-                alertController.addAction(defaultAction)
-                self.present(alertController, animated: true, completion: nil)
+//                let alertController = UIAlertController(title: "Message", message:"No Donations available", preferredStyle: .alert)
+//                let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+//                alertController.addAction(defaultAction)
+//                self.present(alertController, animated: true, completion: nil)
         }
 
     }
@@ -102,11 +118,7 @@ class RequestorAcceptedDonationsViewController: UIViewController,UITableViewDele
         self.totalItems = items
         webSerV.ViewAcceptedDonations()
     }
-    func viewPendingApprovalDonationUnSuccessful(items: [Donation]) {
-        activityIndicator.stopAnimating()
-        self.totalItems = items
-        webSerV.ViewAcceptedDonations()
-    }
+    
     
     //MARK viewDonationDetailsProtocol Methods
     func viewDonationDetailsSuccessful(itemsDict:Dictionary<String, Any>){

@@ -55,6 +55,20 @@ class RequestorAvailableDonationsViewController : UIViewController,UITableViewDe
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = self.availbleDonationsTableView.dequeueReusableCell(withIdentifier:"AcceptedDonationsTableViewCellIdentifier", for: indexPath) as!RequestorAcceptedDonationsTableViewCell
         let row = indexPath.row
+        let status = items[row].donationStatus
+        if status == Utility.NEW{
+            cell.statusLabel.textColor = UIColor(colorLiteralRed: 45/255, green: 62/255, blue: 79/255, alpha: 1.0)
+        }
+        else if status == Utility.PENDINGAPPROVAL {
+            cell.statusLabel.textColor = UIColor(colorLiteralRed: 209/255, green: 73/255, blue: 59/255, alpha: 1.0)
+        }
+        else if status == Utility.REJECTED {
+            cell.statusLabel.textColor = UIColor.red
+        }
+        else {
+            cell.statusLabel.textColor = UIColor.green
+        }
+
         cell.restaurantNameLabel.text = items[row].restaurantName
         let date = items[row].createdDate
         cell.dateLabel.text = date.components(separatedBy: " ").first
@@ -83,10 +97,10 @@ class RequestorAvailableDonationsViewController : UIViewController,UITableViewDe
         activityIndicator.stopAnimating()
         self.items = items
         self.availbleDonationsTableView.reloadData()
-        let alertController = UIAlertController(title: "Message", message:"No Donations available", preferredStyle: .alert)
-        let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-        alertController.addAction(defaultAction)
-        self.present(alertController, animated: true, completion: nil)
+//        let alertController = UIAlertController(title: "Message", message:"No Donations available", preferredStyle: .alert)
+//        let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+//        alertController.addAction(defaultAction)
+//        self.present(alertController, animated: true, completion: nil)
         
     }
     

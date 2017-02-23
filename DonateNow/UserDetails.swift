@@ -11,7 +11,8 @@ import FirebaseDatabase
 
 struct User {
     let key: String
-    var username: String
+    var firstName: String
+    var lastName: String
     var email: String
     var userType: String
     var restaurantName: String
@@ -28,9 +29,10 @@ struct User {
     let ref: FIRDatabaseReference?
     var oneSignalIds = [String]()
     
-    init(username: String, email: String, userType: String, restaurantName: String, orgName: String, address1: String, address2: String, city: String, state: String, zipcode: String, contact: String, weburl: String, orgId: String, userID: String, key:String = " ") {
+    init(firstName: String,lastName: String, email: String, userType: String, restaurantName: String, orgName: String, address1: String, address2: String, city: String, state: String, zipcode: String, contact: String, weburl: String, orgId: String, userID: String, key:String = " ") {
         
-        self.username = username
+        self.firstName = firstName
+        self.lastName = lastName
         self.email = email
         self.userType = userType
         self.restaurantName = restaurantName
@@ -54,7 +56,8 @@ struct User {
         //TODO: Use if let
         
         let snapshotValue = snapshot.value as! [String: AnyObject]
-        username = snapshotValue["username"] as! String
+        firstName = snapshotValue["firstName"] as! String
+        lastName = snapshotValue["lastName"] as! String
         email = snapshotValue["email"] as! String
         userType = snapshotValue["userType"] as! String
         restaurantName = snapshotValue["restaurantName"] as! String
@@ -77,7 +80,8 @@ struct User {
     
     func toAnyObject() -> Any {
         return [
-            "username" : username,
+            "firstName" : firstName,
+            "lastName" : lastName,
             "email" : email,
             "userType" : userType,
             "restaurantName" : restaurantName,

@@ -44,7 +44,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             debugPrint(fullMessage!)
             
         }, settings: [kOSSettingsKeyAutoPrompt : true])
-        
+        UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white ,NSFontAttributeName: UIFont(name: "Futura", size: 20.0)!]
+        UINavigationBar.appearance().barTintColor = UIColor(red: 209/255, green: 73/255, blue: 59/255, alpha: 1.0)
+        UITabBar.appearance().tintColor = UIColor.white
         return true
     }
 
