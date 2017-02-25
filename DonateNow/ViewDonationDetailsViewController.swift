@@ -11,7 +11,7 @@ import UIKit
 import OneSignal
 
 
-class ViewDonationDetailsViewController: UIViewController,updateDonationDetailsProtocol,reserveAvailableDonationsProtocol{
+class ViewDonationDetailsViewController: UIViewController,updateDonationDetailsProtocol,updateDonationStatusProtocol{
     
     
     
@@ -44,6 +44,23 @@ class ViewDonationDetailsViewController: UIViewController,updateDonationDetailsP
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        func updateDonationDetails() {
+            //Set value for Donation Details page
+            foodDescTextView.text = donationDict?["foodDesc"] as? String
+            splInstTextView.text = donationDict?["splInstructions"] as? String
+            zipcodeTextField.text = donationDict?["zipcode"] as? String
+            stateTextField.text = donationDict?["state"] as? String
+            cityTextField.text =  donationDict?["city"] as? String
+            address2TextField.text = donationDict?["address2"] as? String
+            address1TextField.text = donationDict?["address1"] as? String
+            contactTextField.text = donationDict?["contact"] as? String
+            qtyTextField.text = donationDict?["quantity"] as? String
+            toDateTextField.text = donationDict?["pickUpToDate"] as? String
+            fromDateTextField.text = donationDict?["pickUpFromDate"] as? String
+            donationTitleTextField.text = donationDict?["donationTitle"] as? String
+        }
+        
+        
         //Draw border for Food description textview
         foodDescTextView.layer.borderWidth = 1.0;
         foodDescTextView.layer.cornerRadius = 5.0;
@@ -54,16 +71,6 @@ class ViewDonationDetailsViewController: UIViewController,updateDonationDetailsP
         splInstTextView.layer.cornerRadius = 5.0;
         splInstTextView.layer.borderColor = UIColor.lightGray.cgColor
         
-        actionButton.backgroundColor = UIColor.lightGray
-        actionButton.layer.cornerRadius = 5
-        actionButton.layer.borderWidth = 1
-        actionButton.layer.borderColor = UIColor.lightGray.cgColor
-        
-        cancelButton.backgroundColor = UIColor.lightGray
-        cancelButton.layer.cornerRadius = 5
-        cancelButton.layer.borderWidth = 1
-        cancelButton.layer.borderColor = UIColor.lightGray.cgColor
-        
         if let itemsDict = donationDetails?[donationID] as! Dictionary<String,Any>! {
             donationDict = itemsDict
         }
@@ -72,87 +79,61 @@ class ViewDonationDetailsViewController: UIViewController,updateDonationDetailsP
             status = value
         }
         
+        self.navigationController?.isNavigationBarHidden = false
+        self.navigationItem.setHidesBackButton(false, animated:true)
+        // Status bar black font
+        self.navigationController?.navigationBar.tintColor = UIColor.black
+        let charityNameString = "Welcome " + Utility.charityName! + "!!"
+        self.title = charityNameString
+        
         //Disable user interaction if it is from accepted donation page
         //Requestor accepted Donations
-        if(Utility.userType == Utility.REQUESTOR && (status == Utility.ACCEPTED)){
+        if Utility.userType == Utility.REQUESTOR && (status == Utility.ACCEPTED){
             actionButton.isHidden = true
             setUserInteractionForButtons(value: false)
             //show navigation controller for view Donation details page
-            self.navigationController?.isNavigationBarHidden = false
-            self.navigationItem.setHidesBackButton(false, animated:true)
-            // Status bar black font
-            self.navigationController?.navigationBar.tintColor = UIColor.black
-            let charityNameString = "Welcome " + Utility.charityName! + "!!"
-            self.title = charityNameString
+            
         }
             //Donor update donations
         else if(Utility.userType == Utility.DONOR && (status == Utility.NEW) ){
             actionButton.isHidden = false
-            actionButton.setTitle("Update", for: UIControlState.normal)
+            actionButton.setTitle("UPDATE", for: UIControlState.normal)
             //show navigation controller for view Donation details page
-            self.navigationController?.isNavigationBarHidden = false
-            self.navigationItem.setHidesBackButton(false, animated:true)
-            // Status bar black font
-            self.navigationController?.navigationBar.tintColor = UIColor.black
-            let restaurantNameString = "Welcome " + Utility.restaurantName! + "!!"
-            self.title = restaurantNameString
             setUserInteractionForButtons(value: true)
         }
             //Donor Approve / Reject Donations
         else if(Utility.userType == Utility.DONOR && (status == Utility.PENDINGAPPROVAL)){
             actionButton.isHidden = false
-            actionButton.setTitle("Approve", for: UIControlState.normal)
-            cancelButton.setTitle("Reject", for: UIControlState.normal)
+            actionButton.setTitle("APPROVE", for: UIControlState.normal)
+            cancelButton.setTitle("REJECT", for: UIControlState.normal)
             //show navigation controller for view Donation details page
-            self.navigationController?.isNavigationBarHidden = false
-            self.navigationItem.setHidesBackButton(false, animated:true)
-            // Status bar black font
-            self.navigationController?.navigationBar.tintColor = UIColor.black
-            let restaurantNameString = "Welcome " + Utility.restaurantName! + "!!"
-            self.title = restaurantNameString
             setUserInteractionForButtons(value: true)
         }
             //Donor view accepted donation details
         else if(Utility.userType == Utility.DONOR && (status == Utility.ACCEPTED)){
             actionButton.isHidden = true
-            cancelButton.setTitle("cancel", for: UIControlState.normal)
+            cancelButton.setTitle("CANCEL", for: UIControlState.normal)
             //show navigation controller for view Donation details page
-            self.navigationController?.isNavigationBarHidden = false
-            self.navigationItem.setHidesBackButton(false, animated:true)
-            // Status bar black font
-            self.navigationController?.navigationBar.tintColor = UIColor.black
-            let restaurantNameString = "Welcome " + Utility.restaurantName! + "!!"
-            self.title = restaurantNameString
             setUserInteractionForButtons(value: false)
         }
             //Requestor reserve available donation
         else if(Utility.userType == Utility.REQUESTOR && (status == Utility.NEW)){
-            actionButton.isHidden = false
-            actionButton.setTitle("Reserve", for: UIControlState.normal)
-            //show navigation controller for view Donation details page
-            self.navigationController?.isNavigationBarHidden = false
-            self.navigationItem.setHidesBackButton(false, animated:true)
-            // Status bar black font
-            self.navigationController?.navigationBar.tintColor = UIColor.black
-            let charityNameString = "Welcome " + Utility.charityName! + "!!"
-            self.title = charityNameString
-            setUserInteractionForButtons(value: false)
+            if let donationRejectors = donationDict["rejectedUserIds"] as? [String], let userId = Utility.userID, donationRejectors.contains(userId) {
+                actionButton.isHidden = true
+                actionButton.setTitle("RESERVE", for: UIControlState.normal)
+                //show navigation controller for view Donation details page
+                setUserInteractionForButtons(value: false)
+            }else {
+                actionButton.isHidden = false
+                setUserInteractionForButtons(value: false)
+                //updateDonationDetails()
+                //return
+            }
         }
-        
-        //Set value for Donation Details page
-        foodDescTextView.text = donationDict?["foodDesc"] as? String
-        splInstTextView.text = donationDict?["splInstructions"] as? String
-        zipcodeTextField.text = donationDict?["zipcode"] as? String
-        stateTextField.text = donationDict?["state"] as? String
-        cityTextField.text =  donationDict?["city"] as? String
-        address2TextField.text = donationDict?["address2"] as? String
-        address1TextField.text = donationDict?["address1"] as? String
-        contactTextField.text = donationDict?["contact"] as? String
-        qtyTextField.text = donationDict?["quantity"] as? String
-        toDateTextField.text = donationDict?["pickUpToDate"] as? String
-        fromDateTextField.text = donationDict?["pickUpFromDate"] as? String
-        donationTitleTextField.text = donationDict?["donationTitle"] as? String
-        
+        else {
+            actionButton.isHidden = true
+        }
+        updateDonationDetails()
     }
     
     //MARK: IBAction Methods
@@ -204,39 +185,42 @@ class ViewDonationDetailsViewController: UIViewController,updateDonationDetailsP
             webSerV.updateDonationsDelegate = self
             webSerV.updateDonationDetailsToFireBaseDatabase(foodDesc: foodDescTextView.text, quantity: qtyTextField.text!, contact: contactTextField.text!, address1: address1TextField.text!, address2: address2TextField.text!, city: cityTextField.text!, state: stateTextField.text!, zipcode: zipcodeTextField.text!, splInstructions: splInstTextView.text!, pickUpFromDate: fromDateTextField.text!, pickUpToDate: toDateTextField.text!, donationID: donationID ,donationTitle:donationTitleTextField.text!)
         }
-        //From Requestor Available Donation to reserve for Donations
+            //From Requestor Available Donation to reserve for Donations
         else if(Utility.userType == Utility.REQUESTOR && (status == Utility.NEW)){
             let webSerV: Webservice = Webservice()
-            webSerV.reserveAvailableDonationsDelegate = self
+            webSerV.updateDonationStatusDelegate = self
             var requestorSignalIds = [String]()
             if let signalId = oneSignalUserData.userId {
                 requestorSignalIds.append(signalId)
             }
-            webSerV.reserveAvailableDonations(donationID: donationID,status:Utility.PENDINGAPPROVAL,requestorID:Utility.userID!,requestorSignalIds: requestorSignalIds)
+            webSerV.updateDonationStatus(donationID: donationID,status:Utility.PENDINGAPPROVAL,requestorID:Utility.userID!,requestorSignalIds: requestorSignalIds,rejectedUserIds: [String]())
         }
-        //From Donor My Donations to Accept the requestor request
+            //From Donor My Donations to Accept the requestor request
         else if(Utility.userType == Utility.DONOR && (status == Utility.PENDINGAPPROVAL)){
             let webSerV: Webservice = Webservice()
-            webSerV.reserveAvailableDonationsDelegate = self
+            webSerV.updateDonationStatusDelegate = self
             var requestorSignalIds = [String]()
             if let signalId = oneSignalUserData.userId {
                 requestorSignalIds.append(signalId)
             }
-            webSerV.reserveAvailableDonations(donationID: donationID,status:Utility.ACCEPTED,requestorID:(donationDict?["requestorUserID"]as?String)!,requestorSignalIds: requestorSignalIds)
+            webSerV.updateDonationStatus(donationID: donationID,status:Utility.ACCEPTED,requestorID:(donationDict?["requestorUserID"]as?String)!,requestorSignalIds: requestorSignalIds,rejectedUserIds: [String]())
         }
-        
     }
     
     @IBAction func cancelButtonAction(_ sender: Any) {
         //From Donor My Donations to reject the requestor request
         if(Utility.userType == Utility.DONOR && (status == Utility.PENDINGAPPROVAL)){
             let webSerV: Webservice = Webservice()
-            webSerV.reserveAvailableDonationsDelegate = self
+            webSerV.updateDonationStatusDelegate = self
             var requestorSignalIds = [String]()
             if let signalId = oneSignalUserData.userId {
                 requestorSignalIds.append(signalId)
             }
-            webSerV.reserveAvailableDonations(donationID: donationID,status:Utility.NEW,requestorID:"",requestorSignalIds: requestorSignalIds)
+            var rejectedUserIds = [String]()
+            if let signalIds = donationDict?["requestorUserID"] as! String! {
+                rejectedUserIds.append(signalIds)
+            }
+            webSerV.updateDonationStatus(donationID: donationID,status:Utility.REJECTED,requestorID:"",requestorSignalIds: requestorSignalIds ,rejectedUserIds:rejectedUserIds)
         }
         else{
             self.dismiss(animated: true, completion: nil)
@@ -258,7 +242,7 @@ class ViewDonationDetailsViewController: UIViewController,updateDonationDetailsP
     }
     
     //MARK: reserveAvailableDonationsProtocol Methods
-    func reserveAvailableDonationSuccessful(status:String){
+    func updateDonationStatusSuccessful(status:String){
         self.dismiss(animated: true, completion: nil)
         if Utility.userType == Utility.REQUESTOR && status == Utility.PENDINGAPPROVAL {
             let notificationMessage = "You have received Approval request from " + Utility.charityName! + "."
@@ -284,8 +268,7 @@ class ViewDonationDetailsViewController: UIViewController,updateDonationDetailsP
                 self.present(alertController, animated: true, completion: nil)
             }
         }
-        
-        else if Utility.userType == Utility.DONOR && status == Utility.NEW {
+        else if Utility.userType == Utility.DONOR && status == Utility.REJECTED {
             let notificationMessage = "You request has been Rejected by " + Utility.restaurantName! + "."
             OneSignal.postNotification(["contents": ["en":notificationMessage],"include_player_ids": donationDict!["requestorSignalIds"] as! [String]], onSuccess: { (successDict) in
                 debugPrint("sucseesDict:",successDict!)
@@ -299,7 +282,7 @@ class ViewDonationDetailsViewController: UIViewController,updateDonationDetailsP
         }
         
     }
-    func reserveAvailableUnSuccessful(error:Error){
+    func updateDonationStatusUnSuccessful(error:Error){
         let alertController = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
         let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
         alertController.addAction(defaultAction)
@@ -337,7 +320,7 @@ class ViewDonationDetailsViewController: UIViewController,updateDonationDetailsP
         
         //Date Format for UI
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd hh:mm"
+        dateFormatter.dateFormat = "MM-dd-yyyy hh:mm"
         dateFormatter.timeZone = NSTimeZone(forSecondsFromGMT: NSTimeZone.local.secondsFromGMT()) as TimeZone!
         let dateFromString = dateFormatter.string(from: sender.date )
         return dateFromString

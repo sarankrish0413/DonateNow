@@ -11,6 +11,7 @@ import UIKit
 
 class MyDonationTableViewCell: UITableViewCell {
     
+    @IBOutlet weak var quantityLabel: UILabel!
     @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!

@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import FirebaseDatabase
 
-class MyDonationsViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,viewNewDonationProtocol,viewDonationDetailsProtocol{
+class MyDonationsViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,viewMyDonationProtocol,viewDonationDetailsProtocol{
     
     var activityIndicator:UIActivityIndicatorView!
     var items: [Donation] = []
@@ -33,8 +33,8 @@ class MyDonationsViewController: UIViewController,UITableViewDelegate,UITableVie
     
     override func viewWillAppear(_ animated: Bool) {
         let webSerV: Webservice = Webservice()
-        webSerV.viewNewDonationDelegate = self
-        webSerV.ViewNewDonationDetails()
+        webSerV.viewMyDonationDelegate = self
+        webSerV.ViewMyDonationDetails()
     }
     
     //MARK:Table view DataSource and Delegate Methods
@@ -52,9 +52,23 @@ class MyDonationsViewController: UIViewController,UITableViewDelegate,UITableVie
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = self.myDonationsTableView.dequeueReusableCell(withIdentifier:"DonationTableViewCellIdentifier", for: indexPath) as!MyDonationTableViewCell
         let row = indexPath.row
+        let status = items[row].donationStatus
+        if status == Utility.NEW{
+            cell.statusLabel.textColor = UIColor(colorLiteralRed: 45/255, green: 62/255, blue: 79/255, alpha: 1.0)
+        }
+        else if status == Utility.PENDINGAPPROVAL {
+            cell.statusLabel.textColor = UIColor(colorLiteralRed: 209/255, green: 73/255, blue: 59/255, alpha: 1.0)
+        }
+        else if status == Utility.REJECTED {
+            cell.statusLabel.textColor = UIColor.red
+        }
+        else {
+            cell.statusLabel.textColor = UIColor.green
+        }
         cell.statusLabel.text = items[row].donationStatus
         let date = items[row].createdDate
         cell.dateLabel.text = date.components(separatedBy: " ").first
+        cell.quantityLabel.text = items[row].quantity
         cell.descriptionLabel.text = items[row].donationTitle
         return cell
     }
@@ -69,19 +83,19 @@ class MyDonationsViewController: UIViewController,UITableViewDelegate,UITableVie
     
     }
     //MARK viewDonationProtocol Methods
-    func viewNewDonationsSuccessful(items:[Donation]){
+    func viewMyDonationsSuccessful(items:[Donation]){
         activityIndicator.stopAnimating()
         self.items = items
         self.myDonationsTableView.reloadData()
     }
-    func viewNewDonationUnSuccessful(items: [Donation]){
+    func viewMyDonationUnSuccessful(items: [Donation]){
         activityIndicator.stopAnimating()
         self.items = items
         self.myDonationsTableView.reloadData()
-        let alertController = UIAlertController(title: "Message", message:"No Donations available", preferredStyle: .alert)
-        let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-        alertController.addAction(defaultAction)
-        self.present(alertController, animated: true, completion: nil)
+//        let alertController = UIAlertController(title: "Message", message:"No Donations available", preferredStyle: .alert)
+//        let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+//        alertController.addAction(defaultAction)
+//        self.present(alertController, animated: true, completion: nil)
         
     }
     

@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import FirebaseDatabase
+import SkyFloatingLabelTextField
 
 
 
@@ -19,17 +20,16 @@ class NewDonationViewController: UIViewController,newDonationProtocol,UITextFiel
     @IBOutlet weak var addButton: UIButton!
     @IBOutlet weak var foodDescTextView: UITextView!
     @IBOutlet weak var splInstTextView: UITextView!
-    @IBOutlet weak var zipcodeTextField: UITextField!
-    @IBOutlet weak var stateTextField: UITextField!
-    @IBOutlet weak var cityTextField: UITextField!
-    @IBOutlet weak var address2TextField: UITextField!
-    @IBOutlet weak var address1TextField: UITextField!
-    @IBOutlet weak var contactTextField: UITextField!
-    @IBOutlet weak var qtyTextField: UITextField!
-    
-    @IBOutlet weak var donationTitleTextField: UITextField!
-    @IBOutlet weak var toDateTextField: UITextField!
-    @IBOutlet weak var fromDateTextField: UITextField!
+    @IBOutlet weak var zipcodeTextField: SkyFloatingLabelTextField!
+    @IBOutlet weak var stateTextField: SkyFloatingLabelTextField!
+    @IBOutlet weak var cityTextField: SkyFloatingLabelTextField!
+    @IBOutlet weak var address2TextField: SkyFloatingLabelTextField!
+    @IBOutlet weak var address1TextField: SkyFloatingLabelTextField!
+    @IBOutlet weak var contactTextField: SkyFloatingLabelTextField!
+    @IBOutlet weak var qtyTextField: SkyFloatingLabelTextField!
+    @IBOutlet weak var donationTitleTextField: SkyFloatingLabelTextField!
+    @IBOutlet weak var toDateTextField: SkyFloatingLabelTextField!
+    @IBOutlet weak var fromDateTextField: SkyFloatingLabelTextField!
     
     var activityIndicator:UIActivityIndicatorView!
     
@@ -62,11 +62,11 @@ class NewDonationViewController: UIViewController,newDonationProtocol,UITextFiel
         splInstTextView.layer.borderWidth = 1.0;
         splInstTextView.layer.cornerRadius = 5.0;
         splInstTextView.layer.borderColor = UIColor.lightGray.cgColor
-        
-        addButton.backgroundColor = UIColor.lightGray
-        addButton.layer.cornerRadius = 5
+    
+        //Draw border for Add donations Button
+        addButton.layer.cornerRadius = 19
         addButton.layer.borderWidth = 1
-        addButton.layer.borderColor = UIColor.lightGray.cgColor
+        addButton.layer.borderColor = UIColor.clear.cgColor
         
         //show activity inidcator view
         activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.gray)
@@ -201,7 +201,7 @@ class NewDonationViewController: UIViewController,newDonationProtocol,UITextFiel
         
         //Date Format for UI
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yy-MM-dd hh:mm"
+        dateFormatter.dateFormat = "MM-dd-yyyy hh:mm"
         dateFormatter.timeZone = NSTimeZone(forSecondsFromGMT: NSTimeZone.local.secondsFromGMT()) as TimeZone!
         //dateFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX") as Locale!
         let dateFromString = dateFormatter.string(from: sender.date )
@@ -211,7 +211,7 @@ class NewDonationViewController: UIViewController,newDonationProtocol,UITextFiel
     
     func getCurrentDateAndTime() -> String{
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd hh:mm"
+        dateFormatter.dateFormat = "MM-dd-yyyy hh:mm"
         dateFormatter.timeZone = NSTimeZone(forSecondsFromGMT: NSTimeZone.local.secondsFromGMT()) as TimeZone!
         let dateFromString = dateFormatter.string(from:NSDate() as Date)
         return dateFromString
@@ -236,36 +236,26 @@ class NewDonationViewController: UIViewController,newDonationProtocol,UITextFiel
     //Show keyboard
     func textFieldDidBeginEditing(_ textField: UITextField) {
         if textField == address1TextField || textField == address2TextField || textField == cityTextField || textField == stateTextField || textField == zipcodeTextField {
-            animateViewMoving(up: true, moveValue: 150)
+            self.view.animateViewMoving(up: true, moveValue: 150)
         }
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         if textField == address1TextField || textField == address2TextField || textField == cityTextField || textField == stateTextField || textField == zipcodeTextField {
-            animateViewMoving(up: false, moveValue: 150)
+            self.view.animateViewMoving(up: false, moveValue: 150)
         }
-    }
-    
-    func animateViewMoving (up:Bool, moveValue :CGFloat){
-        let movementDuration:TimeInterval = 0.3
-        let movement:CGFloat = ( up ? -moveValue : moveValue)
-        UIView.beginAnimations("animateView", context: nil)
-        UIView.setAnimationBeginsFromCurrentState(true)
-        UIView.setAnimationDuration(movementDuration)
-        self.view.frame = self.view.frame.offsetBy(dx: 0, dy: movement)
-        UIView.commitAnimations()
     }
     
     //MARK:UITextView Delegate methods
     func textViewDidBeginEditing(_ textView: UITextView) {
         if textView == splInstTextView {
-            animateViewMoving(up: true, moveValue: 150)
+            self.view.animateViewMoving(up: true, moveValue: 150)
         }
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView == splInstTextView {
-            animateViewMoving(up: false, moveValue: 150)
+            self.view.animateViewMoving(up: false, moveValue: 150)
         }
     }
     
@@ -285,4 +275,16 @@ class NewDonationViewController: UIViewController,newDonationProtocol,UITextFiel
         return true
     }
     
+}
+
+extension UIView {
+    func animateViewMoving (up:Bool, moveValue :CGFloat){
+        let movementDuration:TimeInterval = 0.3
+        let movement:CGFloat = ( up ? -moveValue : moveValue)
+        UIView.beginAnimations("animateView", context: nil)
+        UIView.setAnimationBeginsFromCurrentState(true)
+        UIView.setAnimationDuration(movementDuration)
+        frame = frame.offsetBy(dx: 0, dy: movement)
+        UIView.commitAnimations()
+    }
 }
