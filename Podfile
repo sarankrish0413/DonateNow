@@ -17,9 +17,6 @@ pod 'Firebase/Crash'
 pod 'Firebase/RemoteConfig'	
 pod 'Firebase/Storage'
 pod 'OneSignal'
-<<<<<<< HEAD
 pod 'Cosmos', '~> 8.0'
-=======
 pod 'SkyFloatingLabelTextField', '~>2.0.0'
->>>>>>> d0f5f723a7d78f90ca2c13f0ce2628f0cccfa4c6
 end
