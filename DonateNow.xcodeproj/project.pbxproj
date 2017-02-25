@@ -13,6 +13,7 @@
 		5D092A731E5D25DE00203541 /* DonorViewReviewsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D092A721E5D25DE00203541 /* DonorViewReviewsController.swift */; };
 		5D227BF11E499C4200E2F5A4 /* SignupDonorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D227BF01E499C4200E2F5A4 /* SignupDonorViewController.swift */; };
 		5D227BF31E499C5900E2F5A4 /* SignupRequestorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D227BF21E499C5900E2F5A4 /* SignupRequestorViewController.swift */; };
+		5D4FF9011E5E7F6900754418 /* ReviewDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4FF9001E5E7F6900754418 /* ReviewDetails.swift */; };
 		AE081FCA1E47A92C000A4F9B /* RequestorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE081FC91E47A92C000A4F9B /* RequestorViewController.swift */; };
 		AE081FCE1E47AB6F000A4F9B /* RequestorAcceptedDonationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE081FCD1E47AB6F000A4F9B /* RequestorAcceptedDonationViewController.swift */; };
 		AE081FD01E47AE20000A4F9B /* RequestorAcceptedDonationsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AE081FCF1E47AE20000A4F9B /* RequestorAcceptedDonationsTableViewCell.swift */; };
@@ -47,6 +48,7 @@
 		5D092A721E5D25DE00203541 /* DonorViewReviewsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DonorViewReviewsController.swift; sourceTree = "<group>"; };
 		5D227BF01E499C4200E2F5A4 /* SignupDonorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupDonorViewController.swift; sourceTree = "<group>"; };
 		5D227BF21E499C5900E2F5A4 /* SignupRequestorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupRequestorViewController.swift; sourceTree = "<group>"; };
+		5D4FF9001E5E7F6900754418 /* ReviewDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewDetails.swift; sourceTree = "<group>"; };
 		6129FA61BA5E5B209F3D83C0 /* Pods_DonateNow.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DonateNow.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		934A3AEAB6CBFB2EDC3BD2C2 /* Pods-DonateNow.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DonateNow.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DonateNow/Pods-DonateNow.debug.xcconfig"; sourceTree = "<group>"; };
 		ADF3243E28DB5837788361C5 /* Pods-DonateNow.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DonateNow.release.xcconfig"; path = "Pods/Target Support Files/Pods-DonateNow/Pods-DonateNow.release.xcconfig"; sourceTree = "<group>"; };
@@ -96,6 +98,7 @@
 		5D092A6D1E5D22FC00203541 /* Reviews */ = {
 			isa = PBXGroup;
 			children = (
+				5D4FF8FF1E5E7F5500754418 /* Model */,
 				5D092A6E1E5D249400203541 /* RequestorViewReviewsController.swift */,
 				5D092A701E5D24DA00203541 /* RequestorWriteReviewsController.swift */,
 				5D092A721E5D25DE00203541 /* DonorViewReviewsController.swift */,
@@ -117,6 +120,14 @@
 			isa = PBXGroup;
 			children = (
 				AED777E61E5CF484002D65B6 /* UserDetails.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		5D4FF8FF1E5E7F5500754418 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				5D4FF9001E5E7F6900754418 /* ReviewDetails.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -460,6 +471,7 @@
 				AECD229E1E46CD7D002FB1E0 /* MyDonationsViewController.swift in Sources */,
 				5D227BF11E499C4200E2F5A4 /* SignupDonorViewController.swift in Sources */,
 				AE081FCE1E47AB6F000A4F9B /* RequestorAcceptedDonationViewController.swift in Sources */,
+				5D4FF9011E5E7F6900754418 /* ReviewDetails.swift in Sources */,
 				AEE399661E402899003B7B23 /* DonorViewController.swift in Sources */,
 				AED777E71E5CF484002D65B6 /* UserDetails.swift in Sources */,
 				5D092A711E5D24DA00203541 /* RequestorWriteReviewsController.swift in Sources */,

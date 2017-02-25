@@ -17,4 +17,5 @@ pod 'Firebase/Crash'
 pod 'Firebase/RemoteConfig'	
 pod 'Firebase/Storage'
 pod 'OneSignal'
+pod 'Cosmos', '~> 8.0'
 end

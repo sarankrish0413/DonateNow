@@ -1,4 +1,5 @@
 PODS:
+  - Cosmos (8.0.2)
   - Firebase/AdMob (3.11.1):
     - Firebase/Core
     - Google-Mobile-Ads-SDK (= 7.16.0)
@@ -130,6 +131,7 @@ PODS:
   - OneSignal (2.3.5)
 
 DEPENDENCIES:
+  - Cosmos (~> 8.0)
   - Firebase/AdMob
   - Firebase/Auth
   - Firebase/Core
@@ -143,6 +145,7 @@ DEPENDENCIES:
   - OneSignal
 
 SPEC CHECKSUMS:
+  Cosmos: 007c0b8e33a85e5363911bdd933571bbe221f7ef
   Firebase: 53b2343db1ebfa3eb16bdb4318b8bb65360b2220
   FirebaseAnalytics: 9c67af0ebeb8d2146c9b4ea2616439affa947b58
   FirebaseAuth: b436e4ecebe068bf8e8c6e4e29de5756ffe7ee24
@@ -166,6 +169,6 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: 6f8d8b28b7e345549ac471071608170b31cb4977
   OneSignal: 4cb42948ebc141bd5deb54d3fda25105db94f6d4
 
-PODFILE CHECKSUM: d4eb4f2c3ce87330eb9553fd0b39c7771d168d83
+PODFILE CHECKSUM: ef93851e5adcd72007ed2a9e536117fc003a6c70
 
 COCOAPODS: 1.2.0

@@ -34,14 +34,14 @@ class ViewController: UIViewController,loginWebserviceProtocol,UITextFieldDelega
             Utility.selectedUserType = Utility.DONOR
             //            for testing purpose
             //            Donor
-            userNameTextField.text = "saran@uw.edu"
-            passwordTextField.text = "sarank"
+//            userNameTextField.text = "saran@uw.edu"
+//            passwordTextField.text = "sarank"
         } else {
             userTypeSegmentedControl.selectedSegmentIndex = 1
             Utility.selectedUserType = Utility.REQUESTOR
             //            Requestor
-            userNameTextField.text = "vijai@amz.com"
-            passwordTextField.text = "vijaiamz"
+//            userNameTextField.text = "vijai@amz.com"
+//            passwordTextField.text = "vijaiamz"
         }
         
     }
@@ -85,8 +85,8 @@ class ViewController: UIViewController,loginWebserviceProtocol,UITextFieldDelega
         self.view.addSubview(activityIndicator)
         //        for testing purpose
         //        Donor
-        userNameTextField.text = "saran@uw.edu"
-        passwordTextField.text = "sarank"
+//        userNameTextField.text = "saran@uw.edu"
+//        passwordTextField.text = "sarank"
         //Show hide Keyboard
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
