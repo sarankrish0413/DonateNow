@@ -252,7 +252,7 @@
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="j0r-Fl-WvH" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
-                                <rect key="frame" x="16" y="296" width="166" height="44"/>
+                                <rect key="frame" x="16" y="296" width="134" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="Psd-et-Nnk"/>
                                 </constraints>
@@ -348,7 +348,7 @@
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="City" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="u2h-Ks-QoG" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
-                                <rect key="frame" x="16" y="431" width="166" height="44"/>
+                                <rect key="frame" x="16" y="431" width="41.5" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="CGD-UP-ejh"/>
                                 </constraints>
@@ -372,7 +372,7 @@
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="State" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="r6i-QM-PI9" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
-                                <rect key="frame" x="193" y="431" width="166" height="44"/>
+                                <rect key="frame" x="317.5" y="431" width="41.5" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="5dD-Oq-tAk"/>
                                 </constraints>
@@ -396,7 +396,7 @@
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="First Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xsy-lc-FF6" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
-                                <rect key="frame" x="16" y="161" width="166" height="44"/>
+                                <rect key="frame" x="16" y="161" width="83" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="v7A-rr-TXm"/>
                                 </constraints>
@@ -506,7 +506,7 @@
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Last Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8Qu-Jh-EsV" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
-                                <rect key="frame" x="193" y="161" width="166" height="44"/>
+                                <rect key="frame" x="276" y="161" width="83" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="fcJ-kL-cwI"/>
                                 </constraints>
@@ -530,7 +530,7 @@
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Confirm Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="El7-mR-2L6" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
-                                <rect key="frame" x="193" y="296" width="166" height="44"/>
+                                <rect key="frame" x="225" y="296" width="134" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="lAA-Lk-Xc3"/>
                                 </constraints>
@@ -685,7 +685,7 @@
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PTb-rp-RsA" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
-                                <rect key="frame" x="16" y="293" width="166" height="44"/>
+                                <rect key="frame" x="16" y="293" width="132" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="Yd9-Wf-q5t"/>
                                 </constraints>
@@ -709,7 +709,7 @@
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="confirm password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CQd-wZ-0KJ" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
-                                <rect key="frame" x="193" y="293" width="166" height="44"/>
+                                <rect key="frame" x="227" y="293" width="132" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="PUN-wg-Ioc"/>
                                 </constraints>
@@ -805,7 +805,7 @@
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="city" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ifY-pe-4GK" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
-                                <rect key="frame" x="16" y="430" width="166" height="44"/>
+                                <rect key="frame" x="16" y="430" width="38" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="gv6-2j-hhn"/>
                                 </constraints>
@@ -829,7 +829,7 @@
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="state" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Q5m-qE-fMU" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
-                                <rect key="frame" x="193" y="430" width="166" height="44"/>
+                                <rect key="frame" x="321" y="430" width="38" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="Hap-Ua-4wL"/>
                                 </constraints>
@@ -853,7 +853,7 @@
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="First Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aXl-uc-6lc" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
-                                <rect key="frame" x="16" y="158" width="166" height="44"/>
+                                <rect key="frame" x="16" y="158" width="83" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="ACW-Jd-rwc"/>
                                 </constraints>
@@ -877,7 +877,7 @@
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="contact" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kv3-DS-n6x" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
-                                <rect key="frame" x="193" y="475" width="166" height="44"/>
+                                <rect key="frame" x="293" y="475" width="66" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="LEu-dK-Mmp"/>
                                 </constraints>
@@ -901,7 +901,7 @@
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="zipcode" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6eM-Gs-PDc" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
-                                <rect key="frame" x="16" y="475" width="166" height="44"/>
+                                <rect key="frame" x="16" y="475" width="66" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="iPW-pf-66X"/>
                                 </constraints>
@@ -950,7 +950,7 @@
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Last Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LT3-ZD-tXC" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
-                                <rect key="frame" x="193" y="158" width="166" height="44"/>
+                                <rect key="frame" x="276" y="158" width="83" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="TP6-yG-Esj"/>
                                 </constraints>
@@ -1096,7 +1096,7 @@
             </objects>
             <point key="canvasLocation" x="4569" y="26"/>
         </scene>
-        <!--My Donations-->
+        <!--MY DONATIONS-->
         <scene sceneID="3Vi-2t-4KJ">
             <objects>
                 <viewController storyboardIdentifier="MyDonationsViewController" id="kUb-kz-gro" customClass="MyDonationsViewController" customModule="DonateNow" customModuleProvider="target" sceneMemberID="viewController">
@@ -1186,7 +1186,7 @@
                             <constraint firstAttribute="bottom" secondItem="CZf-dR-Qz2" secondAttribute="bottom" id="w8F-Mc-wCe"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="My Donations" image="my_donations" id="rMc-fJ-tMs"/>
+                    <tabBarItem key="tabBarItem" title="MY DONATIONS" image="my_donations" id="rMc-fJ-tMs"/>
                     <connections>
                         <outlet property="myDonationsTableView" destination="CZf-dR-Qz2" id="Jcd-rB-8bI"/>
                     </connections>
@@ -1195,7 +1195,7 @@
             </objects>
             <point key="canvasLocation" x="5405.6000000000004" y="-188.45577211394306"/>
         </scene>
-        <!--New Donation-->
+        <!--NEW DONATION-->
         <scene sceneID="Jtc-dT-HxZ">
             <objects>
                 <viewController storyboardIdentifier="NewDonationViewController" id="RQp-AU-Ct9" customClass="NewDonationViewController" customModule="DonateNow" customModuleProvider="target" sceneMemberID="viewController">
@@ -1217,7 +1217,7 @@
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="16"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
                             </textView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Special Instructions" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ey1-ud-T2h">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Special Instructions" translatesAutoresizingMaskIntoConstraints="NO" id="ey1-ud-T2h">
                                 <rect key="frame" x="16" y="464" width="343" height="50"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -1253,7 +1253,7 @@
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Pickup Date From" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LPg-HL-ek7" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
-                                <rect key="frame" x="16" y="204" width="171" height="44"/>
+                                <rect key="frame" x="16" y="204" width="132" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="gCk-6a-KkL"/>
                                 </constraints>
@@ -1280,7 +1280,7 @@
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Pickup Date To" textAlignment="natural" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="ChW-vk-w4J" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
-                                <rect key="frame" x="196" y="204" width="163" height="44"/>
+                                <rect key="frame" x="246.5" y="204" width="112.5" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="RFv-op-TuY"/>
                                 </constraints>
@@ -1355,7 +1355,7 @@
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Address Line 2" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="P6c-1q-jej" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
-                                <rect key="frame" x="16" y="360" width="170" height="44"/>
+                                <rect key="frame" x="16" y="360" width="111.5" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="aH7-cI-Gwj"/>
                                 </constraints>
@@ -1379,7 +1379,7 @@
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="City" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WMS-b2-s5G" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
-                                <rect key="frame" x="197" y="360" width="162" height="44"/>
+                                <rect key="frame" x="326.5" y="360" width="32.5" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="P0W-cH-Q0l"/>
                                 </constraints>
@@ -1403,7 +1403,7 @@
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="State" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RzC-6X-hGd" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
-                                <rect key="frame" x="16" y="412" width="170" height="44"/>
+                                <rect key="frame" x="16" y="412" width="41.5" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="oaQ-N9-xXs"/>
                                 </constraints>
@@ -1427,7 +1427,7 @@
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Zip Code" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="imb-kd-B0E" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
-                                <rect key="frame" x="197" y="412" width="162" height="44"/>
+                                <rect key="frame" x="287" y="412" width="72" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="Bg2-3V-Y8f"/>
                                 </constraints>
@@ -1532,7 +1532,7 @@
                             <constraint firstItem="ypx-hX-TTt" firstAttribute="trailing" secondItem="WMS-b2-s5G" secondAttribute="trailing" id="xOW-XI-dgF"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="New Donation" image="add_donation" id="XzR-2t-3pP"/>
+                    <tabBarItem key="tabBarItem" title="NEW DONATION" image="add_donation" id="XzR-2t-3pP"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="addButton" destination="MWj-1F-iAc" id="4gi-zE-UgA"/>
@@ -1554,7 +1554,7 @@
             </objects>
             <point key="canvasLocation" x="5406" y="506"/>
         </scene>
-        <!--View Reviews-->
+        <!--VIEW REVIEWS-->
         <scene sceneID="fMQ-om-NhI">
             <objects>
                 <viewController id="Rh7-V4-RXP" sceneMemberID="viewController">
@@ -1567,7 +1567,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="View Reviews" image="my_reviews" id="AZ1-b7-tTd"/>
+                    <tabBarItem key="tabBarItem" title="VIEW REVIEWS" image="my_reviews" id="AZ1-b7-tTd"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZI5-99-Sey" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1586,7 +1586,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Food Description" translatesAutoresizingMaskIntoConstraints="NO" id="dHs-lP-lMU">
-                                <rect key="frame" x="16" y="100" width="343" height="50"/>
+                                <rect key="frame" x="16" y="99.5" width="343" height="50"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="0xh-Nd-TIn"/>
@@ -1596,7 +1596,7 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
                             </textView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Special Instructions" translatesAutoresizingMaskIntoConstraints="NO" id="V9T-hg-hO7">
-                                <rect key="frame" x="16" y="470" width="343" height="50"/>
+                                <rect key="frame" x="16" y="465.5" width="343" height="50"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="suY-aF-qFh"/>
@@ -1606,7 +1606,7 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
                             </textView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Please Enter Quantity" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="t5z-Ik-bkr" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
-                                <rect key="frame" x="16" y="158" width="343" height="44"/>
+                                <rect key="frame" x="16" y="157.5" width="343" height="43"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="16"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="done"/>
@@ -1627,7 +1627,7 @@
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TqZ-mP-OtW" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
-                                <rect key="frame" x="16" y="210" width="171" height="44"/>
+                                <rect key="frame" x="16" y="208.5" width="9" height="43.5"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="16"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
@@ -1651,7 +1651,7 @@
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="oyO-x7-yce" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
-                                <rect key="frame" x="196" y="210" width="163" height="44"/>
+                                <rect key="frame" x="325.5" y="208.5" width="33.5" height="43.5"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="16"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
@@ -1675,7 +1675,7 @@
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="contact number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ngl-by-fAh" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
-                                <rect key="frame" x="16" y="262" width="343" height="44"/>
+                                <rect key="frame" x="16" y="260" width="343" height="43"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="16"/>
                                 <textInputTraits key="textInputTraits" keyboardType="phonePad" returnKeyType="done"/>
@@ -1696,7 +1696,7 @@
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Address Line 1" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bVc-LM-VTE" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
-                                <rect key="frame" x="16" y="314" width="343" height="44"/>
+                                <rect key="frame" x="16" y="311" width="343" height="43.5"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="16"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="done"/>
@@ -1717,7 +1717,7 @@
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Address Line 2" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="msX-28-hjB" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
-                                <rect key="frame" x="16" y="366" width="170" height="44"/>
+                                <rect key="frame" x="16" y="362.5" width="111.5" height="43"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="16"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="done"/>
@@ -1738,7 +1738,7 @@
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="City" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tTC-LZ-IUD" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
-                                <rect key="frame" x="196" y="366" width="162" height="44"/>
+                                <rect key="frame" x="325.5" y="362.5" width="32.5" height="43"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="16"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="done"/>
@@ -1758,7 +1758,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="State" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QBd-d6-l5j" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="State" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QBd-d6-l5j" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
                                 <rect key="frame" x="16" y="418" width="170" height="44"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="16"/>
@@ -1779,7 +1779,7 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="State"/>
                                 </userDefinedRuntimeAttributes>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Zip Code" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="b7x-CD-Wf7" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Zip Code" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="b7x-CD-Wf7" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
                                 <rect key="frame" x="192" y="418" width="162" height="44"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="16"/>
@@ -1801,7 +1801,7 @@
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qU6-No-55p">
-                                <rect key="frame" x="16" y="529" width="150" height="44"/>
+                                <rect key="frame" x="16" y="524.5" width="150" height="44"/>
                                 <color key="backgroundColor" red="0.1215686275" green="0.59215686270000001" blue="0.57254901960000004" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="9zq-eF-TGy"/>
@@ -1817,7 +1817,7 @@
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Please provide Donation Title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hmf-wx-bxq" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
-                                <rect key="frame" x="16" y="48" width="343" height="44"/>
+                                <rect key="frame" x="16" y="48" width="343" height="43.5"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="16"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="done"/>
@@ -1838,7 +1838,7 @@
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LXP-RH-yjv">
-                                <rect key="frame" x="196" y="529" width="162" height="44"/>
+                                <rect key="frame" x="196" y="524.5" width="162" height="44"/>
                                 <color key="backgroundColor" red="0.1215686275" green="0.59215686270000001" blue="0.57254901960000004" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="16"/>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1940,7 +1940,7 @@
             </objects>
             <point key="canvasLocation" x="6695" y="-393"/>
         </scene>
-        <!--Reviews-->
+        <!--REVIEWS-->
         <scene sceneID="yNM-Ml-QoB">
             <objects>
                 <viewController id="zkC-sR-Kjh" sceneMemberID="viewController">
@@ -1953,13 +1953,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Reviews" id="AGs-PJ-9bR"/>
+                    <tabBarItem key="tabBarItem" title="REVIEWS" image="my_reviews" id="AGs-PJ-9bR"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZJy-Nf-7ab" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="7462" y="466"/>
         </scene>
-        <!--My Requests-->
+        <!--MY REQUESTS-->
         <scene sceneID="qU5-Ay-mAt">
             <objects>
                 <viewController id="l9g-3Q-J0P" customClass="RequestorAcceptedDonationsViewController" customModule="DonateNow" customModuleProvider="target" sceneMemberID="viewController">
@@ -2053,7 +2053,7 @@
                             <constraint firstItem="Qhg-iW-6an" firstAttribute="top" secondItem="tmK-r7-pu9" secondAttribute="topMargin" constant="3" id="ePd-4w-DOt"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="My Requests" id="v5f-MK-4E9"/>
+                    <tabBarItem key="tabBarItem" title="MY REQUESTS" image="my_request" id="v5f-MK-4E9"/>
                     <connections>
                         <outlet property="acceptedDonationsTableView" destination="Qhg-iW-6an" id="Y4X-R8-6bv"/>
                     </connections>
@@ -2062,7 +2062,7 @@
             </objects>
             <point key="canvasLocation" x="8240.7999999999993" y="-672.41379310344837"/>
         </scene>
-        <!--Available Donations-->
+        <!--AVAILABLE DONATIONS-->
         <scene sceneID="tlM-o2-vkB">
             <objects>
                 <viewController storyboardIdentifier="RequestorAvailableDonationsViewControlle" useStoryboardIdentifierAsRestorationIdentifier="YES" id="JoB-RH-9vJ" customClass="RequestorAvailableDonationsViewController" customModule="DonateNow" customModuleProvider="target" sceneMemberID="viewController">
@@ -2155,7 +2155,7 @@
                             <constraint firstItem="G8c-Ts-Di1" firstAttribute="top" secondItem="LOq-6W-cKD" secondAttribute="topMargin" constant="6" id="oDJ-ny-bvd"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Available Donations" id="R2R-Cu-9dd"/>
+                    <tabBarItem key="tabBarItem" title="AVAILABLE DONATIONS" image="my_donations" id="R2R-Cu-9dd"/>
                     <connections>
                         <outlet property="availbleDonationsTableView" destination="G8c-Ts-Di1" id="0lv-RH-7MW"/>
                     </connections>
@@ -2188,6 +2188,7 @@
         <image name="close" width="51" height="51"/>
         <image name="logo" width="256" height="144"/>
         <image name="my_donations" width="25" height="25"/>
+        <image name="my_request" width="15" height="24"/>
         <image name="my_reviews" width="25" height="24"/>
     </resources>
 </document>

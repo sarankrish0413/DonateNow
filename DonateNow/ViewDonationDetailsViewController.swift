@@ -92,7 +92,7 @@ class ViewDonationDetailsViewController: UIViewController,updateDonationDetailsP
             actionButton.isHidden = true
             setUserInteractionForButtons(value: false)
             //show navigation controller for view Donation details page
- 
+            
         }
             //Donor update donations
         else if(Utility.userType == Utility.DONOR && (status == Utility.NEW) ){
@@ -118,16 +118,17 @@ class ViewDonationDetailsViewController: UIViewController,updateDonationDetailsP
         }
             //Requestor reserve available donation
         else if(Utility.userType == Utility.REQUESTOR && (status == Utility.NEW)){
-            guard let donationRejectors = donationDict["rejectedUserIds"] as? [String], let userId = Utility.userID,  !donationRejectors.contains(userId) else {
+            if let donationRejectors = donationDict["rejectedUserIds"] as? [String], let userId = Utility.userID, donationRejectors.contains(userId) {
                 actionButton.isHidden = true
+                actionButton.setTitle("RESERVE", for: UIControlState.normal)
+                //show navigation controller for view Donation details page
                 setUserInteractionForButtons(value: false)
-                updateDonationDetails()
-                return
+            }else {
+                actionButton.isHidden = false
+                setUserInteractionForButtons(value: false)
+                //updateDonationDetails()
+                //return
             }
-            actionButton.isHidden = false
-            actionButton.setTitle("RESERVE", for: UIControlState.normal)
-            //show navigation controller for view Donation details page
-            setUserInteractionForButtons(value: false)
         }
         else {
             actionButton.isHidden = true
@@ -184,7 +185,7 @@ class ViewDonationDetailsViewController: UIViewController,updateDonationDetailsP
             webSerV.updateDonationsDelegate = self
             webSerV.updateDonationDetailsToFireBaseDatabase(foodDesc: foodDescTextView.text, quantity: qtyTextField.text!, contact: contactTextField.text!, address1: address1TextField.text!, address2: address2TextField.text!, city: cityTextField.text!, state: stateTextField.text!, zipcode: zipcodeTextField.text!, splInstructions: splInstTextView.text!, pickUpFromDate: fromDateTextField.text!, pickUpToDate: toDateTextField.text!, donationID: donationID ,donationTitle:donationTitleTextField.text!)
         }
-        //From Requestor Available Donation to reserve for Donations
+            //From Requestor Available Donation to reserve for Donations
         else if(Utility.userType == Utility.REQUESTOR && (status == Utility.NEW)){
             let webSerV: Webservice = Webservice()
             webSerV.updateDonationStatusDelegate = self
@@ -194,7 +195,7 @@ class ViewDonationDetailsViewController: UIViewController,updateDonationDetailsP
             }
             webSerV.updateDonationStatus(donationID: donationID,status:Utility.PENDINGAPPROVAL,requestorID:Utility.userID!,requestorSignalIds: requestorSignalIds,rejectedUserIds: [String]())
         }
-        //From Donor My Donations to Accept the requestor request
+            //From Donor My Donations to Accept the requestor request
         else if(Utility.userType == Utility.DONOR && (status == Utility.PENDINGAPPROVAL)){
             let webSerV: Webservice = Webservice()
             webSerV.updateDonationStatusDelegate = self
