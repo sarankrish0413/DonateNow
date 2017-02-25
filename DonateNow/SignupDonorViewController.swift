@@ -11,24 +11,30 @@ import UIKit
 import FirebaseDatabase
 import FirebaseAuth
 import OneSignal
+import SkyFloatingLabelTextField
 
-class SignupDonorViewController: UIViewController,signupWebserviceProtocol,logoutServiceProtocol{
+class SignupDonorViewController: UIViewController,signupWebserviceProtocol,UITextFieldDelegate{
     
-    @IBOutlet weak var usernameTextField: UITextField!
-    @IBOutlet weak var emailTextField: UITextField!
-    @IBOutlet weak var passwordTextField: UITextField!
-    @IBOutlet weak var confirmPwdTextField: UITextField!
-    @IBOutlet weak var userTypeTextField: UITextField!
-    @IBOutlet weak var restaurantNameTextField: UITextField!
-    @IBOutlet weak var address1TextField: UITextField!
-    @IBOutlet weak var address2TextField: UITextField!
-    @IBOutlet weak var cityTextField: UITextField!
-    @IBOutlet weak var stateTextField: UITextField!
-    @IBOutlet weak var pincodeTextField: UITextField!
-    @IBOutlet weak var contactTextField: UITextField!
-    @IBOutlet weak var websiteTextField: UITextField!
+    @IBOutlet weak var lastNameTextField: SkyFloatingLabelTextField!
+    @IBOutlet weak var firstNameTextField: SkyFloatingLabelTextField!
+    @IBOutlet weak var emailTextField: SkyFloatingLabelTextField!
+    @IBOutlet weak var passwordTextField: SkyFloatingLabelTextField!
+    @IBOutlet weak var confirmPwdTextField: SkyFloatingLabelTextField!
+    @IBOutlet weak var restaurantNameTextField: SkyFloatingLabelTextField!
+    @IBOutlet weak var address1TextField: SkyFloatingLabelTextField!
+    @IBOutlet weak var address2TextField: SkyFloatingLabelTextField!
+    @IBOutlet weak var cityTextField: SkyFloatingLabelTextField!
+    @IBOutlet weak var stateTextField: SkyFloatingLabelTextField!
+    @IBOutlet weak var pincodeTextField: SkyFloatingLabelTextField!
+    @IBOutlet weak var contactTextField: SkyFloatingLabelTextField!
+    @IBOutlet weak var websiteTextField: SkyFloatingLabelTextField!
+    @IBOutlet weak var registerButton: UIButton!
     
+    @IBOutlet weak var closeButton: UIButton!
     //MARK: Outlets Action
+    @IBAction func closeButtonAction(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
     //Add Button, capture all the details from form and add it to User array
     @IBAction private dynamic func donorRegisterAction(_ sender: UIButton) {
         if emailTextField.text == "" || passwordTextField.text == "" {
@@ -66,45 +72,42 @@ class SignupDonorViewController: UIViewController,signupWebserviceProtocol,logou
         // show navigation controller for Donor page
         self.navigationController?.isNavigationBarHidden = false
         self.navigationItem.setHidesBackButton(false, animated:true);
-       let logoutButton:UIBarButtonItem = UIBarButtonItem(title: "Logout",style: UIBarButtonItemStyle.plain, target: self,action: #selector(LogoutAction))
-        self.navigationItem.rightBarButtonItem = logoutButton;
         // Status bar black font
         self.navigationController?.navigationBar.tintColor = UIColor.black
         self.title = "Welcome New user!!"
-        self.userTypeTextField.text = Utility.DONOR
-    }
-    
-    func LogoutAction() {
         
-        let webSerV: Webservice = Webservice()
-        webSerV.logoutDelegate = self
-        webSerV.logoutService()
-    }
-    
-    
-    //Mark Logout Protocol methods
-    func logoutSuccessful(){
-        _ = self.navigationController?.popToRootViewController(animated: true)
+        //Draw border for register Button
+        registerButton.layer.cornerRadius = 19
+        registerButton.layer.borderWidth = 1
+        registerButton.layer.borderColor = UIColor.clear.cgColor
+        
+        //set delegates for text field
+        firstNameTextField.delegate = self
+        lastNameTextField.delegate = self
+        passwordTextField.delegate = self
+        emailTextField.delegate = self
+        contactTextField.delegate = self
+        confirmPwdTextField.delegate = self
+        stateTextField.delegate = self
+        cityTextField.delegate = self
+        address2TextField.delegate = self
+        address1TextField.delegate = self
+        restaurantNameTextField.delegate = self
+        pincodeTextField.delegate = self
+        websiteTextField.delegate = self
         
     }
-    func logoutUnSuccessful(error:Error){
-        let alertController = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
-        let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-        alertController.addAction(defaultAction)
-        self.present(alertController, animated: true, completion: nil)
-    }
-
+    
     
     //MARK SignupWebserviceProtocol Methods
-
     //Signup success push the view controller to Donor Login page
     func signupSuccessful() {
         //Redirect to login page
         let webSerV: Webservice = Webservice()
         webSerV.signupDelegate = self
-        webSerV.signupServiceForDonor(username: usernameTextField.text!, email: emailTextField.text!, userType: userTypeTextField.text!, restaurantName: restaurantNameTextField.text!, orgName: "", address1: address1TextField.text!, address2: address2TextField.text!, city: cityTextField.text!, state: stateTextField.text!, zipcode: pincodeTextField.text!, contact: contactTextField.text!, websiteUrl: websiteTextField.text!, orgId: "", userID: Utility.userID!)
-        let loginViewControllerObj = self.storyboard?.instantiateViewController(withIdentifier: "ViewController") as? ViewController
-        self.navigationController?.pushViewController(loginViewControllerObj!, animated: true)
+        webSerV.signupServiceForDonor(firstName: firstNameTextField.text!,lastName: lastNameTextField.text!, email: emailTextField.text!, userType: Utility.selectedUserType!, restaurantName: restaurantNameTextField.text!, orgName: "", address1: address1TextField.text!, address2: address2TextField.text!, city: cityTextField.text!, state: stateTextField.text!, zipcode: pincodeTextField.text!, contact: contactTextField.text!, websiteUrl: websiteTextField.text!, orgId: "", userID: Utility.userID!)
+        self.dismiss(animated: true, completion: nil)
+
     }
     
     //Signup unsuccess Show alert to the user
@@ -114,5 +117,27 @@ class SignupDonorViewController: UIViewController,signupWebserviceProtocol,logou
         let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
         alertController.addAction(defaultAction)
         self.present(alertController, animated: true, completion: nil)
+        self.dismiss(animated: true, completion: nil)
+
+    }
+    
+    //MARK Keyboard show/hide Methods
+    //Show keyboard
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if textField == address2TextField || textField == cityTextField || textField == stateTextField || textField == pincodeTextField || textField == contactTextField || textField == websiteTextField {
+            self.view.animateViewMoving(up: true, moveValue: 150)
+        }
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+         if textField == address2TextField || textField == cityTextField || textField == stateTextField || textField == pincodeTextField || textField == contactTextField || textField == websiteTextField {
+            self.view.animateViewMoving(up: false, moveValue: 150)
+        }
+    }
+    //MARK:Text Field Delegate methods
+    //Called when 'return' key pressed. return NO to ignore.
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 }

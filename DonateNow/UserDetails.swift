@@ -11,7 +11,12 @@ import FirebaseDatabase
 
 struct User {
     let key: String
+<<<<<<< HEAD
     var username: String?
+=======
+    var firstName: String
+    var lastName: String
+>>>>>>> d0f5f723a7d78f90ca2c13f0ce2628f0cccfa4c6
     var email: String
     var userType: String
     var restaurantName: String
@@ -28,9 +33,10 @@ struct User {
     let ref: FIRDatabaseReference?
     var oneSignalIds = [String]()
     
-    init(username: String, email: String, userType: String, restaurantName: String, orgName: String, address1: String, address2: String, city: String, state: String, zipcode: String, contact: String, weburl: String, orgId: String, userID: String, key:String = " ") {
+    init(firstName: String,lastName: String, email: String, userType: String, restaurantName: String, orgName: String, address1: String, address2: String, city: String, state: String, zipcode: String, contact: String, weburl: String, orgId: String, userID: String, key:String = " ") {
         
-        self.username = username
+        self.firstName = firstName
+        self.lastName = lastName
         self.email = email
         self.userType = userType
         self.restaurantName = restaurantName
@@ -54,9 +60,14 @@ struct User {
         //TODO: Use if let
         
         let snapshotValue = snapshot.value as! [String: AnyObject]
+<<<<<<< HEAD
         if let uname = snapshotValue["username"] as? String {
         username = uname
         }
+=======
+        firstName = snapshotValue["firstName"] as! String
+        lastName = snapshotValue["lastName"] as! String
+>>>>>>> d0f5f723a7d78f90ca2c13f0ce2628f0cccfa4c6
         email = snapshotValue["email"] as! String
         userType = snapshotValue["userType"] as! String
         restaurantName = snapshotValue["restaurantName"] as! String
@@ -78,7 +89,8 @@ struct User {
     
     func toAnyObject() -> Any {
         return [
-            "username" : username,
+            "firstName" : firstName,
+            "lastName" : lastName,
             "email" : email,
             "userType" : userType,
             "restaurantName" : restaurantName,

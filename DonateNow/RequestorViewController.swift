@@ -22,7 +22,9 @@ class RequestorViewController: UITabBarController,logoutServiceProtocol{
         self.navigationController?.isNavigationBarHidden = false
         self.navigationItem.setHidesBackButton(true, animated:true);
 
-       let logoutButton:UIBarButtonItem = UIBarButtonItem(title: "Logout",style: UIBarButtonItemStyle.plain, target: self,action: #selector(LogoutAction))
+       let logoutButton:UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "logout") ,style: UIBarButtonItemStyle.plain, target: self,action: #selector(LogoutAction))
+        logoutButton.tintColor = UIColor.white
+
         self.navigationItem.rightBarButtonItem = logoutButton;
         
         // Status bar black font

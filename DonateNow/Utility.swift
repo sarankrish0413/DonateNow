@@ -29,6 +29,7 @@ class Utility {
     static let NEW = "NEW"
     static let ACCEPTED = "ACCEPTED"
     static let PENDINGAPPROVAL = "PENDING APPROVAL"
+    static let REJECTED = "REJECTED"
     
    
     
