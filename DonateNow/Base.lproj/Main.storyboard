@@ -685,7 +685,7 @@
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PTb-rp-RsA" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
-                                <rect key="frame" x="16" y="293" width="132" height="44"/>
+                                <rect key="frame" x="16" y="293" width="134" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="Yd9-Wf-q5t"/>
                                 </constraints>
@@ -709,7 +709,7 @@
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="confirm password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="CQd-wZ-0KJ" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
-                                <rect key="frame" x="227" y="293" width="132" height="44"/>
+                                <rect key="frame" x="225" y="293" width="134" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="PUN-wg-Ioc"/>
                                 </constraints>
@@ -805,7 +805,7 @@
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="city" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ifY-pe-4GK" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
-                                <rect key="frame" x="16" y="430" width="38" height="44"/>
+                                <rect key="frame" x="16" y="430" width="41.5" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="gv6-2j-hhn"/>
                                 </constraints>
@@ -829,7 +829,7 @@
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="state" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Q5m-qE-fMU" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
-                                <rect key="frame" x="321" y="430" width="38" height="44"/>
+                                <rect key="frame" x="317.5" y="430" width="41.5" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="Hap-Ua-4wL"/>
                                 </constraints>
@@ -877,7 +877,7 @@
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="contact" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kv3-DS-n6x" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
-                                <rect key="frame" x="293" y="475" width="66" height="44"/>
+                                <rect key="frame" x="286.5" y="475" width="72.5" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="LEu-dK-Mmp"/>
                                 </constraints>
@@ -901,7 +901,7 @@
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="zipcode" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6eM-Gs-PDc" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
-                                <rect key="frame" x="16" y="475" width="66" height="44"/>
+                                <rect key="frame" x="16" y="475" width="72.5" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="iPW-pf-66X"/>
                                 </constraints>
@@ -1280,7 +1280,7 @@
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Pickup Date To" textAlignment="natural" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="ChW-vk-w4J" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
-                                <rect key="frame" x="246.5" y="204" width="112.5" height="44"/>
+                                <rect key="frame" x="246" y="204" width="113" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="RFv-op-TuY"/>
                                 </constraints>
@@ -1355,7 +1355,7 @@
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Address Line 2" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="P6c-1q-jej" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
-                                <rect key="frame" x="16" y="360" width="111.5" height="44"/>
+                                <rect key="frame" x="16" y="360" width="78" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="aH7-cI-Gwj"/>
                                 </constraints>
@@ -1379,7 +1379,7 @@
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="City" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WMS-b2-s5G" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
-                                <rect key="frame" x="326.5" y="360" width="32.5" height="44"/>
+                                <rect key="frame" x="326" y="360" width="33" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="P0W-cH-Q0l"/>
                                 </constraints>
@@ -1403,7 +1403,7 @@
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="State" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RzC-6X-hGd" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
-                                <rect key="frame" x="16" y="412" width="41.5" height="44"/>
+                                <rect key="frame" x="16" y="412" width="42" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="oaQ-N9-xXs"/>
                                 </constraints>
@@ -1427,7 +1427,7 @@
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Zip Code" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="imb-kd-B0E" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
-                                <rect key="frame" x="287" y="412" width="72" height="44"/>
+                                <rect key="frame" x="290.5" y="412" width="68.5" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="Bg2-3V-Y8f"/>
                                 </constraints>
@@ -1627,7 +1627,7 @@
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TqZ-mP-OtW" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
-                                <rect key="frame" x="16" y="208.5" width="9" height="43.5"/>
+                                <rect key="frame" x="16" y="208.5" width="132" height="43.5"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="16"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
@@ -1651,7 +1651,7 @@
                                 </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="oyO-x7-yce" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
-                                <rect key="frame" x="325.5" y="208.5" width="33.5" height="43.5"/>
+                                <rect key="frame" x="246.5" y="208.5" width="112.5" height="43.5"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="16"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
@@ -1717,7 +1717,7 @@
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Address Line 2" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="msX-28-hjB" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
-                                <rect key="frame" x="16" y="362.5" width="111.5" height="43"/>
+                                <rect key="frame" x="16" y="362.5" width="78" height="43"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="16"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="done"/>
@@ -1738,7 +1738,7 @@
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="City" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tTC-LZ-IUD" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
-                                <rect key="frame" x="325.5" y="362.5" width="32.5" height="43"/>
+                                <rect key="frame" x="246.5" y="362.5" width="111.5" height="43"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="16"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="done"/>
