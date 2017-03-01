@@ -12,6 +12,7 @@ import FirebaseDatabase
 import FirebaseAuth
 import OneSignal
 import SkyFloatingLabelTextField
+import FirebaseAnalytics
 
 class SignupDonorViewController: UIViewController,signupWebserviceProtocol,UITextFieldDelegate{
     
@@ -106,6 +107,11 @@ class SignupDonorViewController: UIViewController,signupWebserviceProtocol,UITex
         let webSerV: Webservice = Webservice()
         webSerV.signupDelegate = self
         webSerV.signupServiceForDonor(firstName: firstNameTextField.text!,lastName: lastNameTextField.text!, email: emailTextField.text!, userType: Utility.selectedUserType!, restaurantName: restaurantNameTextField.text!, orgName: "", address1: address1TextField.text!, address2: address2TextField.text!, city: cityTextField.text!, state: stateTextField.text!, zipcode: pincodeTextField.text!, contact: contactTextField.text!, websiteUrl: websiteTextField.text!, orgId: "", userID: Utility.userID!)
+        
+        //Firebase Analytics
+        FIRAnalytics.logEvent(withName: "signup_donor", parameters: [
+            "userID": Utility.userID! as String as NSObject,
+            ])
         self.dismiss(animated: true, completion: nil)
 
     }
@@ -124,14 +130,14 @@ class SignupDonorViewController: UIViewController,signupWebserviceProtocol,UITex
     //MARK Keyboard show/hide Methods
     //Show keyboard
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        if textField == address2TextField || textField == cityTextField || textField == stateTextField || textField == pincodeTextField || textField == contactTextField || textField == websiteTextField {
-            self.view.animateViewMoving(up: true, moveValue: 150)
+        if textField == address1TextField || textField == address2TextField || textField == cityTextField || textField == stateTextField || textField == pincodeTextField || textField == contactTextField || textField == websiteTextField {
+            self.view.animateViewMoving(up: true, moveValue: 200)
         }
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-         if textField == address2TextField || textField == cityTextField || textField == stateTextField || textField == pincodeTextField || textField == contactTextField || textField == websiteTextField {
-            self.view.animateViewMoving(up: false, moveValue: 150)
+         if textField == address1TextField || textField == address2TextField || textField == cityTextField || textField == stateTextField || textField == pincodeTextField || textField == contactTextField || textField == websiteTextField {
+            self.view.animateViewMoving(up: false, moveValue: 200)
         }
     }
     //MARK:Text Field Delegate methods

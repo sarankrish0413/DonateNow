@@ -9,9 +9,10 @@
 import Foundation
 import UIKit
 import OneSignal
+import FirebaseAnalytics
 
 
-class ViewDonationDetailsViewController: UIViewController,updateDonationDetailsProtocol,updateDonationStatusProtocol{
+class ViewDonationDetailsViewController: UIViewController,updateDonationDetailsProtocol,updateDonationStatusProtocol,UITextFieldDelegate,UITextViewDelegate{
     
     
     
@@ -43,23 +44,6 @@ class ViewDonationDetailsViewController: UIViewController,updateDonationDetailsP
     //MARK: View Controller Life cycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        func updateDonationDetails() {
-            //Set value for Donation Details page
-            foodDescTextView.text = donationDict?["foodDesc"] as? String
-            splInstTextView.text = donationDict?["splInstructions"] as? String
-            zipcodeTextField.text = donationDict?["zipcode"] as? String
-            stateTextField.text = donationDict?["state"] as? String
-            cityTextField.text =  donationDict?["city"] as? String
-            address2TextField.text = donationDict?["address2"] as? String
-            address1TextField.text = donationDict?["address1"] as? String
-            contactTextField.text = donationDict?["contact"] as? String
-            qtyTextField.text = donationDict?["quantity"] as? String
-            toDateTextField.text = donationDict?["pickUpToDate"] as? String
-            fromDateTextField.text = donationDict?["pickUpFromDate"] as? String
-            donationTitleTextField.text = donationDict?["donationTitle"] as? String
-        }
-        
         
         //Draw border for Food description textview
         foodDescTextView.layer.borderWidth = 1.0;
@@ -126,15 +110,50 @@ class ViewDonationDetailsViewController: UIViewController,updateDonationDetailsP
             }else {
                 actionButton.isHidden = false
                 setUserInteractionForButtons(value: false)
-                //updateDonationDetails()
-                //return
             }
         }
         else {
             actionButton.isHidden = true
         }
-        updateDonationDetails()
+        setDonationDetails()
+        
+        //set delegates for text field
+        donationTitleTextField.delegate = self
+        foodDescTextView.delegate = self
+        qtyTextField.delegate = self
+        contactTextField.delegate = self
+        zipcodeTextField.delegate = self
+        stateTextField.delegate = self
+        cityTextField.delegate = self
+        address2TextField.delegate = self
+        address1TextField.delegate = self
+        splInstTextView.delegate = self
     }
+    
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        foodDescTextView.setContentOffset(CGPoint.zero, animated: false)
+        splInstTextView.setContentOffset(CGPoint.zero, animated: false)
+    }
+    
+    //set Donation Details value in the UI
+    func setDonationDetails() {
+        //Set value for Donation Details page
+        foodDescTextView.text = donationDict?["foodDesc"] as? String
+        splInstTextView.text = donationDict?["splInstructions"] as? String
+        zipcodeTextField.text = donationDict?["zipcode"] as? String
+        stateTextField.text = donationDict?["state"] as? String
+        cityTextField.text =  donationDict?["city"] as? String
+        address2TextField.text = donationDict?["address2"] as? String
+        address1TextField.text = donationDict?["address1"] as? String
+        contactTextField.text = donationDict?["contact"] as? String
+        qtyTextField.text = donationDict?["quantity"] as? String
+        toDateTextField.text = donationDict?["pickUpToDate"] as? String
+        fromDateTextField.text = donationDict?["pickUpFromDate"] as? String
+        donationTitleTextField.text = donationDict?["donationTitle"] as? String
+    }
+    
     
     //MARK: IBAction Methods
     //Show Date and time picker for fromDate text field
@@ -230,6 +249,11 @@ class ViewDonationDetailsViewController: UIViewController,updateDonationDetailsP
     
     //MARK: updateDonationDetailsProtocol Methods
     func updateDonationSuccessful(){
+        //Firebase Analytics
+        FIRAnalytics.logEvent(withName: "update_donation", parameters: [
+            "userID": Utility.userID! as String as NSObject,
+            "donationID": donationID as String as NSObject
+            ])
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -341,4 +365,49 @@ class ViewDonationDetailsViewController: UIViewController,updateDonationDetailsP
         donationTitleTextField.isUserInteractionEnabled = value
     }
     
+    //MARK Keyboard show/hide Methods
+    //Show keyboard
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if textField == address1TextField || textField == address2TextField || textField == cityTextField || textField == stateTextField || textField == zipcodeTextField {
+            self.view.animateViewMoving(up: true, moveValue: 200)
+        }
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if textField == address1TextField || textField == address2TextField || textField == cityTextField || textField == stateTextField || textField == zipcodeTextField {
+            self.view.animateViewMoving(up: false, moveValue: 200)
+        }
+    }
+    
+    //MARK:UITextView Delegate methods
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView == splInstTextView {
+            self.view.animateViewMoving(up: true, moveValue: 200)
+        }
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView == splInstTextView {
+            self.view.animateViewMoving(up: false, moveValue: 200)
+        }
+    }
+    
+    //MARK:Text Field Delegate methods
+    //Called when 'return' key pressed. return NO to ignore.
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    //MARK:Text view Delegate Methods
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        if text == "\n" {
+            textView.resignFirstResponder()
+            return false
+        }
+        return true
+    }
+    
 }
+
+

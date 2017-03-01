@@ -8,7 +8,7 @@
 
 import Foundation
 import UIKit
-
+import FirebaseAnalytics
 
 class RequestorAvailableDonationsViewController : UIViewController,UITableViewDelegate,UITableViewDataSource,viewAvailableDonationsProtocol,viewDonationDetailsProtocol {
     var activityIndicator:UIActivityIndicatorView!
@@ -22,6 +22,12 @@ class RequestorAvailableDonationsViewController : UIViewController,UITableViewDe
     //MARK: View Controller Life cycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //Firebase Analytics
+        FIRAnalytics.logEvent(withName: "requestor_available_Donations", parameters: [
+            "userID": Utility.userID! as String as NSObject,
+            ])
+        
         //show activity inidcator view
         activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.gray)
         activityIndicator.hidesWhenStopped = true;
@@ -29,6 +35,8 @@ class RequestorAvailableDonationsViewController : UIViewController,UITableViewDe
         activityIndicator.center = view.center;
         self.view.addSubview(activityIndicator)
         activityIndicator.startAnimating()
+        self.view.isUserInteractionEnabled = false
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -89,19 +97,16 @@ class RequestorAvailableDonationsViewController : UIViewController,UITableViewDe
     //MARK: view available donations protocol methods
     func viewAvailableDonationSuccessful(items:[Donation]){
         activityIndicator.stopAnimating()
+        self.view.isUserInteractionEnabled = true
         self.items = items
         self.availbleDonationsTableView.reloadData()
         
     }
     func viewAvailableDonationUnSuccessful(items:[Donation]){
         activityIndicator.stopAnimating()
+        self.view.isUserInteractionEnabled = true
         self.items = items
         self.availbleDonationsTableView.reloadData()
-//        let alertController = UIAlertController(title: "Message", message:"No Donations available", preferredStyle: .alert)
-//        let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-//        alertController.addAction(defaultAction)
-//        self.present(alertController, animated: true, completion: nil)
-        
     }
     
     //MARK viewDonationDetailsProtocol Methods
@@ -115,6 +120,7 @@ class RequestorAvailableDonationsViewController : UIViewController,UITableViewDe
     
     func viewDonationDetailsUnSuccessful(){
         activityIndicator.stopAnimating()
+        self.view.isUserInteractionEnabled = true
         let alertController = UIAlertController(title: "Message", message:"Could not fetch the Details. Please try again sometime", preferredStyle: .alert)
         let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
         alertController.addAction(defaultAction)

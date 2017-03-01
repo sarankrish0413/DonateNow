@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import FirebaseDatabase
 import SkyFloatingLabelTextField
-
+import FirebaseAnalytics
 
 
 class NewDonationViewController: UIViewController,newDonationProtocol,UITextFieldDelegate,UITextViewDelegate{
@@ -31,27 +31,18 @@ class NewDonationViewController: UIViewController,newDonationProtocol,UITextFiel
     @IBOutlet weak var toDateTextField: SkyFloatingLabelTextField!
     @IBOutlet weak var fromDateTextField: SkyFloatingLabelTextField!
     
-    var activityIndicator:UIActivityIndicatorView!
-    
+    var activityIndicator: UIActivityIndicatorView!
+    var uuid: String!
     
     
     //MARK: View Controller Life cycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //Clear all the values
-        donationTitleTextField.text = ""
-        foodDescTextView.text = ""
-        qtyTextField.text = ""
-        contactTextField.text = ""
-        zipcodeTextField.text = ""
-        stateTextField.text = ""
-        cityTextField.text = ""
-        address2TextField.text = ""
-        address1TextField.text = ""
-        splInstTextView.text = ""
-        fromDateTextField.text = ""
-        toDateTextField.text = ""
+        //Firebase Analytics
+        FIRAnalytics.logEvent(withName: "donor_new_donation", parameters: [
+            "userID": Utility.userID! as String as NSObject,
+            ])
 
         //Draw border for Food description textview
         foodDescTextView.layer.borderWidth = 1.0;
@@ -86,14 +77,13 @@ class NewDonationViewController: UIViewController,newDonationProtocol,UITextFiel
         address2TextField.delegate = self
         address1TextField.delegate = self
         splInstTextView.delegate = self
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         //Clear all the values
         donationTitleTextField.text = ""
-        foodDescTextView.text = ""
+        foodDescTextView.text = "Please Enter Donation description"
         qtyTextField.text = ""
         contactTextField.text = Utility.contact
         zipcodeTextField.text = Utility.zipCode
@@ -101,16 +91,22 @@ class NewDonationViewController: UIViewController,newDonationProtocol,UITextFiel
         cityTextField.text = Utility.city
         address2TextField.text = Utility.address2
         address1TextField.text = Utility.address1
-        splInstTextView.text = ""
+        splInstTextView.text = "Please provide special instructions"
         fromDateTextField.text = ""
         toDateTextField.text = ""
-    }
+
+}
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        foodDescTextView.setContentOffset(CGPoint.zero, animated: false)
+        splInstTextView.setContentOffset(CGPoint.zero, animated: false)
+    }
    
     //MARK: Outlets Action
     //Add Button, capture all the details from form and add it to Donations array
     @IBAction func addButtonAction(_ sender: UIButton) {
-        let uuid = UUID().uuidString
+        uuid = UUID().uuidString
         let webSerV: Webservice = Webservice()
         webSerV.newDonationDelegate = self;
         webSerV.addDonationDetailsToFireBaseDatabase(foodDesc: foodDescTextView.text, quantity: qtyTextField.text!, contact: contactTextField.text!, address1: address1TextField.text!, address2: address2TextField.text!, city: cityTextField.text!, state: stateTextField.text!, zipcode: zipcodeTextField.text!, splInstructions: splInstTextView.text!, createdUserID: Utility.userID!, createdDate: getCurrentDateAndTime(), pickUpFromDate: fromDateTextField.text!, pickUpToDate: toDateTextField.text!, donationID: uuid , donationStatus: Utility.NEW,donationTitle:donationTitleTextField.text!,restaurantName: Utility.restaurantName!,requestorUserID:"'")
@@ -219,12 +215,21 @@ class NewDonationViewController: UIViewController,newDonationProtocol,UITextFiel
     
     //MARK WebserviceProtocol Methods
     func newDonationSuccessful(){
+        //Firebase Analytics
+        FIRAnalytics.logEvent(withName: "new_donation", parameters: [
+            "userID": Utility.userID! as String as NSObject,
+            "donationID": uuid as String as NSObject
+            ])
+        
+        self.dismiss(animated: true, completion: nil)
         activityIndicator.stopAnimating()
+        self.view.isUserInteractionEnabled = true
         self.tabBarController?.selectedIndex = 0;
         
     }
     func newDonationUnSuccessful(error:Error){
         activityIndicator.stopAnimating()
+        self.view.isUserInteractionEnabled = true
         let alertController = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
         let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
         alertController.addAction(defaultAction)
@@ -236,26 +241,26 @@ class NewDonationViewController: UIViewController,newDonationProtocol,UITextFiel
     //Show keyboard
     func textFieldDidBeginEditing(_ textField: UITextField) {
         if textField == address1TextField || textField == address2TextField || textField == cityTextField || textField == stateTextField || textField == zipcodeTextField {
-            self.view.animateViewMoving(up: true, moveValue: 150)
+            self.view.animateViewMoving(up: true, moveValue: 200)
         }
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         if textField == address1TextField || textField == address2TextField || textField == cityTextField || textField == stateTextField || textField == zipcodeTextField {
-            self.view.animateViewMoving(up: false, moveValue: 150)
+            self.view.animateViewMoving(up: false, moveValue: 200)
         }
     }
     
     //MARK:UITextView Delegate methods
     func textViewDidBeginEditing(_ textView: UITextView) {
         if textView == splInstTextView {
-            self.view.animateViewMoving(up: true, moveValue: 150)
+            self.view.animateViewMoving(up: true, moveValue: 200)
         }
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView == splInstTextView {
-            self.view.animateViewMoving(up: false, moveValue: 150)
+            self.view.animateViewMoving(up: false, moveValue: 200)
         }
     }
     
@@ -274,7 +279,6 @@ class NewDonationViewController: UIViewController,newDonationProtocol,UITextFiel
         }
         return true
     }
-    
 }
 
 extension UIView {
@@ -287,4 +291,8 @@ extension UIView {
         frame = frame.offsetBy(dx: 0, dy: movement)
         UIView.commitAnimations()
     }
+    
+    
 }
+
+
