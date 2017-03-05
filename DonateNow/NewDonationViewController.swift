@@ -45,13 +45,13 @@ class NewDonationViewController: UIViewController,newDonationProtocol,UITextFiel
             ])
 
         //Draw border for Food description textview
-        foodDescTextView.layer.borderWidth = 1.0;
-        foodDescTextView.layer.cornerRadius = 5.0;
+        foodDescTextView.layer.borderWidth = 1.0
+        foodDescTextView.layer.cornerRadius = 5.0
         foodDescTextView.layer.borderColor = UIColor.lightGray.cgColor
         
         //Draw border for Special instruction textview
-        splInstTextView.layer.borderWidth = 1.0;
-        splInstTextView.layer.cornerRadius = 5.0;
+        splInstTextView.layer.borderWidth = 1.0
+        splInstTextView.layer.cornerRadius = 5.0
         splInstTextView.layer.borderColor = UIColor.lightGray.cgColor
     
         //Draw border for Add donations Button
@@ -61,9 +61,9 @@ class NewDonationViewController: UIViewController,newDonationProtocol,UITextFiel
         
         //show activity inidcator view
         activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.gray)
-        activityIndicator.hidesWhenStopped = true;
-        activityIndicator.activityIndicatorViewStyle  = UIActivityIndicatorViewStyle.gray;
-        activityIndicator.center = view.center;
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.activityIndicatorViewStyle  = UIActivityIndicatorViewStyle.gray
+        activityIndicator.center = view.center
         self.view.addSubview(activityIndicator)
         
         //set delegates for text field
@@ -108,7 +108,7 @@ class NewDonationViewController: UIViewController,newDonationProtocol,UITextFiel
     @IBAction func addButtonAction(_ sender: UIButton) {
         uuid = UUID().uuidString
         let webSerV: Webservice = Webservice()
-        webSerV.newDonationDelegate = self;
+        webSerV.newDonationDelegate = self
         webSerV.addDonationDetailsToFireBaseDatabase(foodDesc: foodDescTextView.text, quantity: qtyTextField.text!, contact: contactTextField.text!, address1: address1TextField.text!, address2: address2TextField.text!, city: cityTextField.text!, state: stateTextField.text!, zipcode: zipcodeTextField.text!, splInstructions: splInstTextView.text!, createdUserID: Utility.userID!, createdDate: getCurrentDateAndTime(), pickUpFromDate: fromDateTextField.text!, pickUpToDate: toDateTextField.text!, donationID: uuid , donationStatus: Utility.NEW,donationTitle:donationTitleTextField.text!,restaurantName: Utility.restaurantName!,requestorUserID:"'")
         
     }
@@ -224,7 +224,7 @@ class NewDonationViewController: UIViewController,newDonationProtocol,UITextFiel
         self.dismiss(animated: true, completion: nil)
         activityIndicator.stopAnimating()
         self.view.isUserInteractionEnabled = true
-        self.tabBarController?.selectedIndex = 0;
+        self.tabBarController?.selectedIndex = 0
         
     }
     func newDonationUnSuccessful(error:Error){

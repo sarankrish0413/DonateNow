@@ -31,9 +31,9 @@ class RequestorAcceptedDonationsViewController: UIViewController,UITableViewDele
         
         //show activity inidcator view
         activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.gray)
-        activityIndicator.hidesWhenStopped = true;
-        activityIndicator.activityIndicatorViewStyle  = UIActivityIndicatorViewStyle.gray;
-        activityIndicator.center = view.center;
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.activityIndicatorViewStyle  = UIActivityIndicatorViewStyle.gray
+        activityIndicator.center = view.center
         self.view.addSubview(activityIndicator)
         activityIndicator.startAnimating()
         self.view.isUserInteractionEnabled = false
@@ -99,7 +99,9 @@ class RequestorAcceptedDonationsViewController: UIViewController,UITableViewDele
         activityIndicator.stopAnimating()
         self.view.isUserInteractionEnabled = true
         self.totalItems.append(contentsOf: items)
-        self.acceptedDonationsTableView.reloadData()
+        DispatchQueue.main.async {
+            self.acceptedDonationsTableView.reloadData()
+        }
     }
     
     //MARK: view available donations protocol methods

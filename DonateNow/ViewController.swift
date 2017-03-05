@@ -90,13 +90,13 @@ class ViewController: UIViewController,loginWebserviceProtocol,UITextFieldDelega
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         //Set Selected Index as Donor
-        userTypeSegmentedControl.selectedSegmentIndex = 0;
+        userTypeSegmentedControl.selectedSegmentIndex = 0
         Utility.selectedUserType = Utility.DONOR
         //show activity inidcator view
         activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.gray)
-        activityIndicator.hidesWhenStopped = true;
-        activityIndicator.activityIndicatorViewStyle  = UIActivityIndicatorViewStyle.gray;
-        activityIndicator.center = view.center;
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.activityIndicatorViewStyle  = UIActivityIndicatorViewStyle.gray
+        activityIndicator.center = view.center
         self.view.addSubview(activityIndicator)
         //set delegates for text field
         userNameTextField.delegate = self
@@ -130,7 +130,7 @@ class ViewController: UIViewController,loginWebserviceProtocol,UITextFieldDelega
         GIDSignIn.sharedInstance().signIn()
         activityIndicator.startAnimating()
         //ToDo User Table updation
-        loginSuccessful()
+        //loginSuccessful()
     }
     
     func handleCustomFBLogin() {
@@ -146,15 +146,12 @@ class ViewController: UIViewController,loginWebserviceProtocol,UITextFieldDelega
             self.showEmailAddress()
         }
         //ToDo User Table Updation
-        loginSuccessful()
+        //loginSuccessful()
     }
     
     func showEmailAddress(){
-        
         //SETTING UP FIREBASE WITH FACEBOOK
-        
         let accessToken = FBSDKAccessToken.current()
-        
         guard let accessTokenString = accessToken?.tokenString else
         { return }
         let credentials = FIRFacebookAuthProvider.credential(withAccessToken: accessTokenString)
@@ -165,15 +162,11 @@ class ViewController: UIViewController,loginWebserviceProtocol,UITextFieldDelega
             }
             print("Sucessfully logged in with our fb user", user ?? "")
         })
-        
         FBSDKGraphRequest(graphPath: "/me", parameters: ["fields": "id, name, email"]).start { (connection, result, err) in
-            
-            
             if err != nil {
                 print("Failed to start graph request T_T", err ?? "")
                 return
             }
-            
             print(result as Any)
         }
     }

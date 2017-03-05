@@ -68,11 +68,11 @@ class SignupDonorViewController: UIViewController,signupWebserviceProtocol,UITex
     
     //MARK: View Controller Life cycle Methods
     override func viewDidLoad() {
-        super.viewDidLoad();
+        super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         // show navigation controller for Donor page
         self.navigationController?.isNavigationBarHidden = false
-        self.navigationItem.setHidesBackButton(false, animated:true);
+        self.navigationItem.setHidesBackButton(false, animated:true)
         // Status bar black font
         self.navigationController?.navigationBar.tintColor = UIColor.black
         self.title = "Welcome New user!!"

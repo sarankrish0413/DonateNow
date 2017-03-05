@@ -11,47 +11,99 @@ import UIKit
 import FirebaseDatabase
 import FirebaseAuth
 
-class RequestorViewReviewsController : UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
+class RequestorViewReviewsController : UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, viewRestaurantProtocol,viewRequestorReviewProtocol {
     
+    @IBOutlet weak var writeReviewsButton: UIButton!
     var restaurants = [User]()
+    var reviews = [Review]()
     @IBOutlet var picker: UIPickerView!
+    @IBOutlet var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let ref = FIRDatabase.database().reference(withPath: "Users")
-        ref.queryOrdered(byChild: "restaurantName").observe(.value, with: { (snapshot) in
-            if !snapshot.exists() {
-            }
-            else {
-                for item in snapshot.children {
-                    let user = User(snapshot: item as! FIRDataSnapshot)
-                    if (!user.restaurantName.isEmpty) {
-                        self.restaurants.append(user)
-                    }
-                }
-                DispatchQueue.main.async {
-                    self.picker.reloadAllComponents()
-                }
-            }
-        })
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 100.0
+                
+        //Draw border for write review Button
+        writeReviewsButton.layer.cornerRadius = 19
+        writeReviewsButton.layer.borderWidth = 1
+        writeReviewsButton.layer.borderColor = UIColor.clear.cgColor
+        
+        //get Restuarant Name
+        let webSerV: Webservice = Webservice()
+        webSerV.viewRestaurantsDelegate = self
+        webSerV.getRestaurantName()
+    
     }
     
+    //MARK: UIPickerview Delegate methods
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return restaurants.count;
+        return restaurants.count
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return restaurants[row].restaurantName
     }
     
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        // get Restuarant reviews
+        let webSerV: Webservice = Webservice()
+        webSerV.viewRequestorReviewDelegate = self
+        webSerV.getRestaurantReviews(restaurantID: restaurants[row].userID)
+    }
+    
     @IBAction func writeReviewAction(_ sender: UIButton) {
-        let ref = FIRDatabase.database().reference(withPath: "Users")
         let writeReviewControllerObj = storyboard?.instantiateViewController(withIdentifier: "RequestorWriteReviewsController") as! RequestorWriteReviewsController
         writeReviewControllerObj.restaurant = restaurants[picker.selectedRow(inComponent: 0)].userID
+        writeReviewControllerObj.orgName = Utility.charityName
+        writeReviewControllerObj.restaurantName = restaurants[picker.selectedRow(inComponent: 0)].restaurantName
         navigationController?.pushViewController(writeReviewControllerObj, animated: true)
     }
+    
+    //MARK:viewRestaurantProtocol Delegate Methods
+    func viewRestaurantSuccessful(restaurantName:[User]) {
+        restaurants = restaurantName
+        DispatchQueue.main.async {
+            self.picker.reloadAllComponents()
+        }
+        
+    }
+    
+    //MARK: view Requestor review protocol
+    func viewRequestorReviewSuccessful(items:[Review]) {
+        reviews = items
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+    }
+}
+
+extension RequestorViewReviewsController: UITableViewDelegate, UITableViewDataSource {
+    
+    //MARK:Table view DataSource and Delegate Methods
+    //Returns number of sections in Tableview
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    //Return number of rows in each section
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return reviews.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "reviewCell", for: indexPath) as! ReviewsTableViewCell
+        let row = indexPath.row
+        cell.userNameLabel.text = reviews[row].orgName
+        let date = reviews[row].reviewDate
+        cell.dateLabel.text = date.components(separatedBy: " ").first
+        cell.reviewCommentsLabel.text = reviews[row].review
+        cell.ratingsView.rating = Double(reviews[row].rating)!
+        return cell
+    }
+    
 }

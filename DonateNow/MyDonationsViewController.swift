@@ -31,9 +31,9 @@ class MyDonationsViewController: UIViewController,UITableViewDelegate,UITableVie
         
         //show activity inidcator view
         activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.gray)
-        activityIndicator.hidesWhenStopped = true;
-        activityIndicator.activityIndicatorViewStyle  = UIActivityIndicatorViewStyle.gray;
-        activityIndicator.center = view.center;
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.activityIndicatorViewStyle  = UIActivityIndicatorViewStyle.gray
+        activityIndicator.center = view.center
         self.view.addSubview(activityIndicator)
         activityIndicator.startAnimating()
         self.view.isUserInteractionEnabled = false
@@ -53,7 +53,7 @@ class MyDonationsViewController: UIViewController,UITableViewDelegate,UITableVie
     
     //Return number of rows in each section
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return items.count;
+        return items.count
     }
     
     //Set Data for each row
@@ -95,13 +95,17 @@ class MyDonationsViewController: UIViewController,UITableViewDelegate,UITableVie
         activityIndicator.stopAnimating()
         self.view.isUserInteractionEnabled = true
         self.items = items
-        self.myDonationsTableView.reloadData()
+        DispatchQueue.main.async {
+            self.myDonationsTableView.reloadData()
+        }
     }
     func viewMyDonationUnSuccessful(items: [Donation]){
         activityIndicator.stopAnimating()
         self.view.isUserInteractionEnabled = true
         self.items = items
-        self.myDonationsTableView.reloadData()
+        DispatchQueue.main.async {
+            self.myDonationsTableView.reloadData()
+        }
     }
     
     //MARK viewDonationDetailsProtocol Methods

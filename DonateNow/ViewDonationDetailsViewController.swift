@@ -46,13 +46,13 @@ class ViewDonationDetailsViewController: UIViewController,updateDonationDetailsP
         super.viewDidLoad()
         
         //Draw border for Food description textview
-        foodDescTextView.layer.borderWidth = 1.0;
-        foodDescTextView.layer.cornerRadius = 5.0;
+        foodDescTextView.layer.borderWidth = 1.0
+        foodDescTextView.layer.cornerRadius = 5.0
         foodDescTextView.layer.borderColor = UIColor.lightGray.cgColor
         
         //Draw border for Special instruction textview
-        splInstTextView.layer.borderWidth = 1.0;
-        splInstTextView.layer.cornerRadius = 5.0;
+        splInstTextView.layer.borderWidth = 1.0
+        splInstTextView.layer.cornerRadius = 5.0
         splInstTextView.layer.borderColor = UIColor.lightGray.cgColor
         
         if let itemsDict = donationDetails?[donationID] as! Dictionary<String,Any>! {

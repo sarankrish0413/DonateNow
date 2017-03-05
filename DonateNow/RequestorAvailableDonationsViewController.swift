@@ -30,9 +30,9 @@ class RequestorAvailableDonationsViewController : UIViewController,UITableViewDe
         
         //show activity inidcator view
         activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.gray)
-        activityIndicator.hidesWhenStopped = true;
-        activityIndicator.activityIndicatorViewStyle  = UIActivityIndicatorViewStyle.gray;
-        activityIndicator.center = view.center;
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.activityIndicatorViewStyle  = UIActivityIndicatorViewStyle.gray
+        activityIndicator.center = view.center
         self.view.addSubview(activityIndicator)
         activityIndicator.startAnimating()
         self.view.isUserInteractionEnabled = false
@@ -42,7 +42,9 @@ class RequestorAvailableDonationsViewController : UIViewController,UITableViewDe
     override func viewWillAppear(_ animated: Bool) {
         webSerV.viewAvailableDonationsDelegate = self
         webSerV.ViewAvailableDonations()
-        self.availbleDonationsTableView.reloadData()
+        DispatchQueue.main.async {
+            self.availbleDonationsTableView.reloadData()
+        }
     }
     
     //MARK: Outlets
@@ -99,14 +101,18 @@ class RequestorAvailableDonationsViewController : UIViewController,UITableViewDe
         activityIndicator.stopAnimating()
         self.view.isUserInteractionEnabled = true
         self.items = items
-        self.availbleDonationsTableView.reloadData()
+        DispatchQueue.main.async {
+            self.availbleDonationsTableView.reloadData()
+        }
         
     }
     func viewAvailableDonationUnSuccessful(items:[Donation]){
         activityIndicator.stopAnimating()
         self.view.isUserInteractionEnabled = true
         self.items = items
-        self.availbleDonationsTableView.reloadData()
+        DispatchQueue.main.async {
+            self.availbleDonationsTableView.reloadData()
+        }
     }
     
     //MARK viewDonationDetailsProtocol Methods

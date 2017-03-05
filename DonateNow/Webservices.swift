@@ -87,6 +87,21 @@ protocol viewRejectedDonationsProtocol{
     func viewRejectedDonationSuccessful(items:[Donation])
 }
 
+//view restaurant name
+protocol viewRestaurantProtocol {
+    func viewRestaurantSuccessful(restaurantName:[User])
+}
+
+//view Review Details Requestor 
+protocol viewRequestorReviewProtocol {
+    func viewRequestorReviewSuccessful(items:[Review])
+}
+
+//Add Reviews to firebase
+protocol addReviewsProtocol {
+    func addReviewSuccessful()
+    func addReviewUnSuccessful(error:Error)
+}
 
 
 
@@ -105,6 +120,9 @@ class Webservice {
     var PendingApprovalDonationsDelegate:viewPendingApprovalDonationsProtocol?
     var viewRejectedDonationsDelegate:viewRejectedDonationsProtocol?
     var forgotPasswordDelegate: forgotPasswordProtocol?
+    var viewRestaurantsDelegate: viewRestaurantProtocol?
+    var viewRequestorReviewDelegate: viewRequestorReviewProtocol?
+    var addReviewsDelegate: addReviewsProtocol?
     
     //MARK:Login related Service
     //Invoke firebase login service
@@ -413,6 +431,59 @@ class Webservice {
             
         }
     }
+    
+    //MARK:view Restaurant name
+    func getRestaurantName(){
+        let ref = FIRDatabase.database().reference(withPath: "Users")
+        //Retrieve Donation Details
+        ref.queryOrdered(byChild: "userType").queryEqual(toValue:Utility.DONOR).observe(.value, with: { (snapshot) in
+            var newItems = [User]()
+            if !snapshot.exists() {
+            }
+            else {
+                for item in snapshot.children {
+                    let restName = User(snapshot: item as! FIRDataSnapshot)
+                    if (!restName.restaurantName.isEmpty) {
+                        newItems.append(restName)
+                    }
+            }
+            }
+            self.viewRestaurantsDelegate?.viewRestaurantSuccessful(restaurantName: newItems)
+        })
+    }
+    
+    //MARK: get Restaurant reviews
+    func getRestaurantReviews(restaurantID: String){
+        let ref = FIRDatabase.database().reference(withPath: "Reviews")
+        //Retrieve restaurant reviews
+        ref.queryOrdered(byChild: "restaurantId").queryEqual(toValue:restaurantID).observe(.value, with: { (snapshot) in
+            var newItems = [Review]()
+            if !snapshot.exists() {
+            }
+            else {
+                for item in snapshot.children {
+                    let restName = Review(snapshot: item as! FIRDataSnapshot)
+                        newItems.append(restName)
+                }
+            }
+            self.viewRequestorReviewDelegate?.viewRequestorReviewSuccessful(items: newItems)
+        })
+    }
+    
+    //MARK: Add reviews to firebase database
+    func addReviewsToFireBaseDatabase(restaurant: String, orgId: String, starView: String, reviewTextView: String, reviewDate: String, orgName: String, restaurantName: String) {
+        let ref = FIRDatabase.database().reference(withPath: "Reviews")
+        let review = Review(restaurantId: restaurant, orgId: orgId, rating: starView, review: reviewTextView, reviewDate: reviewDate, orgName: orgName, restaurantName: restaurantName)
+        let reviewItemRef = ref.child(UUID.init().uuidString)
+        reviewItemRef.setValue(review.toAnyObject()){ (error, ref) -> Void in
+            if error == nil {
+                self.addReviewsDelegate?.addReviewSuccessful()
+            }
+            else {
+                self.addReviewsDelegate?.addReviewUnSuccessful(error: error!)
+            }
+        }
+    }
 
     
     //MARK:Helper methods
@@ -435,7 +506,6 @@ class Webservice {
             self.loginDelegate?.loginSuccessful()
         })
     }
-    
 }
 
 

@@ -20,7 +20,7 @@ class DonorViewController: UITabBarController,logoutServiceProtocol{
         
         //show navigation controller for Donor page
         self.navigationController?.isNavigationBarHidden = false
-        self.navigationItem.setHidesBackButton(true, animated:true);
+        self.navigationItem.setHidesBackButton(true, animated:true)
         
         let logoutButton:UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "logout") ,style: UIBarButtonItemStyle.plain, target: self,action: #selector(LogoutAction))
         logoutButton.tintColor = UIColor.white
