@@ -1190,11 +1190,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="iHy-h1-Q2x" id="D0u-DN-lE5">
-<<<<<<< HEAD
-                                            <rect key="frame" x="0.0" y="0.0" width="342" height="74.5"/>
-=======
-                                            <rect key="frame" x="0.0" y="0.0" width="342" height="99"/>
->>>>>>> d0f5f723a7d78f90ca2c13f0ce2628f0cccfa4c6
+                                            <rect key="frame" x="0.0" y="0.0" width="342" height="99.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="zDc-wD-mRG">
@@ -1710,7 +1706,7 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
                             </textView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Special Instructions" translatesAutoresizingMaskIntoConstraints="NO" id="V9T-hg-hO7">
-                                <rect key="frame" x="16" y="467" width="343" height="50"/>
+                                <rect key="frame" x="16" y="467.5" width="343" height="50"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="suY-aF-qFh"/>
@@ -1864,7 +1860,7 @@
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="State" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QBd-d6-l5j" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
-                                <rect key="frame" x="16" y="419" width="166" height="44"/>
+                                <rect key="frame" x="16" y="419.5" width="166" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="bvA-fH-7j2"/>
                                 </constraints>
@@ -1888,7 +1884,7 @@
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Zip Code" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="b7x-CD-Wf7" customClass="SkyFloatingLabelTextField" customModule="SkyFloatingLabelTextField">
-                                <rect key="frame" x="193" y="419" width="166" height="44"/>
+                                <rect key="frame" x="193" y="419.5" width="166" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="cmP-7z-oYJ"/>
                                 </constraints>
@@ -1912,7 +1908,7 @@
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qU6-No-55p">
-                                <rect key="frame" x="16" y="526" width="150" height="44"/>
+                                <rect key="frame" x="16" y="526.5" width="150" height="44"/>
                                 <color key="backgroundColor" red="0.1215686275" green="0.59215686270000001" blue="0.57254901960000004" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="9zq-eF-TGy"/>
@@ -1949,7 +1945,7 @@
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LXP-RH-yjv">
-                                <rect key="frame" x="196" y="526" width="162" height="44"/>
+                                <rect key="frame" x="196" y="526.5" width="162" height="44"/>
                                 <color key="backgroundColor" red="0.1215686275" green="0.59215686270000001" blue="0.57254901960000004" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="16"/>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -2137,14 +2133,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-<<<<<<< HEAD
-                    <tabBarItem key="tabBarItem" title="Reviews" id="AGs-PJ-9bR"/>
+                    <tabBarItem key="tabBarItem" title="REVIEWS" image="my_reviews" id="AGs-PJ-9bR"/>
                     <connections>
                         <outlet property="picker" destination="WOV-en-9xU" id="pnu-5K-ng5"/>
                     </connections>
-=======
-                    <tabBarItem key="tabBarItem" title="REVIEWS" image="my_reviews" id="AGs-PJ-9bR"/>
->>>>>>> d0f5f723a7d78f90ca2c13f0ce2628f0cccfa4c6
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZJy-Nf-7ab" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -2239,11 +2231,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ISU-Gx-1rT" id="AA7-qg-qaN">
-<<<<<<< HEAD
-                                            <rect key="frame" x="0.0" y="0.0" width="342" height="74.5"/>
-=======
-                                            <rect key="frame" x="0.0" y="0.0" width="342" height="99"/>
->>>>>>> d0f5f723a7d78f90ca2c13f0ce2628f0cccfa4c6
+                                            <rect key="frame" x="0.0" y="0.0" width="342" height="99.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Haq-92-9LZ">
@@ -2346,11 +2334,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="J9q-t8-SKI" id="l3v-9z-vBA">
-<<<<<<< HEAD
-                                            <rect key="frame" x="0.0" y="0.0" width="342" height="74.5"/>
-=======
-                                            <rect key="frame" x="0.0" y="0.0" width="342" height="99"/>
->>>>>>> d0f5f723a7d78f90ca2c13f0ce2628f0cccfa4c6
+                                            <rect key="frame" x="0.0" y="0.0" width="342" height="99.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="iXz-Pq-nsG">
@@ -2437,7 +2421,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="JQD-of-sbQ" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="WcT-5K-VRC">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="WcT-5K-VRC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
