@@ -269,6 +269,11 @@ class ViewDonationDetailsViewController: UIViewController,updateDonationDetailsP
     func updateDonationStatusSuccessful(status:String){
         self.dismiss(animated: true, completion: nil)
         if Utility.userType == Utility.REQUESTOR && status == Utility.PENDINGAPPROVAL {
+            //Firebase Analytics
+            FIRAnalytics.logEvent(withName: "requestor_request_donation", parameters: [
+                "userID": Utility.userID! as String as NSObject,
+                "donationID": donationID as String as NSObject
+                ])
             let notificationMessage = "You have received Approval request from " + Utility.charityName! + "."
             OneSignal.postNotification(["contents": ["en":notificationMessage],"include_player_ids": donationDict!["signalIds"] as! [String]], onSuccess: { (successDict) in
                 debugPrint("sucseesDict:",successDict!)
@@ -281,6 +286,11 @@ class ViewDonationDetailsViewController: UIViewController,updateDonationDetailsP
             }
         }
         else if Utility.userType == Utility.DONOR && status == Utility.ACCEPTED {
+            //Firebase Analytics
+            FIRAnalytics.logEvent(withName: "donor_accepts_request", parameters: [
+                "userID": Utility.userID! as String as NSObject,
+                "donationID": donationID as String as NSObject
+                ])
             let notificationMessage = "You request has been approved by " + Utility.restaurantName! + "."
             OneSignal.postNotification(["contents": ["en":notificationMessage],"include_player_ids": donationDict!["requestorSignalIds"] as! [String]], onSuccess: { (successDict) in
                 debugPrint("sucseesDict:",successDict!)
@@ -293,6 +303,11 @@ class ViewDonationDetailsViewController: UIViewController,updateDonationDetailsP
             }
         }
         else if Utility.userType == Utility.DONOR && status == Utility.REJECTED {
+            //Firebase Analytics
+            FIRAnalytics.logEvent(withName: "donor_rejects_request", parameters: [
+                "userID": Utility.userID! as String as NSObject,
+                "donationID": donationID as String as NSObject
+                ])
             let notificationMessage = "You request has been Rejected by " + Utility.restaurantName! + "."
             OneSignal.postNotification(["contents": ["en":notificationMessage],"include_player_ids": donationDict!["requestorSignalIds"] as! [String]], onSuccess: { (successDict) in
                 debugPrint("sucseesDict:",successDict!)
@@ -350,6 +365,7 @@ class ViewDonationDetailsViewController: UIViewController,updateDonationDetailsP
         return dateFromString
     }
     
+    //Set User Interactions for button
     func setUserInteractionForButtons(value:Bool){
         foodDescTextView.isUserInteractionEnabled = value
         splInstTextView.isUserInteractionEnabled = value

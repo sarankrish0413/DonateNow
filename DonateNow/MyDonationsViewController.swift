@@ -111,10 +111,8 @@ class MyDonationsViewController: UIViewController,UITableViewDelegate,UITableVie
         viewDonationViewControllerObj?.donationID = donationID
         let navController = UINavigationController(rootViewController: viewDonationViewControllerObj!) // Creating a navigation controller with VC1 at the root of the navigation stack.
         self.present(navController, animated: true, completion: nil)
-        
-        
-        
     }
+    
     func viewDonationDetailsUnSuccessful(){
         activityIndicator.stopAnimating()
         self.view.isUserInteractionEnabled = true
