@@ -15,7 +15,7 @@ import FirebaseAnalytics
 import FBSDKLoginKit
 import GoogleSignIn
 
-class ViewController: UIViewController,loginWebserviceProtocol,UITextFieldDelegate, GIDSignInUIDelegate {
+class ViewController: UIViewController,loginWebserviceProtocol,UITextFieldDelegate, GIDSignInUIDelegate, forgotPasswordProtocol {
     
     //MARK: Outlets
     @IBOutlet weak var loginButton: UIButton!
