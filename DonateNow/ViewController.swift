@@ -10,19 +10,12 @@ import UIKit
 import Foundation
 import FirebaseAuth
 import OneSignal
-<<<<<<< HEAD
 import SkyFloatingLabelTextField
 import FirebaseAnalytics
 import FBSDKLoginKit
 import GoogleSignIn
 
 class ViewController: UIViewController,loginWebserviceProtocol,UITextFieldDelegate, GIDSignInUIDelegate, forgotPasswordProtocol {
-=======
-import FBSDKLoginKit
-import GoogleSignIn
-
-class ViewController: UIViewController,loginWebserviceProtocol,UITextFieldDelegate, GIDSignInUIDelegate {
->>>>>>> PBranch
     
     //MARK: Outlets
     @IBOutlet weak var loginButton: UIButton!
@@ -42,26 +35,9 @@ class ViewController: UIViewController,loginWebserviceProtocol,UITextFieldDelega
         if sender.selectedSegmentIndex == 0 {
             userTypeSegmentedControl.selectedSegmentIndex = 0
             Utility.selectedUserType = Utility.DONOR
-            //            for testing purpose
-            //            Donor
-<<<<<<< HEAD
-//            userNameTextField.text = "saran@uw.edu"
-//            passwordTextField.text = "sarank"
-=======
-            //userNameTextField.text = "saran@uw.edu"
-            //passwordTextField.text = "sarank"
->>>>>>> PBranch
         } else {
             userTypeSegmentedControl.selectedSegmentIndex = 1
             Utility.selectedUserType = Utility.REQUESTOR
-            //            Requestor
-<<<<<<< HEAD
-//            userNameTextField.text = "vijai@amz.com"
-//            passwordTextField.text = "vijaiamz"
-=======
-            //userNameTextField.text = "vijai@amz.com"
-            //passwordTextField.text = "vijaiamz"
->>>>>>> PBranch
         }
         
     }
@@ -126,7 +102,6 @@ class ViewController: UIViewController,loginWebserviceProtocol,UITextFieldDelega
         userNameTextField.delegate = self
         passwordTextField.delegate = self
         
-<<<<<<< HEAD
         //Draw border for Sign in Button
         loginButton.layer.cornerRadius = 19
         loginButton.layer.borderWidth = 1
@@ -141,9 +116,7 @@ class ViewController: UIViewController,loginWebserviceProtocol,UITextFieldDelega
         googleLoginButton.layer.cornerRadius = 19
         googleLoginButton.layer.borderWidth = 1
         googleLoginButton.layer.borderColor = UIColor.clear.cgColor
-        
-=======
->>>>>>> PBranch
+
         //add google button
         GIDSignIn.sharedInstance().uiDelegate = self
         
@@ -203,14 +176,11 @@ class ViewController: UIViewController,loginWebserviceProtocol,UITextFieldDelega
             
             print(result as Any)
         }
-<<<<<<< HEAD
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.isNavigationBarHidden = true
-=======
->>>>>>> PBranch
     }
     
     //MARK WebserviceProtocol Methods

@@ -21,9 +21,6 @@ pod 'Google/SignIn'
 pod 'FBSDKCoreKit'
 pod 'FBSDKShareKit'
 pod 'FBSDKLoginKit'
-<<<<<<< HEAD
 pod 'Cosmos', '~> 8.0'
 pod 'SkyFloatingLabelTextField', '~>2.0.0'
-=======
->>>>>>> PBranch
 end
