@@ -30,6 +30,13 @@ protocol logoutServiceProtocol {
     
 }
 
+//forgotPassword service Protocol
+protocol forgotPasswordProtocol {
+    func forgotPasswordSuccessful()
+    func forgotPasswordUnSuccessful(error:Error)
+}
+
+
 //New Donations service Protocol
 protocol newDonationProtocol{
     func newDonationSuccessful()
@@ -97,6 +104,7 @@ class Webservice {
     var viewAcceptedDonationsDelegate:viewAcceptedDonationsProtocol?
     var PendingApprovalDonationsDelegate:viewPendingApprovalDonationsProtocol?
     var viewRejectedDonationsDelegate:viewRejectedDonationsProtocol?
+    var forgotPasswordDelegate: forgotPasswordProtocol?
     
     //MARK:Login related Service
     //Invoke firebase login service
@@ -155,6 +163,18 @@ class Webservice {
             self.logoutDelegate?.logoutUnSuccessful(error: signOutError)
         }
        
+    }
+    
+    //Invoke forgot password service
+    func forgotPassword(emailID: String){
+        FIRAuth.auth()?.sendPasswordReset(withEmail: emailID) { error in
+            if error == nil {
+                self.forgotPasswordDelegate?.forgotPasswordSuccessful()
+            }
+            else {
+                self.forgotPasswordDelegate?.forgotPasswordUnSuccessful(error: error!)
+            }
+        }
     }
     
     //Invoke firebase create user service

@@ -11,8 +11,12 @@ import FirebaseDatabase
 
 struct User {
     let key: String
+<<<<<<< HEAD
+    var username: String?
+=======
     var firstName: String
     var lastName: String
+>>>>>>> d0f5f723a7d78f90ca2c13f0ce2628f0cccfa4c6
     var email: String
     var userType: String
     var restaurantName: String
@@ -56,8 +60,14 @@ struct User {
         //TODO: Use if let
         
         let snapshotValue = snapshot.value as! [String: AnyObject]
+<<<<<<< HEAD
+        if let uname = snapshotValue["username"] as? String {
+        username = uname
+        }
+=======
         firstName = snapshotValue["firstName"] as! String
         lastName = snapshotValue["lastName"] as! String
+>>>>>>> d0f5f723a7d78f90ca2c13f0ce2628f0cccfa4c6
         email = snapshotValue["email"] as! String
         userType = snapshotValue["userType"] as! String
         restaurantName = snapshotValue["restaurantName"] as! String
@@ -75,7 +85,6 @@ struct User {
         if let signalIds = snapshotValue["signalIds"] as? [String] {
             oneSignalIds.append(contentsOf: signalIds)
         }
-
     }
     
     func toAnyObject() -> Any {

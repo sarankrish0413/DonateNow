@@ -11,8 +11,9 @@ import Foundation
 import FirebaseAuth
 import OneSignal
 import SkyFloatingLabelTextField
+import FirebaseAnalytics
 
-class ViewController: UIViewController,loginWebserviceProtocol,UITextFieldDelegate {
+class ViewController: UIViewController,loginWebserviceProtocol,UITextFieldDelegate,forgotPasswordProtocol {
     
     //MARK: Outlets
     @IBOutlet weak var loginButton: UIButton!
@@ -23,7 +24,6 @@ class ViewController: UIViewController,loginWebserviceProtocol,UITextFieldDelega
     @IBOutlet weak var userNameTextField: SkyFloatingLabelTextField!
     @IBOutlet weak var passwordTextField: SkyFloatingLabelTextField!
     @IBOutlet weak var signupButton: UIButton!
-    
     var activityIndicator:UIActivityIndicatorView!
     
     
@@ -33,9 +33,16 @@ class ViewController: UIViewController,loginWebserviceProtocol,UITextFieldDelega
         if sender.selectedSegmentIndex == 0 {
             userTypeSegmentedControl.selectedSegmentIndex = 0
             Utility.selectedUserType = Utility.DONOR
+            //            for testing purpose
+            //            Donor
+//            userNameTextField.text = "saran@uw.edu"
+//            passwordTextField.text = "sarank"
         } else {
             userTypeSegmentedControl.selectedSegmentIndex = 1
             Utility.selectedUserType = Utility.REQUESTOR
+            //            Requestor
+//            userNameTextField.text = "vijai@amz.com"
+//            passwordTextField.text = "vijaiamz"
         }
         
     }
@@ -44,32 +51,44 @@ class ViewController: UIViewController,loginWebserviceProtocol,UITextFieldDelega
     @IBAction func signUpAction(_ sender: UIButton) {
         if(userTypeSegmentedControl.selectedSegmentIndex == 0){
             //Donor
-            let donorSignUpViewControllerObj = self.storyboard?.instantiateViewController(withIdentifier: "SignupDonorViewController") as? SignupDonorViewController
-            //self.navigationController?.pushViewController(donorSignUpViewControllerObj!, animated: true)
-            self.navigationController?.present(donorSignUpViewControllerObj!, animated: true, completion: nil)
-
-            
+            if let donorSignUpViewControllerObj = self.storyboard?.instantiateViewController(withIdentifier: "SignupDonorViewController") as? SignupDonorViewController {
+                self.navigationController?.present(donorSignUpViewControllerObj, animated: true, completion: nil)
+            }
         }
         else if(userTypeSegmentedControl.selectedSegmentIndex == 1){
             //Requestor
-            let requestorSignUpViewControllerObj = self.storyboard?.instantiateViewController(withIdentifier: "SignupRequestorViewController") as? SignupRequestorViewController
-            //self.navigationController?.pushViewController(requestorSignUpViewControllerObj!, animated: true)
-            self.navigationController?.present(requestorSignUpViewControllerObj!, animated: true, completion: nil)
-
+            if let requestorSignUpViewControllerObj = self.storyboard?.instantiateViewController(withIdentifier: "SignupRequestorViewController") as? SignupRequestorViewController {
+                self.navigationController?.present(requestorSignUpViewControllerObj, animated: true, completion: nil)
+            }
         }
     }
     //Login Button action
     @IBAction func loginAction(_ sender: UIButton) {
         activityIndicator.startAnimating()
+        self.view.isUserInteractionEnabled = false
         let webSerV: Webservice = Webservice()
         webSerV.loginDelegate = self
         webSerV.loginService(username: self.userNameTextField.text!,password: self.passwordTextField.text!)
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.navigationController?.isNavigationBarHidden = true
+    //Forgot password Action
+    @IBAction func forgotPasswordAction(_ sender: Any) {
+        activityIndicator.startAnimating()
+        self.view.isUserInteractionEnabled = false
+        let webSerV: Webservice = Webservice()
+        webSerV.forgotPasswordDelegate = self
+        if userNameTextField.text == "" {
+            let alertController = UIAlertController(title: "Error", message: "Please enter your emailID", preferredStyle: .alert)
+            let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+            alertController.addAction(defaultAction)
+            present(alertController, animated: true, completion: nil)
+        }
+        else {
+            webSerV.forgotPassword(emailID: self.userNameTextField.text!)
+        }
     }
+    
+   
     
     //MARK: View Controller Life cycle Methods
     override func viewDidLoad() {
@@ -84,15 +103,12 @@ class ViewController: UIViewController,loginWebserviceProtocol,UITextFieldDelega
         activityIndicator.activityIndicatorViewStyle  = UIActivityIndicatorViewStyle.gray;
         activityIndicator.center = view.center;
         self.view.addSubview(activityIndicator)
-//        //Show hide Keyboard
-//        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-//        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
-//        //set delegates for text field
+        //set delegates for text field
         userNameTextField.delegate = self
         passwordTextField.delegate = self
         
         //Draw border for Sign in Button
-        loginButton.layer.cornerRadius = 19 //  0.08 * loginButton.bounds.size.width
+        loginButton.layer.cornerRadius = 19
         loginButton.layer.borderWidth = 1
         loginButton.layer.borderColor = UIColor.clear.cgColor
         
@@ -107,10 +123,20 @@ class ViewController: UIViewController,loginWebserviceProtocol,UITextFieldDelega
         googleLoginButton.layer.borderColor = UIColor.clear.cgColor
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.isNavigationBarHidden = true
+    }
+    
     //MARK WebserviceProtocol Methods
     //Login success push the view controller to Donor home page or Requstor home page based on user type
     func loginSuccessful() {
+        //Firebase Analytics
+        FIRAnalytics.logEvent(withName: "login", parameters: [
+            "userID": Utility.userID! as String as NSObject,
+            ])
         activityIndicator.stopAnimating()
+        self.view.isUserInteractionEnabled = true
         userNameTextField.text = ""
         passwordTextField.text = ""
         OneSignal.idsAvailable({ (userId, token) in
@@ -145,6 +171,7 @@ class ViewController: UIViewController,loginWebserviceProtocol,UITextFieldDelega
     //Login unsuccess Show alert to the user
     func loginUnSuccessful(error:Error) {
         activityIndicator.stopAnimating()
+        self.view.isUserInteractionEnabled = true
         userNameTextField.text = ""
         passwordTextField.text = ""
         let alertController = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
@@ -152,6 +179,31 @@ class ViewController: UIViewController,loginWebserviceProtocol,UITextFieldDelega
         alertController.addAction(defaultAction)
         self.present(alertController, animated: true, completion: nil)
         
+    }
+    
+    //MARK:ForgotPassword Protocol methods
+    func forgotPasswordSuccessful() {
+        
+        //Firebase Analytics
+        FIRAnalytics.logEvent(withName: "forgot_password", parameters: [
+            "userID": Utility.userID! as String as NSObject,
+            ])
+        activityIndicator.stopAnimating()
+        self.view.isUserInteractionEnabled = true
+        let alertController = UIAlertController(title: "Error", message: "Please check your emailID to change your password", preferredStyle: .alert)
+        let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+        alertController.addAction(defaultAction)
+        present(alertController, animated: true, completion: nil)
+    }
+    
+    
+    func forgotPasswordUnSuccessful(error:Error) {
+        activityIndicator.stopAnimating()
+        self.view.isUserInteractionEnabled = true
+        let alertController = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
+        let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+        alertController.addAction(defaultAction)
+        present(alertController, animated: true, completion: nil)
     }
     
     //MARK Keyboard show/hide Methods

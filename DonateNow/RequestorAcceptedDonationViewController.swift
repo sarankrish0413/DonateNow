@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import FirebaseDatabase
+import FirebaseAnalytics
 
 class RequestorAcceptedDonationsViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,viewAcceptedDonationsProtocol,viewDonationDetailsProtocol,viewPendingApprovalDonationsProtocol,viewRejectedDonationsProtocol{
     
@@ -22,6 +23,12 @@ class RequestorAcceptedDonationsViewController: UIViewController,UITableViewDele
     //MARK: View Controller Life cycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //Firebase Analytics
+        FIRAnalytics.logEvent(withName: "requestor_my_requests", parameters: [
+            "userID": Utility.userID! as String as NSObject,
+            ])
+        
         //show activity inidcator view
         activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.gray)
         activityIndicator.hidesWhenStopped = true;
@@ -29,6 +36,8 @@ class RequestorAcceptedDonationsViewController: UIViewController,UITableViewDele
         activityIndicator.center = view.center;
         self.view.addSubview(activityIndicator)
         activityIndicator.startAnimating()
+        self.view.isUserInteractionEnabled = false
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -36,7 +45,6 @@ class RequestorAcceptedDonationsViewController: UIViewController,UITableViewDele
         webSerV.PendingApprovalDonationsDelegate = self
         webSerV.viewRejectedDonationsDelegate = self
         webSerV.ViewPendingApprovalDonations()
-        self.acceptedDonationsTableView.reloadData()
     }
     
     //MARK:Table view DataSource and Delegate Methods
@@ -89,32 +97,25 @@ class RequestorAcceptedDonationsViewController: UIViewController,UITableViewDele
     //MARK: view available donations protocol methods
     func viewRejectedDonationSuccessful(items: [Donation]) {
         activityIndicator.stopAnimating()
+        self.view.isUserInteractionEnabled = true
         self.totalItems.append(contentsOf: items)
         self.acceptedDonationsTableView.reloadData()
-        showAlert()
     }
     
     //MARK: view available donations protocol methods
     func viewAcceptedDonationSuccessful(items: [Donation]) {
         activityIndicator.stopAnimating()
+        self.view.isUserInteractionEnabled = true
         self.totalItems.append(contentsOf: items)
         webSerV.ViewRejectedDonations()
     }
     
-    //Show alert of there are no accpeted as well as no pending items
-    func showAlert(){
-        if totalItems.count == 0 {
-//                let alertController = UIAlertController(title: "Message", message:"No Donations available", preferredStyle: .alert)
-//                let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-//                alertController.addAction(defaultAction)
-//                self.present(alertController, animated: true, completion: nil)
-        }
-
-    }
+ 
     
     //MARK: view Pending approval donations protocol methods
     func viewPendingApprovalDonationSuccessful(items: [Donation]) {
         activityIndicator.stopAnimating()
+        self.view.isUserInteractionEnabled = true
         self.totalItems = items
         webSerV.ViewAcceptedDonations()
     }
@@ -132,6 +133,7 @@ class RequestorAcceptedDonationsViewController: UIViewController,UITableViewDele
     func viewDonationDetailsUnSuccessful(){
         
         activityIndicator.stopAnimating()
+        self.view.isUserInteractionEnabled = true
         let alertController = UIAlertController(title: "Message", message:"Could not fetch the Details. Please try again sometime", preferredStyle: .alert)
         let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
         alertController.addAction(defaultAction)
