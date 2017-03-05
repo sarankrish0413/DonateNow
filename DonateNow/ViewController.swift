@@ -33,9 +33,16 @@ class ViewController: UIViewController,loginWebserviceProtocol,UITextFieldDelega
         if sender.selectedSegmentIndex == 0 {
             userTypeSegmentedControl.selectedSegmentIndex = 0
             Utility.selectedUserType = Utility.DONOR
+            //            for testing purpose
+            //            Donor
+//            userNameTextField.text = "saran@uw.edu"
+//            passwordTextField.text = "sarank"
         } else {
             userTypeSegmentedControl.selectedSegmentIndex = 1
             Utility.selectedUserType = Utility.REQUESTOR
+            //            Requestor
+//            userNameTextField.text = "vijai@amz.com"
+//            passwordTextField.text = "vijaiamz"
         }
         
     }
