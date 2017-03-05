@@ -589,6 +589,7 @@
 					"$(PROJECT_DIR)/Firebase/Messaging",
 					"$(PROJECT_DIR)/Firebase/RemoteConfig",
 					"$(PROJECT_DIR)/Firebase/Storage",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = DonateNow/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -619,6 +620,7 @@
 					"$(PROJECT_DIR)/Firebase/Messaging",
 					"$(PROJECT_DIR)/Firebase/RemoteConfig",
 					"$(PROJECT_DIR)/Firebase/Storage",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = DonateNow/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
