@@ -53,6 +53,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</string>
 		</dict>
 		<dict>
 			<key>FooterText</key>
+<<<<<<< HEAD
 			<string>The MIT License
 
 Copyright (c) 2015 Marketplacer
@@ -83,6 +84,8 @@ THE SOFTWARE.</string>
 		</dict>
 		<dict>
 			<key>FooterText</key>
+=======
+>>>>>>> PBranch
 			<string>Copyright (c) 2014-present, Facebook, Inc. All rights reserved.
 
 You are hereby granted a non-exclusive, worldwide, royalty-free license to use,
@@ -164,7 +167,11 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 		</dict>
 		<dict>
 			<key>FooterText</key>
+<<<<<<< HEAD
 			<string>Copyright 2017 Google</string>
+=======
+			<string>Copyright 2016 Google</string>
+>>>>>>> PBranch
 			<key>License</key>
 			<string>Copyright</string>
 			<key>Title</key>
