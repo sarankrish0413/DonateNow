@@ -104,7 +104,6 @@ protocol addReviewsProtocol {
 }
 
 
-
 class Webservice {
     //TODO: Change delegates to closures
     var loginDelegate:loginWebserviceProtocol?
