@@ -10,8 +10,6 @@ import UIKit
 import FirebaseAuth
 import Firebase
 import OneSignal
-import FBSDKLoginKit
-import GoogleSignIn
 
 struct OneSignalUserData {
     var userId: String? = nil
@@ -22,7 +20,7 @@ let oneSignalAppID = "6a5c72cc-2f17-49ec-a1e0-067be225b902"
 var oneSignalUserData = OneSignalUserData()
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
@@ -31,12 +29,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         // Override point for customization after application launch.
         //configure Firebase
         FIRApp.configure()
-        
-        GIDSignIn.sharedInstance().clientID = FIRApp.defaultApp()?.options.clientID
-        GIDSignIn.sharedInstance().delegate = self
-        
-        FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
-        
         OneSignal.initWithLaunchOptions(launchOptions, appId: oneSignalAppID, handleNotificationReceived: { (notification) in
              debugPrint("Received Notification - \(notification?.payload.notificationID)")
         }, handleNotificationAction: { (result) in
@@ -56,41 +48,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
         UINavigationBar.appearance().barTintColor = UIColor(red: 209/255, green: 73/255, blue: 59/255, alpha: 1.0)
         UITabBar.appearance().tintColor = UIColor.white
         return true
-    }
-
-    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
-        
-        let handled = FBSDKApplicationDelegate.sharedInstance().application(app, open: url, sourceApplication: options[UIApplicationOpenURLOptionsKey.sourceApplication] as! String!, annotation: options[UIApplicationOpenURLOptionsKey.annotation])
-        
-        
-        GIDSignIn.sharedInstance().handle(url, sourceApplication: options[UIApplicationOpenURLOptionsKey.sourceApplication] as! String!, annotation: options[UIApplicationOpenURLOptionsKey.annotation])
-        
-        
-        return handled
-    }
-    
-    //called when the google button is clicked.
-    //IMPORTANT
-    //Enable Google Auth on FIREBASE panel
-    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
-        if let err = error {
-            print("Failed to complete google log in :(", err)
-            return
-        }
-        print("Successfully logged into Google", user)
-        
-        //to dump it in our firebase
-        guard let idToken = user.authentication.idToken else { return }
-        guard let accessToken = user.authentication.accessToken else { return }
-        let credentials = FIRGoogleAuthProvider.credential(withIDToken: idToken, accessToken: accessToken)
-        FIRAuth.auth()?.signIn(with: credentials, completion: { (user, error) in
-            if let err = error {
-                print("Failed to create a Firebase user with google!! :( ", err)
-                return
-            }
-            guard let uid = user?.uid else { return }
-            print("Successfully logged into Firebase with Google", uid)
-        })
     }
     
     func applicationWillResignActive(_ application: UIApplication) {

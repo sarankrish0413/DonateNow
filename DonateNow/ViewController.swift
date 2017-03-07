@@ -12,17 +12,14 @@ import FirebaseAuth
 import OneSignal
 import SkyFloatingLabelTextField
 import FirebaseAnalytics
-import FBSDKLoginKit
-import GoogleSignIn
 
-class ViewController: UIViewController,loginWebserviceProtocol,UITextFieldDelegate, GIDSignInUIDelegate, forgotPasswordProtocol {
+
+class ViewController: UIViewController,loginWebserviceProtocol,UITextFieldDelegate, forgotPasswordProtocol {
     
     //MARK: Outlets
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var userTypeSegmentedControl: UISegmentedControl!
-    @IBOutlet weak var facebookLoginButton: UIButton!
     @IBOutlet weak var forgotPasswordButton: UIButton!
-    @IBOutlet weak var googleLoginButton: UIButton!
     @IBOutlet weak var userNameTextField: SkyFloatingLabelTextField!
     @IBOutlet weak var passwordTextField: SkyFloatingLabelTextField!
     @IBOutlet weak var signupButton: UIButton!
@@ -106,75 +103,18 @@ class ViewController: UIViewController,loginWebserviceProtocol,UITextFieldDelega
         loginButton.layer.cornerRadius = 19
         loginButton.layer.borderWidth = 1
         loginButton.layer.borderColor = UIColor.clear.cgColor
-        
-        //Draw border for facebook Button
-        facebookLoginButton.layer.cornerRadius = 19
-        facebookLoginButton.layer.borderWidth = 1
-        facebookLoginButton.layer.borderColor = UIColor.clear.cgColor
-        
-        //Draw border for Google Button
-        googleLoginButton.layer.cornerRadius = 19
-        googleLoginButton.layer.borderWidth = 1
-        googleLoginButton.layer.borderColor = UIColor.clear.cgColor
 
-        //add google button
-        GIDSignIn.sharedInstance().uiDelegate = self
-        
-        facebookLoginButton.addTarget(self, action: #selector(handleCustomFBLogin), for: .touchUpInside)
-        googleLoginButton.addTarget(self, action: #selector(handleCustomGoogleLogin), for: .touchUpInside)
-        
+       
     }
     
-    
-    func handleCustomGoogleLogin() {
-        GIDSignIn.sharedInstance().signIn()
-        activityIndicator.startAnimating()
-        //ToDo User Table updation
-        //loginSuccessful()
-    }
-    
-    func handleCustomFBLogin() {
-        print("calling login from our custom fb button")
-        FBSDKLoginManager().logIn(withReadPermissions: ["email", "public_profile"], from: self)
-        { (result, err) in
-            if err != nil{
-                print("Custom FB Login failed", err!)
-                return
-            }
-            
-            //            print(result?.token.tokenString as Any)
-            self.showEmailAddress()
-        }
-        //ToDo User Table Updation
-        //loginSuccessful()
-    }
-    
-    func showEmailAddress(){
-        //SETTING UP FIREBASE WITH FACEBOOK
-        let accessToken = FBSDKAccessToken.current()
-        guard let accessTokenString = accessToken?.tokenString else
-        { return }
-        let credentials = FIRFacebookAuthProvider.credential(withAccessToken: accessTokenString)
-        FIRAuth.auth()?.signIn(with: credentials, completion: { (user, error) in
-            if error != nil {
-                print("Something went wrong with our fb user: ", error ?? "")
-                return
-            }
-            print("Sucessfully logged in with our fb user", user ?? "")
-        })
-        FBSDKGraphRequest(graphPath: "/me", parameters: ["fields": "id, name, email"]).start { (connection, result, err) in
-            if err != nil {
-                print("Failed to start graph request T_T", err ?? "")
-                return
-            }
-            print(result as Any)
-        }
-    }
+ 
+ 
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.isNavigationBarHidden = true
     }
+    
     
     //MARK WebserviceProtocol Methods
     //Login success push the view controller to Donor home page or Requstor home page based on user type

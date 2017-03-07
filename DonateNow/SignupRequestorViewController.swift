@@ -90,6 +90,37 @@ class SignupRequestorViewController: UIViewController,signupWebserviceProtocol,U
         orgNameTextField.delegate = self
         pincodeTextField.delegate = self
         orgIdTextField.delegate = self
+        
+        
+        //--- add UIToolBar on keyboard and Done button on UIToolBar ---//
+        self.addDoneButtonOnKeyboard()
+    }
+    
+    
+    //MARK: Adding Done button to key board
+    func addDoneButtonOnKeyboard()
+    {
+        let doneToolbar: UIToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 320, height: 50))
+        doneToolbar.barStyle = UIBarStyle.blackTranslucent
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
+        let done: UIBarButtonItem = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.done, target: self, action: #selector(SignupDonorViewController.doneButtonAction))
+        var items = [UIBarButtonItem]()
+        items.append(flexSpace)
+        items.append(done)
+        
+        doneToolbar.items = items
+        doneToolbar.sizeToFit()
+        
+        contactTextField.inputAccessoryView = doneToolbar
+        pincodeTextField.inputAccessoryView = doneToolbar
+        
+        
+    }
+    
+    func doneButtonAction()
+    {
+        contactTextField.resignFirstResponder()
+        pincodeTextField.resignFirstResponder()
     }
     
     

@@ -30,14 +30,15 @@ class SignupDonorViewController: UIViewController,signupWebserviceProtocol,UITex
     @IBOutlet weak var contactTextField: SkyFloatingLabelTextField!
     @IBOutlet weak var websiteTextField: SkyFloatingLabelTextField!
     @IBOutlet weak var registerButton: UIButton!
-    
     @IBOutlet weak var closeButton: UIButton!
+    
     //MARK: Outlets Action
     @IBAction func closeButtonAction(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
     //Add Button, capture all the details from form and add it to User array
     @IBAction private dynamic func donorRegisterAction(_ sender: UIButton) {
+        
         if emailTextField.text == "" || passwordTextField.text == "" {
             let alertController = UIAlertController(title: "Error", message: "Please enter your email and password", preferredStyle: .alert)
             
@@ -97,8 +98,37 @@ class SignupDonorViewController: UIViewController,signupWebserviceProtocol,UITex
         pincodeTextField.delegate = self
         websiteTextField.delegate = self
         
+        
+        //--- add UIToolBar on keyboard and Done button on UIToolBar ---//
+        self.addDoneButtonOnKeyboard()
+        
     }
     
+    //MARK: Adding Done button to key board
+    func addDoneButtonOnKeyboard()
+    {
+        let doneToolbar: UIToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 320, height: 50))
+        doneToolbar.barStyle = UIBarStyle.blackTranslucent
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
+        let done: UIBarButtonItem = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.done, target: self, action: #selector(SignupDonorViewController.doneButtonAction))
+        var items = [UIBarButtonItem]()
+        items.append(flexSpace)
+        items.append(done)
+        
+        doneToolbar.items = items
+        doneToolbar.sizeToFit()
+        
+        contactTextField.inputAccessoryView = doneToolbar
+        pincodeTextField.inputAccessoryView = doneToolbar
+
+        
+    }
+    
+    func doneButtonAction()
+    {
+        contactTextField.resignFirstResponder()
+        pincodeTextField.resignFirstResponder()
+    }
     
     //MARK SignupWebserviceProtocol Methods
     //Signup success push the view controller to Donor Login page

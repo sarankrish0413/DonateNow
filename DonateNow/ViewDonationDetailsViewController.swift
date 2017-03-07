@@ -15,7 +15,6 @@ import FirebaseAnalytics
 class ViewDonationDetailsViewController: UIViewController,updateDonationDetailsProtocol,updateDonationStatusProtocol,UITextFieldDelegate,UITextViewDelegate{
     
     
-    
     var donationDetails: Dictionary<String, Any>!
     var donationID: String!
     var donationDict: Dictionary<String, Any>!
@@ -128,6 +127,9 @@ class ViewDonationDetailsViewController: UIViewController,updateDonationDetailsP
         address2TextField.delegate = self
         address1TextField.delegate = self
         splInstTextView.delegate = self
+        
+        //--- add UIToolBar on keyboard and Done button on UIToolBar ---//
+        self.addDoneButtonOnKeyboard()
     }
     
     
@@ -152,6 +154,33 @@ class ViewDonationDetailsViewController: UIViewController,updateDonationDetailsP
         toDateTextField.text = donationDict?["pickUpToDate"] as? String
         fromDateTextField.text = donationDict?["pickUpFromDate"] as? String
         donationTitleTextField.text = donationDict?["donationTitle"] as? String
+    }
+    
+    
+    //MARK: Adding Done button to key board
+    func addDoneButtonOnKeyboard()
+    {
+        let doneToolbar: UIToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 320, height: 50))
+        doneToolbar.barStyle = UIBarStyle.blackTranslucent
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
+        let done: UIBarButtonItem = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.done, target: self, action: #selector(SignupDonorViewController.doneButtonAction))
+        var items = [UIBarButtonItem]()
+        items.append(flexSpace)
+        items.append(done)
+        
+        doneToolbar.items = items
+        doneToolbar.sizeToFit()
+        
+        contactTextField.inputAccessoryView = doneToolbar
+        zipcodeTextField.inputAccessoryView = doneToolbar
+        
+        
+    }
+    
+    func doneButtonAction()
+    {
+        contactTextField.resignFirstResponder()
+        zipcodeTextField.resignFirstResponder()
     }
     
     

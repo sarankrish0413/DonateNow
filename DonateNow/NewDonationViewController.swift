@@ -77,13 +77,16 @@ class NewDonationViewController: UIViewController,newDonationProtocol,UITextFiel
         address2TextField.delegate = self
         address1TextField.delegate = self
         splInstTextView.delegate = self
+        
+        //--- add UIToolBar on keyboard and Done button on UIToolBar ---//
+        self.addDoneButtonOnKeyboard()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         //Clear all the values
         donationTitleTextField.text = ""
-        foodDescTextView.text = "Please Enter Donation description"
+        foodDescTextView.text = ""
         qtyTextField.text = ""
         contactTextField.text = Utility.contact
         zipcodeTextField.text = Utility.zipCode
@@ -91,7 +94,7 @@ class NewDonationViewController: UIViewController,newDonationProtocol,UITextFiel
         cityTextField.text = Utility.city
         address2TextField.text = Utility.address2
         address1TextField.text = Utility.address1
-        splInstTextView.text = "Please provide special instructions"
+        splInstTextView.text = ""
         fromDateTextField.text = ""
         toDateTextField.text = ""
 
@@ -101,6 +104,33 @@ class NewDonationViewController: UIViewController,newDonationProtocol,UITextFiel
         super.viewDidLayoutSubviews()
         foodDescTextView.setContentOffset(CGPoint.zero, animated: false)
         splInstTextView.setContentOffset(CGPoint.zero, animated: false)
+    }
+    
+    
+    //MARK: Adding Done button to key board
+    func addDoneButtonOnKeyboard()
+    {
+        let doneToolbar: UIToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 320, height: 50))
+        doneToolbar.barStyle = UIBarStyle.blackTranslucent
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
+        let done: UIBarButtonItem = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.done, target: self, action: #selector(SignupDonorViewController.doneButtonAction))
+        var items = [UIBarButtonItem]()
+        items.append(flexSpace)
+        items.append(done)
+        
+        doneToolbar.items = items
+        doneToolbar.sizeToFit()
+        
+        contactTextField.inputAccessoryView = doneToolbar
+        zipcodeTextField.inputAccessoryView = doneToolbar
+        
+        
+    }
+    
+    func doneButtonAction()
+    {
+        contactTextField.resignFirstResponder()
+        zipcodeTextField.resignFirstResponder()
     }
    
     //MARK: Outlets Action

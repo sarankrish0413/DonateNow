@@ -104,6 +104,7 @@ protocol addReviewsProtocol {
 }
 
 
+
 class Webservice {
     //TODO: Change delegates to closures
     var loginDelegate:loginWebserviceProtocol?
@@ -483,7 +484,8 @@ class Webservice {
             }
         }
     }
-
+    
+    
     
     //MARK:Helper methods
     //Inovoke firebase User service to get Usertype
