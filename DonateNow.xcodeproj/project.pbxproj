@@ -27,6 +27,7 @@
 		AE1BE3151E3AF67100F08C31 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AE1BE3131E3AF67100F08C31 /* LaunchScreen.storyboard */; };
 		AE5DB73C1E403A5200B62A35 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AE5DB73B1E403A5200B62A35 /* GoogleService-Info.plist */; };
 		AE799C101E46B01D00F67432 /* logo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AE799C0F1E46B01D00F67432 /* logo.jpg */; };
+		AEC39C771E6BB13700FB0FEA /* ReviewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC39C761E6BB13700FB0FEA /* ReviewsTableViewCell.swift */; };
 		AEC8BC241E52226400ADC130 /* Webservices.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC8BC231E52226400ADC130 /* Webservices.swift */; };
 		AEC8BC261E5587E300ADC130 /* RequestorAvailableDonationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC8BC251E5587E300ADC130 /* RequestorAvailableDonationsViewController.swift */; };
 		AECD22981E46BC0D002FB1E0 /* MyDonationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AECD22971E46BC0D002FB1E0 /* MyDonationTableViewCell.swift */; };
@@ -62,6 +63,7 @@
 		AE55DFB01E3AFFBF00231A04 /* DonateNow.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DonateNow.entitlements; sourceTree = "<group>"; };
 		AE5DB73B1E403A5200B62A35 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		AE799C0F1E46B01D00F67432 /* logo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = logo.jpg; sourceTree = "<group>"; };
+		AEC39C761E6BB13700FB0FEA /* ReviewsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewsTableViewCell.swift; sourceTree = "<group>"; };
 		AEC8BC231E52226400ADC130 /* Webservices.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Webservices.swift; sourceTree = "<group>"; };
 		AEC8BC251E5587E300ADC130 /* RequestorAvailableDonationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestorAvailableDonationsViewController.swift; sourceTree = "<group>"; };
 		AECD22971E46BC0D002FB1E0 /* MyDonationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDonationTableViewCell.swift; sourceTree = "<group>"; };
@@ -90,6 +92,7 @@
 				5D092A6E1E5D249400203541 /* RequestorViewReviewsController.swift */,
 				5D092A701E5D24DA00203541 /* RequestorWriteReviewsController.swift */,
 				5D092A721E5D25DE00203541 /* DonorViewReviewsController.swift */,
+				AEC39C761E6BB13700FB0FEA /* ReviewsTableViewCell.swift */,
 			);
 			name = Reviews;
 			sourceTree = "<group>";
@@ -432,6 +435,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AE081FD31E47EFFF000A4F9B /* Utility.swift in Sources */,
+				AEC39C771E6BB13700FB0FEA /* ReviewsTableViewCell.swift in Sources */,
 				AEC8BC261E5587E300ADC130 /* RequestorAvailableDonationsViewController.swift in Sources */,
 				AE081FD01E47AE20000A4F9B /* RequestorAcceptedDonationsTableViewCell.swift in Sources */,
 				AE1BE30D1E3AF67100F08C31 /* ViewController.swift in Sources */,
