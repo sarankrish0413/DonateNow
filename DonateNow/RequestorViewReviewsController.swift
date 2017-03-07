@@ -44,16 +44,21 @@ class RequestorViewReviewsController : UIViewController, UIPickerViewDataSource,
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return restaurants.count
     }
-    
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return restaurants[row].restaurantName
-    }
-    
+        
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         // get Restuarant reviews
         let webSerV: Webservice = Webservice()
         webSerV.viewRequestorReviewDelegate = self
         webSerV.getRestaurantReviews(restaurantID: restaurants[row].userID)
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+        let pickerLabel = UILabel()
+        pickerLabel.textColor = UIColor.black
+        pickerLabel.text = restaurants[row].restaurantName
+        pickerLabel.font = UIFont(name: "Futura", size: 16) // In this use your custom font
+        pickerLabel.textAlignment = NSTextAlignment.center
+        return pickerLabel
     }
     
     @IBAction func writeReviewAction(_ sender: UIButton) {
