@@ -48,6 +48,7 @@ class NewDonationViewController: UIViewController,newDonationProtocol,UITextFiel
         foodDescTextView.layer.borderWidth = 1.0
         foodDescTextView.layer.cornerRadius = 5.0
         foodDescTextView.layer.borderColor = UIColor.lightGray.cgColor
+
         
         //Draw border for Special instruction textview
         splInstTextView.layer.borderWidth = 1.0
@@ -138,17 +139,20 @@ class NewDonationViewController: UIViewController,newDonationProtocol,UITextFiel
     //MARK: Outlets Action
     //Add Button, capture all the details from form and add it to Donations array
     @IBAction func addButtonAction(_ sender: UIButton) {
-        if convertStringToDate(dateString: fromDateTextField.text!) >= convertStringToDate(dateString: toDateTextField.text!) {
+        
+        let dateStart = convertStringToDate(dateString: fromDateTextField.text!)
+        let dateEnd = convertStringToDate(dateString: toDateTextField.text!)
+        if dateStart.compare(dateEnd) == .orderedDescending || dateStart.compare(dateEnd) == .orderedSame {
             let alertController = UIAlertController(title: "Error", message: "To Date should be greater than From Date!!!", preferredStyle: .alert)
             let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
             alertController.addAction(defaultAction)
             present(alertController, animated: true, completion: nil)
         }
-        else {
-        uuid = UUID().uuidString
-        let webSerV: Webservice = Webservice()
-        webSerV.newDonationDelegate = self
-        webSerV.addDonationDetailsToFireBaseDatabase(foodDesc: foodDescTextView.text, quantity: qtyTextField.text!, contact: contactTextField.text!, address1: address1TextField.text!, address2: address2TextField.text!, city: cityTextField.text!, state: stateTextField.text!, zipcode: zipcodeTextField.text!, splInstructions: splInstTextView.text!, createdUserID: Utility.userID!, createdDate: getCurrentDateAndTime(), pickUpFromDate: fromDateTextField.text!, pickUpToDate: toDateTextField.text!, donationID: uuid , donationStatus: Utility.NEW,donationTitle:donationTitleTextField.text!,restaurantName: Utility.restaurantName!,requestorUserID:"'")
+        else if dateStart.compare(dateEnd) == .orderedAscending {
+            uuid = UUID().uuidString
+            let webSerV: Webservice = Webservice()
+            webSerV.newDonationDelegate = self
+            webSerV.addDonationDetailsToFireBaseDatabase(foodDesc: foodDescTextView.text, quantity: qtyTextField.text!, contact: contactTextField.text!, address1: address1TextField.text!, address2: address2TextField.text!, city: cityTextField.text!, state: stateTextField.text!, zipcode: zipcodeTextField.text!, splInstructions: splInstTextView.text!, createdUserID: Utility.userID!, createdDate: getCurrentDateAndTime(), pickUpFromDate: fromDateTextField.text!, pickUpToDate: toDateTextField.text!, donationID: uuid , donationStatus: Utility.NEW,donationTitle:donationTitleTextField.text!,restaurantName: Utility.restaurantName!,requestorUserID:"'")
         }
     }
     
@@ -229,15 +233,12 @@ class NewDonationViewController: UIViewController,newDonationProtocol,UITextFiel
     
     //Set the Date format for Datepicker
     func datePickerValuechanged(sender:UIDatePicker) -> String{
-        //date format for DB
-        //        let dateFormatter = DateFormatter()
-        //        dateFormatter.dateFormat = "yyyy-MM-dd hh:mm:ss Z"
-        
         //Date Format for UI
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MM-dd-yyyy hh:mm"
+        dateFormatter.dateFormat = "MM-dd-yyyy hh:mm a"
+        dateFormatter.amSymbol = "AM"
+        dateFormatter.pmSymbol = "PM"
         dateFormatter.timeZone = NSTimeZone(forSecondsFromGMT: NSTimeZone.local.secondsFromGMT()) as TimeZone!
-        //dateFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX") as Locale!
         let dateFromString = dateFormatter.string(from: sender.date )
         return dateFromString
     }
@@ -245,7 +246,9 @@ class NewDonationViewController: UIViewController,newDonationProtocol,UITextFiel
     
     func getCurrentDateAndTime() -> String{
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MM-dd-yyyy hh:mm"
+        dateFormatter.dateFormat = "MM-dd-yyyy hh:mm a"
+        dateFormatter.amSymbol = "AM"
+        dateFormatter.pmSymbol = "PM"
         dateFormatter.timeZone = NSTimeZone(forSecondsFromGMT: NSTimeZone.local.secondsFromGMT()) as TimeZone!
         let dateFromString = dateFormatter.string(from:NSDate() as Date)
         return dateFromString
@@ -313,6 +316,7 @@ class NewDonationViewController: UIViewController,newDonationProtocol,UITextFiel
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         if text == "\n" {
             textView.resignFirstResponder()
+            textView.layoutIfNeeded()
             return false
         }
         return true
@@ -321,7 +325,9 @@ class NewDonationViewController: UIViewController,newDonationProtocol,UITextFiel
     //Convert String to Date
     func convertStringToDate(dateString: String) -> Date{
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MM-dd-yyyy hh:mm"
+        dateFormatter.dateFormat = "MM-dd-yyyy hh:mm a"
+        dateFormatter.amSymbol = "AM"
+        dateFormatter.pmSymbol = "PM"
         dateFormatter.timeZone = NSTimeZone(forSecondsFromGMT: NSTimeZone.local.secondsFromGMT()) as TimeZone!
         let date = dateFormatter.date(from: dateString)
         return date!

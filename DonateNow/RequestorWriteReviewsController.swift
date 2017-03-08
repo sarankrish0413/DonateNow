@@ -48,7 +48,9 @@ class RequestorWriteReviewsController : UIViewController,addReviewsProtocol,UITe
     
     func getCurrentDateAndTime() -> String{
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MM-dd-yyyy hh:mm"
+        dateFormatter.dateFormat = "MM-dd-yyyy hh:mm a"
+        dateFormatter.amSymbol = "AM"
+        dateFormatter.pmSymbol = "PM"
         dateFormatter.timeZone = NSTimeZone(forSecondsFromGMT: NSTimeZone.local.secondsFromGMT()) as TimeZone!
         let dateFromString = dateFormatter.string(from:NSDate() as Date)
         return dateFromString

@@ -390,7 +390,9 @@ class ViewDonationDetailsViewController: UIViewController,updateDonationDetailsP
         
         //Date Format for UI
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MM-dd-yyyy hh:mm"
+        dateFormatter.dateFormat = "MM-dd-yyyy hh:mm a"
+        dateFormatter.amSymbol = "AM"
+        dateFormatter.pmSymbol = "PM"
         dateFormatter.timeZone = NSTimeZone(forSecondsFromGMT: NSTimeZone.local.secondsFromGMT()) as TimeZone!
         let dateFromString = dateFormatter.string(from: sender.date )
         return dateFromString
