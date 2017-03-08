@@ -39,14 +39,17 @@ class SignupDonorViewController: UIViewController,signupWebserviceProtocol,UITex
     //Add Button, capture all the details from form and add it to User array
     @IBAction private dynamic func donorRegisterAction(_ sender: UIButton) {
         
-        if emailTextField.text == "" || passwordTextField.text == "" {
-            let alertController = UIAlertController(title: "Error", message: "Please enter your email and password", preferredStyle: .alert)
-            
+        if emailTextField.text == "" || passwordTextField.text == "" || firstNameTextField.text == "" || lastNameTextField.text == "" || restaurantNameTextField.text == "" || confirmPwdTextField.text == "" || address1TextField.text == "" || cityTextField.text == "" || stateTextField.text == "" || pincodeTextField.text == "" || contactTextField.text == ""  {
+            let alertController = UIAlertController(title: "Error", message: "Please enter all the details", preferredStyle: .alert)
             let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
             alertController.addAction(defaultAction)
-            
             present(alertController, animated: true, completion: nil)
-            
+        }
+        else if passwordTextField.text == confirmPwdTextField.text  {
+            let alertController = UIAlertController(title: "Error", message: "Password and confirm password fields does not match", preferredStyle: .alert)
+            let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+            alertController.addAction(defaultAction)
+            present(alertController, animated: true, completion: nil)
         } else {
             OneSignal.idsAvailable({ (userId, token) in
                 

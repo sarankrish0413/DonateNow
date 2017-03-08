@@ -123,6 +123,7 @@ class NewDonationViewController: UIViewController,newDonationProtocol,UITextFiel
         
         contactTextField.inputAccessoryView = doneToolbar
         zipcodeTextField.inputAccessoryView = doneToolbar
+        qtyTextField.inputAccessoryView = doneToolbar
         
         
     }
@@ -131,16 +132,24 @@ class NewDonationViewController: UIViewController,newDonationProtocol,UITextFiel
     {
         contactTextField.resignFirstResponder()
         zipcodeTextField.resignFirstResponder()
+        qtyTextField.resignFirstResponder()
     }
    
     //MARK: Outlets Action
     //Add Button, capture all the details from form and add it to Donations array
     @IBAction func addButtonAction(_ sender: UIButton) {
+        if convertStringToDate(dateString: fromDateTextField.text!) >= convertStringToDate(dateString: toDateTextField.text!) {
+            let alertController = UIAlertController(title: "Error", message: "To Date should be greater than From Date!!!", preferredStyle: .alert)
+            let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+            alertController.addAction(defaultAction)
+            present(alertController, animated: true, completion: nil)
+        }
+        else {
         uuid = UUID().uuidString
         let webSerV: Webservice = Webservice()
         webSerV.newDonationDelegate = self
         webSerV.addDonationDetailsToFireBaseDatabase(foodDesc: foodDescTextView.text, quantity: qtyTextField.text!, contact: contactTextField.text!, address1: address1TextField.text!, address2: address2TextField.text!, city: cityTextField.text!, state: stateTextField.text!, zipcode: zipcodeTextField.text!, splInstructions: splInstTextView.text!, createdUserID: Utility.userID!, createdDate: getCurrentDateAndTime(), pickUpFromDate: fromDateTextField.text!, pickUpToDate: toDateTextField.text!, donationID: uuid , donationStatus: Utility.NEW,donationTitle:donationTitleTextField.text!,restaurantName: Utility.restaurantName!,requestorUserID:"'")
-        
+        }
     }
     
     //Show Date and time picker for fromDate text field
@@ -175,7 +184,6 @@ class NewDonationViewController: UIViewController,newDonationProtocol,UITextFiel
         datePickerView.datePickerMode = UIDatePickerMode.dateAndTime
         inputView.addSubview(datePickerView) // add date picker to UIView
         datePickerView.addTarget(self, action: #selector(toDatePickerValueChanged), for: UIControlEvents.valueChanged)
-        
         
         let doneButton = UIButton(frame: CGRect(x:(self.view.frame.size.width/2) - (100/2), y:0, width:100, height:50))
         doneButton.setTitle("Done", for: UIControlState.normal)
@@ -309,6 +317,16 @@ class NewDonationViewController: UIViewController,newDonationProtocol,UITextFiel
         }
         return true
     }
+    
+    //Convert String to Date
+    func convertStringToDate(dateString: String) -> Date{
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM-dd-yyyy hh:mm"
+        dateFormatter.timeZone = NSTimeZone(forSecondsFromGMT: NSTimeZone.local.secondsFromGMT()) as TimeZone!
+        let date = dateFormatter.date(from: dateString)
+        return date!
+    }
+   
 }
 
 extension UIView {

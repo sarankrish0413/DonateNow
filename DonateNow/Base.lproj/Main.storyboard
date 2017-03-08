@@ -1642,10 +1642,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="MGS-26-8Yu">
-                                <rect key="frame" x="-1" y="0.0" width="376" height="618"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="MGS-26-8Yu">
+                                <rect key="frame" x="0.0" y="0.0" width="376" height="618"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="618" id="yd4-iZ-pux"/>
+                                    <constraint firstAttribute="width" constant="376" id="zxb-Cq-vci"/>
+                                </constraints>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="reviewCell" rowHeight="100" id="GOT-8h-gOx" customClass="ReviewsTableViewCell" customModule="DonateNow" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="376" height="100"/>
@@ -1745,6 +1748,11 @@
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="JMK-7s-haZ" firstAttribute="top" secondItem="MGS-26-8Yu" secondAttribute="bottom" id="2bM-JG-MII"/>
+                            <constraint firstItem="MGS-26-8Yu" firstAttribute="leading" secondItem="fYN-1V-ecY" secondAttribute="leading" id="HuW-Hz-40f"/>
+                            <constraint firstAttribute="trailing" secondItem="MGS-26-8Yu" secondAttribute="trailing" id="PiM-Xd-51p"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="VIEW REVIEWS" image="my_reviews" id="AZ1-b7-tTd"/>
                     <connections>
