@@ -173,6 +173,7 @@ class ViewDonationDetailsViewController: UIViewController,updateDonationDetailsP
         
         contactTextField.inputAccessoryView = doneToolbar
         zipcodeTextField.inputAccessoryView = doneToolbar
+        qtyTextField.inputAccessoryView = doneToolbar
         
         
     }
@@ -181,6 +182,7 @@ class ViewDonationDetailsViewController: UIViewController,updateDonationDetailsP
     {
         contactTextField.resignFirstResponder()
         zipcodeTextField.resignFirstResponder()
+        qtyTextField.resignFirstResponder()
     }
     
     
