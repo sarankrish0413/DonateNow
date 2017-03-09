@@ -44,7 +44,7 @@ class SignupRequestorViewController: UIViewController,signupWebserviceProtocol,U
             alertController.addAction(defaultAction)
             present(alertController, animated: true, completion: nil)
         }
-        else if passwordTextField.text == confirmPwdTextField.text  {
+        else if passwordTextField.text != confirmPwdTextField.text  {
             let alertController = UIAlertController(title: "Error", message: "Password and confirm password fields does not match", preferredStyle: .alert)
             let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
             alertController.addAction(defaultAction)
@@ -147,12 +147,11 @@ class SignupRequestorViewController: UIViewController,signupWebserviceProtocol,U
     
     //Signup unsuccess Show alert to the user
     func signupUnSuccessful(error: Error) {
-        
+       // self.dismiss(animated: true, completion: nil)
         let alertController = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
         let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
         alertController.addAction(defaultAction)
         self.present(alertController, animated: true, completion: nil)
-        self.dismiss(animated: true, completion: nil)
 
     }
     

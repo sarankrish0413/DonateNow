@@ -70,6 +70,8 @@ class ViewController: UIViewController,loginWebserviceProtocol,UITextFieldDelega
         let webSerV: Webservice = Webservice()
         webSerV.forgotPasswordDelegate = self
         if userNameTextField.text == "" {
+            activityIndicator.startAnimating()
+            self.view.isUserInteractionEnabled = true
             let alertController = UIAlertController(title: "Error", message: "Please enter your emailID", preferredStyle: .alert)
             let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
             alertController.addAction(defaultAction)
@@ -171,14 +173,9 @@ class ViewController: UIViewController,loginWebserviceProtocol,UITextFieldDelega
     
     //MARK:ForgotPassword Protocol methods
     func forgotPasswordSuccessful() {
-        
-        //Firebase Analytics
-        FIRAnalytics.logEvent(withName: "forgot_password", parameters: [
-            "userID": Utility.userID! as String as NSObject,
-            ])
         activityIndicator.stopAnimating()
         self.view.isUserInteractionEnabled = true
-        let alertController = UIAlertController(title: "Error", message: "Please check your emailID to change your password", preferredStyle: .alert)
+        let alertController = UIAlertController(title: "Error", message: "Please check your email to change your password", preferredStyle: .alert)
         let defaultAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
         alertController.addAction(defaultAction)
         present(alertController, animated: true, completion: nil)
