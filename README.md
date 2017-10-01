@@ -1,6 +1,7 @@
 # DonateNow
-## Summary of Project
+## Summary
 An iOS application to allow excess food to be donated by restaurants to qualified food banks that work with the needy. This application is a medium where donors who wish to donate their excess food sign up and post excess food whenever it becomes available. Qualified food banks in the vicinity can claim the food.
+Please refer the wiki for [detailed design](https://github.com/sarankrish0413/DonateNow/wiki).
 
 ## Project Analysis
 ### Target Audience
